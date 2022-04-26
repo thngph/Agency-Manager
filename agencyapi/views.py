@@ -1,9 +1,20 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from django.views.generic import TemplateView
 from rest_framework import viewsets
+from .permissions import IsOwnerOrReadOnly
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.hashers import make_password
+from django.http import JsonResponse
+from django.shortcuts import get_object_or_404
+
+from rest_framework import status
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from .serializers import *
 from .models import *
 
@@ -13,6 +24,10 @@ def index(request):
         return HttpResponse('Hi xin chao ca nha yeu')
 
 # Create your views here.
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
 class DVTViewSet(viewsets.ModelViewSet):
     queryset = DVT.objects.all()
     serializer_class = DVTSerializer
@@ -92,3 +107,73 @@ class QuanViewSet(viewsets.ModelViewSet):
     queryset = Quan.objects.all()
     serializer_class = QuanSerializer
     permission_classes = [IsAuthenticated]
+
+
+
+
+class UserRegisterView(APIView):
+    def get(self, request):
+        form = UserCreationForm()
+        return render (request=request, template_name="register.html", context={"register_form":form})
+        # return render(request, 'register.html')
+    def post(self, request):
+        if request.data.get('password1') != request.data.get('password2'):
+            return JsonResponse({
+                'error_message': 'This user has already exist!',
+                'errors_code': 400,
+            }, status=status.HTTP_400_BAD_REQUEST)
+
+        serializer = UserSerializer(data={'username': request.data.get('username'), 'password': request.data.get('password1')})
+        if serializer.is_valid():
+            serializer.validated_data['password'] = make_password(serializer.validated_data['password'])
+            serializer.save()
+            return redirect('/login')
+            # return JsonResponse({
+            #     'message': 'Register successful!'
+            # }, status=status.HTTP_201_CREATED)
+
+        else:
+            return JsonResponse({
+                'error_message': 'This user has already exist!',
+                'errors_code': 400,
+            }, status=status.HTTP_400_BAD_REQUEST)
+
+
+class UserLoginView(APIView):
+    def get(self, request):
+        form = AuthenticationForm()
+        return render(request, 'login.html', {'login_form': form})
+    def post(self, request):
+        serializer = UserLoginSerializer(data=request.data)
+        if serializer.is_valid():
+            user = authenticate(
+                request,
+                username=serializer.validated_data['username'],
+                password=serializer.validated_data['password']
+            )
+
+            if user:
+
+                login(request, user)
+                refresh = TokenObtainPairSerializer.get_token(user)
+                data = {
+                    'refresh_token': str(refresh),
+                    'access_token': str(refresh.access_token)
+                }
+                return redirect('index')
+                # return Response(data, status=status.HTTP_200_OK)
+
+            return Response({
+                'error_message': 'Email or password is incorrect!',
+                'error_code': 400
+            }, status=status.HTTP_400_BAD_REQUEST)
+
+        return Response({
+            'error_messages': serializer.errors,
+            'error_code': 400
+        }, status=status.HTTP_400_BAD_REQUEST)
+
+
+def logout_request(request):
+	logout(request)
+	return redirect("login")

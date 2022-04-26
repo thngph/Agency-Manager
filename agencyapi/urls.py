@@ -22,5 +22,8 @@ router.register(r'NhaCungCap', NhaCungCapViewSet)
 
 urlpatterns = [
     path('api/', include(router.urls)),
-    path('api-auth/', include('rest_framework.urls',namespace='rest_framework'))
+    path('api-auth/', include('rest_framework.urls',namespace='rest_framework')),
+    path('register', UserRegisterView.as_view(), name='register'),
+    path('login', UserLoginView.as_view(), name='login'),
+    path('logout', logout_request, name='logout')	
 ]
