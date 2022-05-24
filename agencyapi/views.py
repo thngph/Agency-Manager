@@ -5,6 +5,7 @@ from django.views.generic import TemplateView
 from rest_framework import viewsets
 from .permissions import IsOwnerOrReadOnly
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.utils.decorators import method_decorator
 
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.hashers import make_password
@@ -110,9 +111,10 @@ class QuanViewSet(viewsets.ModelViewSet):
 
 
 
-
 class UserRegisterView(APIView):
     def get(self, request):
+        if request.user.is_authenticated:
+            return redirect('/')
         form = UserCreationForm()
         return render (request=request, template_name="register.html", context={"register_form":form})
         # return render(request, 'register.html')
@@ -141,8 +143,10 @@ class UserRegisterView(APIView):
 
 class UserLoginView(APIView):
     def get(self, request):
+        if request.user.is_authenticated:
+            return redirect('/')
         form = AuthenticationForm()
-        return render(request, 'login.html', {'login_form': form})
+        return render(request, 'auth.html', {'login_form': form})
     def post(self, request):
         serializer = UserLoginSerializer(data=request.data)
         if serializer.is_valid():

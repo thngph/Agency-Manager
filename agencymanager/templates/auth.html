@@ -29,24 +29,23 @@
                 <img srcset="{% static '/images/intro-image.png' %} 2x" alt="" class="intro-image">
             </div>
             <div class="auth">
-
-                <div class="register auth-form">
+                <div class="login auth-form">
                     <form action="" method="post" class="form">
                         <div class="form-heading">
                             <p class="form-title text-heading">
-                                Đăng kí
+                                Đăng nhập
                             </p>
-                            <img srcset="{% static '/images/register-icon.png' %} 2x" alt="">
+                            <img srcset="{% static '/images/login-icon.png' %} 2x" alt="">
                         </div>
                         <div class="form-fill">
                             {% csrf_token %}
-                            {{ register_form|crispy }}  
-                            <button class="form-btn register-btn" type="submit">Đăng kí</button>
+                            {{ login_form|crispy }} 
+                            <button class="form-btn login-btn" type="submit">Đăng nhập</button>
                         </div>
                     </form>
                     <div class="form-footer">
-                        <span>Đã có tài khoản, nhấn</span>
-                        <a class="footer-btn login-footer-btn" href="/login">Đăng nhập</a>
+                        <span>Chưa có tài khoản, nhấn</span>
+                        <a class="register-footer-btn" href="/register">Đăng kí</a>
                     </div>
                 </div>
             </div>
