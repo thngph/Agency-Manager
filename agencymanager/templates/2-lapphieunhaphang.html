@@ -47,48 +47,48 @@
       <div class="content">
         <div class="function-list">
           <ul class="function-list-item">
-            <li class="function-item active">Tiếp nhận đại lý</li>
-            <li class="function-item">Lập phiếu giao hàng</li>
+            <li class="function-item">Tiếp nhận đại lý</li>
+            <li class="function-item active">Lập phiếu nhập hàng</li>
             <li class="function-item">Lập phiếu xuất hàng</li>
             <li class="function-item">Lập phiếu thu tiền</li>
             <li class="function-item">Tra cứu</li>
           </ul>
         </div>
         <form method="post" class="form">
-          <div class="form-title">HỒ SƠ ĐẠI LÝ</div>
+          <div class="form-title">PHIẾU NHẬP HÀNG</div>
+          <div class="form-input-item fw600">
+            <label for="date" >Ngày lập phiếu</label>
+            <input type="date" id="date" />
+          </div>
           <div class="form-input-list">
             <div class="form-input-item">
-              <label for="name">Tên</label>
+              <label for="name">Nhà c.cấp</label>
               <input type="text" id="name" />
             </div>
             <div class="form-input-item">
-              <label for="type">Loại đại lý</label>
+              <label for="type">Mặt hàng</label>
               <input type="number" id="type" />
             </div>
             <div class="form-input-item">
-              <label for="phone">Điện thoại</label>
-              <input type="tel" id="phone" />
+              <label for="unit">Đơn vị tính</label>
+              <input type="number" id="unit" />
             </div>
             <div class="form-input-item">
-              <label for="address">Địa chỉ</label>
-              <input type="text" id="address" />
+              <label for="quantity">Số lượng</label>
+              <input type="number" id="quantity" />
             </div>
             <div class="form-input-item">
-              <label for="district">Quận</label>
-              <input type="text" id="district" />
-            </div>
-            <div class="form-input-item">
-              <label for="date">Ngày tiếp nhận</label>
-              <input type="date" id="date" />
+              <label for="unit-price">Đơn giá nhập</label>
+              <input type="number" id="unit-price" />
             </div>
           </div>
           <div class="btn-group">
-            <button class="btn btn-add" type="submit">Thêm</button>
-            <button class="btn btn-clear">Làm sạch</button>
+            <button class="btn btn-red" type="submit">Nhập phiếu mới</button>
+            <button class="btn btn-blue">Thêm phiếu</button>
           </div>
         </form>
         <div class="result">
-          <div class="result-title">DANH SÁCH ĐẠI LÝ ĐANG QUẢN LÝ</div>
+          <div class="result-title">THÔNG TIN PHIẾU NHẬP HÀNG</div>
           <div class="result-table">
             <!--  -->
             <style type="text/css">
@@ -150,12 +150,12 @@
               <thead>
                 <tr>
                   <th class="tg-b0es">STT</th>
-                  <th class="tg-b0es">Tên</th>
-                  <th class="tg-b0es">Loại đại lý</th>
-                  <th class="tg-b0es">Điện thoại</th>
-                  <th class="tg-b0es">Địa chỉ</th>
-                  <th class="tg-b0es">Quận</th>
-                  <th class="tg-b0es">Ngày tiếp nhận</th>
+                  <th class="tg-b0es">Nhà Cung Cấp</th>
+                  <th class="tg-b0es">Mặt Hàng</th>
+                  <th class="tg-b0es">Đơn Vị Tính</th>
+                  <th class="tg-b0es">Số lượng</th>
+                  <th class="tg-b0es">Đơn Giá Nhập</th>
+                  <th class="tg-b0es">Thành Tiền</th>
                 </tr>
               </thead>
               <tbody>
@@ -191,7 +191,10 @@
             <!--  -->
           </div>
         </div>
-        <div class="print-btn"></div>
+        <div class="btn-group">
+            <button class="btn btn-blue" type="submit">Lưu phiếu</button>
+            <button class="btn btn-light-green">In phiếu</button>
+          </div>
       </div>
     </div>
   </body>

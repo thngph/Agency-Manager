@@ -3,17 +3,13 @@
   max-width: 100%;
   height: 100vh;
 }
-
+/* Category */
 .category {
   background-color: #0093e9;
   background-image: linear-gradient(160deg, #0093e9 0%, #80d0c7 100%);
   display: flex;
   flex-direction: column;
   width: 270px;
-}
-
-.content {
-  background-color: #f3f1f1;
 }
 
 .category .title {
@@ -38,7 +34,7 @@
   justify-content: space-between;
   color: white;
   font-size: 2.2rem;
-  font-weight: 600;
+  font-weight: 500;
   padding: 12px 25px;
 }
 .category-item img {
@@ -47,35 +43,54 @@
 .category-item:last-child {
   margin-top: auto;
 }
+.category-item.active {
+  background-color: #ffffff34;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  pointer-events: none;
+}
+
+.category-item:hover {
+  cursor: pointer;
+}
 
 /* Content */
 .content {
+  background-color: #f3f1f1;
   flex: 1;
   padding: 25px;
 }
+
 .function-list-item {
   display: flex;
   justify-content: space-between;
 }
-
 .function-item {
   font-size: 2rem;
   font-weight: 600;
   color: #989898;
 }
+.function-item.active {
+  color: black;
+  pointer-events: none;
+}
 
+.function-item:hover {
+  color: black;
+  cursor: pointer;
+}
+/* Form */
 .form {
   background-color: white;
   padding: 20px 50px;
   border-radius: 20px;
   margin: 25px 0;
 }
-
 .form-title {
   font-size: 2.2rem;
   color: black;
   text-align: center;
   font-weight: 600;
+  padding: 10px 0;
 }
 
 .form-input-list {
@@ -104,32 +119,9 @@
   border: 1px solid #ccc;
   padding: 5px 10px;
 }
-
-.btn {
-  font-size: 2rem;
-  color: white;
-  border-radius: 5px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border: 2px solid white;
-  min-width: 160px;
-  padding: 5px 0;
-  display: inline-block;
-}
-
-.btn-add {
-  background-color: var(--blue-color);
-}
-.btn + .btn {
-  margin-left: 20px;
-}
-.btn-clear {
-  background-color: var(--green-color);
-}
-
 .btn-group {
   margin-top: 32px;
 }
-
 .result {
   background-color: white;
   padding: 20px 50px;
@@ -142,29 +134,4 @@
   color: black;
   text-align: center;
   font-weight: 600;
-}
-
-.category-item.active {
-  background-color: #ffffff34;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  pointer-events: none;
-}
-
-.category-item:hover {
-  cursor: pointer;
-}
-
-.function-item.active {
-  color: black;
-  pointer-events: none;
-}
-
-.function-item:hover {
-  color: black;
-  cursor: pointer;
-}
-
-.btn:hover {
-  opacity: 0.7;
-  cursor: pointer;
 }

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../static/css/global.css" />
+    <link rel="stylesheet" href="../static/css/main.css" />
+    <link rel="stylesheet" href="../static/css/variable.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>QUAN LY DAI LY</title>
+  </head>
+  <body>
+    <div class="main">
+      <div class="category">
+        <div class="title">
+          Phần mềm <br />
+          Quản lý đại lý
+        </div>
+        <div class="category-list">
+          <ul class="category-list-item">
+            <li class="category-item active">
+              <span>Chức năng</span>
+              <img src="../static/images/function-icon.png" alt="" />
+            </li>
+            <li class="category-item">
+              <span>Báo cáo</span
+              ><img src="../static/images/report-icon.png" alt="" />
+            </li>
+            <li class="category-item">
+              <span>Quy định</span
+              ><img src="../static/images/rule-icon.png" alt="" />
+            </li>
+            <li class="category-item">
+              <span>admin</span
+              ><img src="../static/images/user-icon.png" alt="" />
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="content">
+        <div class="function-list">
+          <ul class="function-list-item">
+            <li class="function-item">Tiếp nhận đại lý</li>
+            <li class="function-item">Lập phiếu nhập hàng</li>
+            <li class="function-item">Lập phiếu xuất hàng</li>
+            <li class="function-item active">Lập phiếu thu tiền</li>
+            <li class="function-item">Tra cứu</li>
+          </ul>
+        </div>
+        <form method="post" class="form">
+          <div class="form-title">PHIẾU THU TIỀN</div>
+          <div class="form-input-list">
+            <div class="form-input-item">
+              <label for="name">Đại lý</label>
+              <input type="text" id="name" />
+            </div>
+            <div class="form-input-item">
+              <label for="address">Địa chỉ</label>
+              <input type="text" id="address" />
+            </div>
+            <div class="form-input-item">
+              <label for="phone">Điện thoại</label>
+              <input type="tel" id="phone" />
+            </div>
+            <div class="form-input-item">
+              <label for="email">Email</label>
+              <input type="email" id="email" />
+            </div>
+            <div class="form-input-item">
+              <label for="date">Ngày thu</label>
+              <input type="number" id="date" />
+            </div>
+            <div class="form-input-item">
+                <label for="money">Số tiền thu</label>
+                <input type="number" id="money" />
+              </div>
+          </div>
+          <div class="btn-group">
+            <button class="btn btn-red" type="submit">Nhập phiếu mới</button>
+            <button class="btn btn-blue">Thêm phiếu</button>
+          </div>
+        </form>
+        <div class="result">
+          <div class="result-title">THÔNG TIN PHIẾU THU TIỀN</div>
+          <div class="result-table">
+            <!--  -->
+            <style type="text/css">
+              .tg {
+                border-collapse: collapse;
+                border-spacing: 0;
+              }
+              .tg td {
+                border-color: black;
+                border-style: solid;
+                border-width: 1px;
+                font-family: Arial, sans-serif;
+                font-size: 18px;
+                overflow: hidden;
+                padding: 10px 5px;
+                word-break: normal;
+              }
+              .tg th {
+                border-color: black;
+                border-style: solid;
+                border-width: 1px;
+                font-family: Arial, sans-serif;
+                font-size: 18px;
+                font-weight: normal;
+                overflow: hidden;
+                padding: 10px 5px;
+                word-break: normal;
+              }
+              .tg .tg-oe15 {
+                background-color: #ffffff;
+                border-color: #ffffff;
+                text-align: left;
+                vertical-align: center;
+              }
+              .tg .tg-wk8r {
+                background-color: #ffffff;
+                border-color: #ffffff;
+                text-align: center;
+                vertical-align: center;
+              }
+              .tg .tg-b0es {
+                background-color: #ffffff;
+                border-color: #ffffff;
+                font-weight: bold;
+                text-align: center;
+                vertical-align: center;
+              }
+            </style>
+            <table class="tg" style="table-layout: fixed; width: 100%">
+              <colgroup>
+                <col style="width: 47px" />
+                <col style="width: 113px" />
+                <col style="width: 107px" />
+                <col style="width: 94px" />
+                <col style="width: 125px" />
+                <col style="width: 80px" />
+                <col style="width: 133px" />
+              </colgroup>
+              <thead>
+                <tr>
+                  <th class="tg-b0es">STT</th>
+                  <th class="tg-b0es">Đại lý</th>
+                  <th class="tg-b0es">Địa chỉ</th>
+                  <th class="tg-b0es">Điện thoại</th>
+                  <th class="tg-b0es">Email</th>
+                  <th class="tg-b0es">Ngày thu tiền</th>
+                  <th class="tg-b0es">Số tiền thu</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="tg-wk8r">1</td>
+                  <td class="tg-oe15"></td>
+                  <td class="tg-oe15"></td>
+                  <td class="tg-oe15"></td>
+                  <td class="tg-oe15"></td>
+                  <td class="tg-oe15"></td>
+                  <td class="tg-oe15"></td>
+                </tr>
+                <tr>
+                  <td class="tg-wk8r">2</td>
+                  <td class="tg-oe15"></td>
+                  <td class="tg-oe15"></td>
+                  <td class="tg-oe15"></td>
+                  <td class="tg-oe15"></td>
+                  <td class="tg-oe15"></td>
+                  <td class="tg-oe15"></td>
+                </tr>
+                <tr>
+                  <td class="tg-wk8r">3</td>
+                  <td class="tg-oe15"></td>
+                  <td class="tg-oe15"></td>
+                  <td class="tg-oe15"></td>
+                  <td class="tg-oe15"></td>
+                  <td class="tg-oe15"></td>
+                  <td class="tg-oe15"></td>
+                </tr>
+              </tbody>
+            </table>
+            <!--  -->
+          </div>
+        </div>
+        <div class="btn-group">
+            <button class="btn btn-blue" type="submit">Lưu phiếu</button>
+            <button class="btn btn-light-green">In phiếu</button>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>
