@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="./css/intro.css">
+    <link rel="stylesheet" href="./css/app.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">    
+    <title>QUAN LY DAI LY</title>
+</head>
+<body>
+    <div class="main">
+        <div class="content">
+            <div class="intro">
+                <div class="intro-heading text-heading">
+                    PHẦN MỀM QUẢN LÝ ĐẠI LÝ
+                    <br>NHÓM 23
+                </div>
+                <img srcset="./images/intro-image.png 2x" alt="" class="intro-image">
+            </div>
+            <div class="auth">
+                <div class="login auth-form">
+                    <form action="" method="post" class="form">
+                        <div class="form-heading">
+                            <p class="form-title text-heading">
+                                Đăng nhập
+                            </p>
+                            <img srcset="./images/login-icon.png 2x" alt="">
+                        </div>
+                        <div class="form-fill">
+                            <div class="username">
+                                <div class="text-title">
+                                    Tên đăng nhập
+                                </div>
+                                <input class="username-input form-input" type="text" placeholder="Tên đăng nhập" name="username" required>
+                            </div>
+                            <div class="password">
+                                <div class="text-title">
+                                    Mật khẩu
+                                </div>
+                                <input class="password-input form-input text-title" type="password" placeholder="Mật khẩu" name="username" required >
+                            </div>
+                            <button class="form-btn login-btn" type="submit">Đăng nhập</button>
+                        </div>
+                    </form>
+                    <div class="form-footer">
+                        <span>Chưa có tài khoản, nhấn</span>
+                        <a class="register-footer-btn">Đăng kí</a>
+                    </div>
+                </div>
+                <div class="register auth-form hidden">
+                    <form action="" method="post" class="form">
+                        <div class="form-heading">
+                            <p class="form-title text-heading">
+                                Đăng kí
+                            </p>
+                            <img srcset="./images/register-icon.png 2x" alt="">
+                        </div>
+                        <div class="form-fill">
+                            <div class="username">
+                                <div class="text-title">
+                                    Tên đăng nhập
+                                </div>
+                                <input class="username-input form-input" type="text" placeholder="Tên đăng nhập" name="username" required>
+                            </div>
+                            <div class="password">
+                                <div class="text-title">
+                                    Mật khẩu
+                                </div>
+                                <input class="password-input form-input text-title" type="password" placeholder="Mật khẩu" name="username" required >
+                            </div>
+                            <div class="password">
+                                <div class="text-title">
+                                    Nhập lại mật khẩu 
+                                </div>
+                                <input class="password-input form-input text-title" type="password" placeholder="Nhập lại mật khẩu " name="username" required >
+                            </div>
+                            <button class="form-btn register-btn" type="submit">Đăng kí</button>
+                        </div>
+                    </form>
+                    <div class="form-footer">
+                        <span>Đã có tài khoản, nhấn</span>
+                        <a class="footer-btn login-footer-btn">Đăng nhập</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./script/intro.js"></script>
+</body>
+</html>

@@ -1,0 +1,125 @@
+.hidden
+{
+    display: none;
+}
+.text-heading
+{
+    font-size: 48px;
+    font-weight: 600;
+    line-height: calc(58/48);
+}
+.text-title
+{
+    font-size: 28px;
+    font-weight: 600;
+    line-height: calc(40/32);
+}
+.form-input
+{
+    padding: 0px 21px;
+    height: 72px;
+    margin: 11px 0;
+    width: 100%;
+    font-size: 26px;
+    font-weight: 500;
+    line-height: calc(40/32);
+    border-radius: 15px;
+    border: 2px solid #ccc;
+}
+.form-btn
+{
+    --color: #6a5af9;
+   color: white;
+   width: 100%;
+   height: 72px;
+   border-radius: 5px;
+   background-color: var(--color);
+   cursor: pointer;
+   font-weight: 500;
+   outline: none;
+   border: none;
+   font-size: 28px;
+   -webkit-transform-style: preserve-3d;
+   -moz-transform-style: preserve-3d;
+   transform-style: preserve-3d;
+   transition: all 0.2s linear;
+}
+.form-btn:hover
+{
+    transform: rotateY(-15deg);
+}
+/* MAIN */
+.main
+{
+    background-image: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);
+    height: 1024px;
+}
+.content
+{
+    display: grid;
+    column-gap: 70px;
+    grid-template-columns: auto auto;
+    padding: 100px 0;
+    position: relative;;
+}
+.intro
+{
+    text-align: right;
+    padding-top: 30px;
+}
+/* Form */
+.auth
+{
+    background: linear-gradient(180deg, #C8BFFF 0%, #B5FFFC 100%);
+    box-shadow: 4px 2px 10px 3px rgba(0, 0, 0, 0.1);
+    border-radius: 30px; 
+    width: 580px;
+    padding: 63px 0;
+}
+.form
+{
+    padding: 0 50px;
+}
+.login .form-fill
+{
+    margin-top: 35px;;
+}
+.form-heading
+{
+    font-size: 48px;
+    font-weight:600;
+    display: flex ;
+    justify-content: center;
+}
+.form-heading img
+{
+    margin-left: 10px ;
+    color: black;
+}
+.login-btn
+{
+    margin-top: 40px;
+}
+.form-footer
+{
+    margin-top: 30px;
+    font-size: 28px;
+    text-align: center;
+    font-weight: 600;
+}
+.form-footer a
+{
+    color: #4A72FF;
+    text-decoration: none;
+    cursor: pointer;
+}
+/* Register */
+
+.register-btn
+{
+    margin-top: 40px;
+}
+.register .form-fill
+{
+    margin-top: 35px;;
+}
