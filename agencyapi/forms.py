@@ -1,0 +1,31 @@
+from django import forms as f
+from django.contrib.auth.forms import AuthenticationForm, UsernameField, UserCreationForm
+from django.utils.translation import gettext_lazy as _
+from django.contrib.auth import password_validation
+
+class myAuthenticationForm(AuthenticationForm):
+    username = UsernameField(
+        label=_("Tên đăng nhập")
+        ,widget=f.TextInput(attrs={"autofocus": True, "class":"username-input form-input"}))
+    password = f.CharField(
+        label=_("Mật khẩu"),
+        strip=False,
+        widget=f.PasswordInput(attrs={"autocomplete": "current-password", "class":"password-input form-input text-title"}),
+    )
+
+class myUserCreationForm(UserCreationForm):
+    username = UsernameField(
+        label=_("Tên đăng nhập")
+        ,widget=f.TextInput(attrs={"autofocus": True, "class":"username-input form-input"}))
+    password1 = f.CharField(
+        label=_("Mật khẩu"),
+        strip=False,
+        widget=f.PasswordInput(attrs={"autocomplete": "new-password", "class":"password-input form-input text-title"}),
+        #help_text=password_validation.password_validators_help_text_html(),
+    )
+    password2 = f.CharField(
+        label=_("Nhập lại mật khẩu"),
+        widget=f.PasswordInput(attrs={"autocomplete": "new-password", "class":"password-input form-input text-title"}),
+        strip=False,
+        #help_text=_("Enter the same password as before, for verification."),
+    )

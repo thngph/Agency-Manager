@@ -5,6 +5,7 @@ from django.views.generic import TemplateView
 from rest_framework import viewsets
 from .permissions import IsOwnerOrReadOnly
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from .forms import *
 from django.utils.decorators import method_decorator
 
 from django.contrib.auth import authenticate, login, logout
@@ -115,7 +116,7 @@ class UserRegisterView(APIView):
     def get(self, request):
         if request.user.is_authenticated:
             return redirect('/')
-        form = UserCreationForm()
+        form = myUserCreationForm()
         return render (request=request, template_name="register.html", context={"register_form":form})
         # return render(request, 'register.html')
     def post(self, request):
@@ -145,7 +146,7 @@ class UserLoginView(APIView):
     def get(self, request):
         if request.user.is_authenticated:
             return redirect('/')
-        form = AuthenticationForm()
+        form = myAuthenticationForm()
         return render(request, 'auth.html', {'login_form': form})
     def post(self, request):
         serializer = UserLoginSerializer(data=request.data)
