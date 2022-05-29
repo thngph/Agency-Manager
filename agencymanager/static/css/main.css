@@ -1,7 +1,7 @@
 .main {
   display: flex;
   max-width: 100%;
-  height: 100vh;
+  height: 100%;
 }
 /* Category */
 .category {
@@ -10,6 +10,10 @@
   display: flex;
   flex-direction: column;
   width: 270px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
 }
 
 .category .title {
@@ -51,6 +55,7 @@
 
 .category-item:hover {
   cursor: pointer;
+  opacity: 0.5;
 }
 
 /* Content */
@@ -58,6 +63,7 @@
   background-color: #f3f1f1;
   flex: 1;
   padding: 25px;
+  margin-left: 270px;
 }
 
 .function-list-item {
@@ -134,4 +140,23 @@
   color: black;
   text-align: center;
   font-weight: 600;
+}
+
+.total-revenue span {
+  font-size: 2rem;
+  font-weight: 600;
+  color: black;
+  margin-right: 30px;
+}
+
+.total-revenue input {
+  font-size: 1.6rem;
+  width: 300px;
+  height: 40px;
+  display: inline-block;
+  border-radius: 10px;
+  outline: none;
+  border: 1px solid #ccc;
+  padding: 5px 10px;
+  background-color: white;
 }
