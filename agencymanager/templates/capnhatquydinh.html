@@ -16,6 +16,10 @@
     />
     <title>QUAN LY DAI LY</title>
     <style>
+      .form-input-item {
+        display: flex;
+        flex-direction: column;
+      }
       .main {
         height: auto;
       }
@@ -34,11 +38,11 @@
               <span>Chức năng</span>
               <img src="../static/images/function-icon.png" alt="" />
             </li>
-            <li class="category-item active">
+            <li class="category-item">
               <span>Báo cáo</span
               ><img src="../static/images/report-icon.png" alt="" />
             </li>
-            <li class="category-item">
+            <li class="category-item active">
               <span>Quy định</span
               ><img src="../static/images/rule-icon.png" alt="" />
             </li>
@@ -50,41 +54,36 @@
         </div>
       </div>
       <div class="content">
-        <div class="function-list">
-          <ul
-            class="function-list-item"
-            style="justify-content: normal !important; gap: 30px"
-          >
-            <li class="function-item active">Báo cáo doanh số</li>
-            <li class="function-item">Báo cáo công nợ</li>
-          </ul>
-        </div>
         <form method="post" class="form">
-          <div class="form-title">BÁO CÁO DOANH SỐ THÁNG</div>
+          <div class="form-title">CẬP NHẬT QUY ĐỊNH</div>
           <div class="form-input-list">
             <div class="form-input-item">
-              <label for="month">Tháng</label>
-              <input type="month" id="month" />
+              <label for="number-type">Số lượng các loại đại lý</label>
+              <input type="number" id="number-type" />
             </div>
             <div class="form-input-item">
-              <label for="year">Năm</label>
-              <input type="number" id="year" />
+              <label for="number-max">Số đại lý tối đa</label>
+              <input type="number" id="number-max" />
             </div>
             <div class="form-input-item">
-              <label for="name">Đại lý</label>
-              <input type="text" id="name" />
+              <label for="number-product">Số lượng mặt hàng</label>
+              <input type="number" id="number-product" />
+            </div>
+            <div class="form-input-item">
+              <label for="number-unit">Số lượng đơn vị tính</label>
+              <input type="number" id="number-unit" />
+            </div>
+            <div class="form-input-item">
+              <label for="number-debt">Tiền nợ tối đa</label>
+              <input type="number" id="number-debt" />
             </div>
           </div>
           <div class="btn-group">
-            <button class="btn btn-blue">Lập báo cáo</button>
+            <button class="btn btn-blue">Cập nhật</button>
           </div>
         </form>
-        <div class="total-revenue">
-          <span>Tổng doanh thu</span>
-          <input type="text" disabled />
-        </div>
         <div class="result">
-          <div class="result-title">THÔNG TIN TRA CỨU</div>
+          <div class="result-title">QUY ĐỊNH HIỆN TẠI</div>
           <div class="result-table">
             <!--  -->
             <style type="text/css">
@@ -136,18 +135,14 @@
             <table class="tg" style="table-layout: fixed; width: 100%">
               <colgroup>
                 <col style="width: 47px" />
-                <col style="width: 113px" />
-                <col style="width: 107px" />
-                <col style="width: 94px" />
-                <col style="width: 125px" />
+                <col style="width: 200px" />
+                <col style="width: 100px" />
               </colgroup>
               <thead>
                 <tr>
                   <th class="tg-b0es">STT</th>
-                  <th class="tg-b0es">Đại lý</th>
-                  <th class="tg-b0es">Số phiếu xuất</th>
-                  <th class="tg-b0es">Tổng giá trị</th>
-                  <th class="tg-b0es">Tỷ lệ</th>
+                  <th class="tg-b0es">Tên quy định</th>
+                  <th class="tg-b0es">Giá trị</th>
                 </tr>
               </thead>
               <tbody>
@@ -155,13 +150,9 @@
                   <td class="tg-wk8r">1</td>
                   <td class="tg-oe15"></td>
                   <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
                 </tr>
                 <tr>
                   <td class="tg-wk8r">2</td>
-                  <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
                   <td class="tg-oe15"></td>
                   <td class="tg-oe15"></td>
                 </tr>
@@ -169,6 +160,14 @@
                   <td class="tg-wk8r">3</td>
                   <td class="tg-oe15"></td>
                   <td class="tg-oe15"></td>
+                </tr>
+                <tr>
+                  <td class="tg-wk8r">4</td>
+                  <td class="tg-oe15"></td>
+                  <td class="tg-oe15"></td>
+                </tr>
+                <tr>
+                  <td class="tg-wk8r">5</td>
                   <td class="tg-oe15"></td>
                   <td class="tg-oe15"></td>
                 </tr>
@@ -176,9 +175,6 @@
             </table>
             <!--  -->
           </div>
-        </div>
-        <div class="btn-group">
-          <button class="btn btn-light-green">In báo cáo</button>
         </div>
       </div>
     </div>
