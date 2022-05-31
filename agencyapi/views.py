@@ -20,11 +20,6 @@ from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from .serializers import *
 from .models import *
 
-def index(request):
-    if request.method == 'GET':
-        # <view logic>
-        return HttpResponse('Hi xin chao ca nha yeu')
-
 # Create your views here.
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()

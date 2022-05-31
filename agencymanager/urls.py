@@ -21,4 +21,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('agencyapi.urls')),
     path('', index, name='index'),
+    path('tiepnhan/', tiepnhan, name='tiepnhan'),
+    path('nhaphang/', nhaphang, name='nhaphang'),
+    path('xuathang/', xuathang, name='xuathang'),
+    path('thutien/', thutien, name='thutien'),
+    path('tracuu/', tracuu, name='tracuu'),
 ]
