@@ -15,6 +15,11 @@
       rel="stylesheet"
     />
     <title>QUAN LY DAI LY</title>
+    <style>
+      .main {
+        height: auto;
+      }
+    </style>
   </head>
   <body>
     <div class="main">
@@ -57,7 +62,7 @@
         <form method="post" class="form">
           <div class="form-title">PHIẾU NHẬP HÀNG</div>
           <div class="form-input-item fw600">
-            <label for="date" >Ngày lập phiếu</label>
+            <label for="date">Ngày lập phiếu</label>
             <input type="date" id="date" />
           </div>
           <div class="form-input-list">
@@ -83,8 +88,8 @@
             </div>
           </div>
           <div class="btn-group">
-            <button class="btn btn-red" type="submit">Nhập phiếu mới</button>
-            <button class="btn btn-blue">Thêm phiếu</button>
+            <button class="btn btn-red" type="reset">Nhập phiếu mới</button>
+            <button class="btn btn-blue" type="submit">Thêm phiếu</button>
           </div>
         </form>
         <div class="result">
@@ -192,9 +197,9 @@
           </div>
         </div>
         <div class="btn-group">
-            <button class="btn btn-blue" type="submit">Lưu phiếu</button>
-            <button class="btn btn-light-green">In phiếu</button>
-          </div>
+          <button class="btn btn-blue" type="submit">Lưu phiếu</button>
+          <button class="btn btn-light-green">In phiếu</button>
+        </div>
       </div>
     </div>
   </body>

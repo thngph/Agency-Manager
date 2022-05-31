@@ -21,7 +21,6 @@
       }
     </style>
   </head>
-
   <body>
     <div class="main">
       <div class="category">
@@ -31,11 +30,11 @@
         </div>
         <div class="category-list">
           <ul class="category-list-item">
-            <li class="category-item active">
+            <li class="category-item">
               <span>Chức năng</span>
               <img src="../static/images/function-icon.png" alt="" />
             </li>
-            <li class="category-item">
+            <li class="category-item active">
               <span>Báo cáo</span
               ><img src="../static/images/report-icon.png" alt="" />
             </li>
@@ -52,56 +51,40 @@
       </div>
       <div class="content">
         <div class="function-list">
-          <ul class="function-list-item">
-            <li class="function-item">Tiếp nhận đại lý</li>
-            <li class="function-item">Lập phiếu nhập hàng</li>
-            <li class="function-item active">Lập phiếu xuất hàng</li>
-            <li class="function-item">Lập phiếu thu tiền</li>
-            <li class="function-item">Tra cứu</li>
+          <ul
+            class="function-list-item"
+            style="justify-content: normal !important; gap: 30px"
+          >
+            <li class="function-item active">Báo cáo doanh số</li>
+            <li class="function-item">Báo cáo công nợ</li>
           </ul>
         </div>
         <form method="post" class="form">
-          <div class="form-title">PHIẾU XUẤT HÀNG</div>
+          <div class="form-title">BÁO CÁO DOANH SỐ THÁNG</div>
           <div class="form-input-list">
-            <div class="form-input-item fw600">
+            <div class="form-input-item">
+              <label for="month">Tháng</label>
+              <input type="month" id="month" />
+            </div>
+            <div class="form-input-item">
+              <label for="year">Năm</label>
+              <input type="number" id="year" />
+            </div>
+            <div class="form-input-item">
               <label for="name">Đại lý</label>
               <input type="text" id="name" />
             </div>
-            <div class="form-input-item fw600">
-              <label for="date">Ngày lập phiếu</label>
-              <input type="date" id="date" />
-            </div>
-          </div>
-
-          <div class="form-input-list">
-            <div class="form-input-item">
-              <label for="name">Nhà c.cấp</label>
-              <input type="text" id="name" />
-            </div>
-            <div class="form-input-item">
-              <label for="type">Mặt hàng</label>
-              <input type="number" id="type" />
-            </div>
-            <div class="form-input-item">
-              <label for="unit">Đơn vị tính</label>
-              <input type="number" id="unit" />
-            </div>
-            <div class="form-input-item">
-              <label for="quantity">Số lượng</label>
-              <input type="number" id="quantity" />
-            </div>
-            <div class="form-input-item">
-              <label for="unit-price">Đơn giá nhập</label>
-              <input type="number" id="unit-price" />
-            </div>
           </div>
           <div class="btn-group">
-            <button class="btn btn-red" type="reset">Nhập phiếu mới</button>
-            <button class="btn btn-blue" type="submit">Thêm phiếu</button>
+            <button class="btn btn-blue">Lập báo cáo</button>
           </div>
         </form>
+        <div class="total-revenue">
+          <span>Tổng doanh thu</span>
+          <input type="text" disabled />
+        </div>
         <div class="result">
-          <div class="result-title">THÔNG TIN PHIẾU NHẬP HÀNG</div>
+          <div class="result-title">THÔNG TIN TRA CỨU</div>
           <div class="result-table">
             <!--  -->
             <style type="text/css">
@@ -109,7 +92,6 @@
                 border-collapse: collapse;
                 border-spacing: 0;
               }
-
               .tg td {
                 border-color: black;
                 border-style: solid;
@@ -120,7 +102,6 @@
                 padding: 10px 5px;
                 word-break: normal;
               }
-
               .tg th {
                 border-color: black;
                 border-style: solid;
@@ -132,21 +113,18 @@
                 padding: 10px 5px;
                 word-break: normal;
               }
-
               .tg .tg-oe15 {
                 background-color: #ffffff;
                 border-color: #ffffff;
                 text-align: left;
                 vertical-align: center;
               }
-
               .tg .tg-wk8r {
                 background-color: #ffffff;
                 border-color: #ffffff;
                 text-align: center;
                 vertical-align: center;
               }
-
               .tg .tg-b0es {
                 background-color: #ffffff;
                 border-color: #ffffff;
@@ -162,22 +140,19 @@
                 <col style="width: 107px" />
                 <col style="width: 94px" />
                 <col style="width: 125px" />
-                <col style="width: 80px" />
               </colgroup>
               <thead>
                 <tr>
                   <th class="tg-b0es">STT</th>
-                  <th class="tg-b0es">Mặt Hàng</th>
-                  <th class="tg-b0es">Đơn Vị Tính</th>
-                  <th class="tg-b0es">Số lượng</th>
-                  <th class="tg-b0es">Đơn Giá Xuất</th>
-                  <th class="tg-b0es">Thành Tiền</th>
+                  <th class="tg-b0es">Đại lý</th>
+                  <th class="tg-b0es">Số phiếu xuất</th>
+                  <th class="tg-b0es">Tổng giá trị</th>
+                  <th class="tg-b0es">Tỷ lệ</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td class="tg-wk8r">1</td>
-                  <td class="tg-oe15"></td>
                   <td class="tg-oe15"></td>
                   <td class="tg-oe15"></td>
                   <td class="tg-oe15"></td>
@@ -189,11 +164,9 @@
                   <td class="tg-oe15"></td>
                   <td class="tg-oe15"></td>
                   <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
                 </tr>
                 <tr>
                   <td class="tg-wk8r">3</td>
-                  <td class="tg-oe15"></td>
                   <td class="tg-oe15"></td>
                   <td class="tg-oe15"></td>
                   <td class="tg-oe15"></td>
@@ -204,23 +177,8 @@
             <!--  -->
           </div>
         </div>
-        <div class="form-input-list">
-          <div class="form-input-item fw600">
-            <label for="cost-incurred">Số tiền trả</label>
-            <input type="number" id="cost-incurred" />
-          </div>
-          <div class="form-input-item fw600">
-            <label for="cost-incurred">Còn lại</label>
-            <input type="number" id="cost-incurred" />
-          </div>
-        </div>
-        <div class="total-money">
-          <label for="">Tổng tiền</label>
-          <span>100000000VND</span>
-        </div>
         <div class="btn-group">
-          <button class="btn btn-blue" type="submit">Lưu phiếu</button>
-          <button class="btn btn-light-green">In phiếu</button>
+          <button class="btn btn-light-green">In báo cáo</button>
         </div>
       </div>
     </div>
