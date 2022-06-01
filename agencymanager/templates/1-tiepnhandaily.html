@@ -55,7 +55,8 @@
             <li class="function-item">Tra cứu</li>
           </ul>
         </div>
-        <form method="post" class="form">
+        <form method="POST" class="form">
+          {% csrf_token %}
           <div class="form-title">HỒ SƠ ĐẠI LÝ</div>
           <div class="form-input-list">
             <div class="form-input-item">

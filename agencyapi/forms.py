@@ -2,7 +2,8 @@ from django import forms as f
 from django.contrib.auth.forms import AuthenticationForm, UsernameField, UserCreationForm
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth import password_validation
-
+from django import forms
+from . import models
 class myAuthenticationForm(AuthenticationForm):
     username = UsernameField(
         label=_("Tên đăng nhập")
@@ -29,3 +30,9 @@ class myUserCreationForm(UserCreationForm):
         strip=False,
         #help_text=_("Enter the same password as before, for verification."),
     )
+
+
+class TiepNhan(forms.ModelForm):
+    class Meta:
+        model = models.DaiLy
+        fields = ['TenDaiLy', 'MaLoaiDaiLy','DienThoai','DiaChi', 'MaQuan','NgayTiepNhan']
