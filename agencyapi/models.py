@@ -138,5 +138,6 @@ class DaiLy(models.Model):
     DienThoai = models.CharField(max_length=50)
     Email = models.CharField(max_length=50)
     SoTienNo = models.IntegerField()
+    NgayTiepNhan = models.DateField(default='2022-06-01')
     def __str__(self):
         return self.TenDaiLy
