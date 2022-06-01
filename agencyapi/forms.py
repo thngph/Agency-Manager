@@ -37,3 +37,4 @@ class TiepNhan(forms.ModelForm):
     class Meta:
         model = models.DaiLy
         fields = ['TenDaiLy', 'MaLoaiDaiLy','DienThoai','DiaChi', 'MaQuan','NgayTiepNhan']
+    

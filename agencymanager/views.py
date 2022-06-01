@@ -21,10 +21,10 @@ def tiepnhan(request):
     if request.method == 'POST':
         form=TiepNhan(request.POST)
         if form.is_valid():
-            dulieu=form.data['TenDaiLy','MaLoaiDaiLy','DienThoai', 'DiaChi','NgayTiepNhan']
-            form.save()
-            return render(request, '1-tiepnhandaily.html')   
-    
+            print(form.data)
+            form.save()            
+            return render(request, '1-tiepnhandaily.html')       
+        print(form.data)
     return render(request, '1-tiepnhandaily.html')
 
 @login_required(login_url='login')
