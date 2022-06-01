@@ -23,8 +23,7 @@ def tiepnhan(request):
         if form.is_valid():
             print(form.data)
             form.save()            
-            return render(request, '1-tiepnhandaily.html')       
-        print(form.data)
+            return render(request, '1-tiepnhandaily.html')
     return render(request, '1-tiepnhandaily.html')
 
 @login_required(login_url='login')
