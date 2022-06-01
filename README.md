@@ -24,4 +24,9 @@ Run project:
 ```
 py manage.py runserver
 ```
+
+
+#admin - 122345678
+
+
 #On going project
