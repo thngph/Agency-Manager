@@ -15,6 +15,11 @@
       rel="stylesheet"
     />
     <title>QUAN LY DAI LY</title>
+    <style>
+      .main {
+        height: auto;
+      }
+    </style>
   </head>
   <body>
     <div class="main">
@@ -47,11 +52,21 @@
       <div class="content">
         <div class="function-list">
           <ul class="function-list-item">
-            <li class="function-item"><a href="{%url 'tiepnhan'%}">Tiếp nhận đại lý</a></li>
-            <li class="function-item"><a href="{%url 'nhaphang'%}">Lập phiếu nhập hàng</a></li>
-            <li class="function-item"><a href="{%url 'xuathang'%}">Lập phiếu xuất hàng</a></li>
-            <li class="function-item"><a href="{%url 'thutien'%}">Lập phiếu thu tiền</a></li>
-            <li class="function-item active"><a href="{%url 'tracuu'%}">Tra cứu</a></li>
+            <li class="function-item">
+              <a href="{%url 'tiepnhan'%}">Tiếp nhận đại lý</a>
+            </li>
+            <li class="function-item">
+              <a href="{%url 'nhaphang'%}">Lập phiếu nhập hàng</a>
+            </li>
+            <li class="function-item">
+              <a href="{%url 'xuathang'%}">Lập phiếu xuất hàng</a>
+            </li>
+            <li class="function-item">
+              <a href="{%url 'thutien'%}">Lập phiếu thu tiền</a>
+            </li>
+            <li class="function-item active">
+              <a href="{%url 'tracuu'%}">Tra cứu</a>
+            </li>
           </ul>
         </div>
         <form method="post" class="form">
