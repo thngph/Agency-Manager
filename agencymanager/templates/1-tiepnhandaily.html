@@ -48,49 +48,40 @@
       <div class="content">
         <div class="function-list">
           <ul class="function-list-item">
-            <li class="function-item active">
-              <a href="{%url 'tiepnhan'%}">Tiếp nhận đại lý</a>
-            </li>
-            <li class="function-item">
-              <a href="{%url 'nhaphang'%}">Lập phiếu nhập hàng</a>
-            </li>
-            <li class="function-item">
-              <a href="{%url 'xuathang'%}">Lập phiếu xuất hàng</a>
-            </li>
-            <li class="function-item">
-              <a href="{%url 'thutien'%}">Lập phiếu thu tiền</a>
-            </li>
-            <li class="function-item">
-              <a href="{%url 'tracuu'%}">Tra cứu</a>
-            </li>
+            <li class="function-item active">Tiếp nhận đại lý</li>
+            <li class="function-item">Lập phiếu nhập hàng</li>
+            <li class="function-item">Lập phiếu xuất hàng</li>
+            <li class="function-item">Lập phiếu thu tiền</li>
+            <li class="function-item">Tra cứu</li>
           </ul>
         </div>
-        <form method="post" class="form">
+        <form method="POST" action="" class="form">
+          {% csrf_token %}
           <div class="form-title">HỒ SƠ ĐẠI LÝ</div>
           <div class="form-input-list">
             <div class="form-input-item">
               <label for="name">Tên</label>
-              <input type="text" id="name" />
+              <input type="text" id="name" name="TenDaiLy" />
             </div>
             <div class="form-input-item">
               <label for="type">Loại đại lý</label>
-              <input type="number" id="type" />
+              <input type="number" id="type" name="MaLoaiDaiLy" />
             </div>
             <div class="form-input-item">
               <label for="phone">Điện thoại</label>
-              <input type="tel" id="phone" />
+              <input type="tel" id="phone"  name="DienThoai" />
             </div>
             <div class="form-input-item">
               <label for="address">Địa chỉ</label>
-              <input type="text" id="address" />
+              <input type="text" id="address" name="DiaChi" />
             </div>
             <div class="form-input-item">
               <label for="district">Quận</label>
-              <input type="text" id="district" />
+              <input type="text" id="district" name="MaQuan" />
             </div>
             <div class="form-input-item">
               <label for="date">Ngày tiếp nhận</label>
-              <input type="date" id="date" />
+              <input type="date" id="date" name="NgayTiepNhan" />
             </div>
           </div>
           <div class="btn-group">

@@ -19,7 +19,9 @@ from rest_framework.views import APIView
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from .serializers import *
 from .models import *
+from django.views.decorators.csrf import csrf_exempt
 
+@csrf_exempt
 # Create your views here.
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
