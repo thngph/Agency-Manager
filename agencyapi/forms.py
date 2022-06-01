@@ -5,8 +5,9 @@ from django.contrib.auth import password_validation
 
 class myAuthenticationForm(AuthenticationForm):
     username = UsernameField(
+        # required=False,
         label=_("Tên đăng nhập")
-        ,widget=f.TextInput(attrs={"autofocus": True, "class":"username-input form-input"}))
+        ,widget=f.TextInput(attrs={"autofocus": True, "class":"username-input form-input "}))
     password = f.CharField(
         label=_("Mật khẩu"),
         strip=False,

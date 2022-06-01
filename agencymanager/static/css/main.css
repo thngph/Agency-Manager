@@ -9,7 +9,7 @@
   background-image: linear-gradient(160deg, #0093e9 0%, #80d0c7 100%);
   display: flex;
   flex-direction: column;
-  width: 270px;
+  width: var(--category-width);
   position: fixed;
   top: 0;
   left: 0;
@@ -63,7 +63,7 @@
   background-color: #f3f1f1;
   flex: 1;
   padding: 25px;
-  margin-left: 270px;
+  margin-left: var(--category-width);
 }
 
 .function-list-item {
@@ -87,8 +87,8 @@
 /* Form */
 .form {
   background-color: white;
-  padding: 20px 50px;
-  border-radius: 20px;
+  padding: 30px 50px;
+  border-radius: 10px;
   margin: 25px 0;
 }
 .form-title {
@@ -100,9 +100,13 @@
 }
 
 .form-input-list {
-  display: grid;
+  /* display: grid;
   grid-template-columns: 1fr 1fr;
-  column-gap: 160px;
+  column-gap: 160px; */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
 }
 
 .form-input-item label {
@@ -113,11 +117,16 @@
 
 .form-input-item {
   margin: 10px 0;
+  width: 50%;
+  padding: 0 20px 0 0;
+  display: flex;
+  align-items: center;
 }
 
 .form-input-item input {
   font-size: 1.6rem;
-  width: 300px;
+  flex: 1;
+  max-width: 400px;
   height: 40px;
   display: inline-block;
   border-radius: 10px;
@@ -127,6 +136,9 @@
 }
 .btn-group {
   margin-top: 32px;
+  display: flex;
+  justify-content: end;
+  padding-right: 20px;
 }
 .result {
   background-color: white;

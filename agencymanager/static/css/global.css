@@ -54,6 +54,12 @@ h6 {
 li {
   list-style: none;
 }
+a
+{
+  list-style-type: none;
+  text-decoration: none;
+  color: inherit;
+}
 .fw600 {
   font-weight: 600;
 }
