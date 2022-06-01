@@ -1,2 +1,2 @@
 env
-agencymanager\__pycache__
+*.pyc
