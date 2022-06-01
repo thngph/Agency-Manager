@@ -106,7 +106,6 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-
 }
 
 .form-input-item label {
@@ -171,4 +170,9 @@
   border: 1px solid #ccc;
   padding: 5px 10px;
   background-color: white;
+}
+
+.total-money {
+  font-size: 18px;
+  font-weight: 600;
 }
