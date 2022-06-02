@@ -6,7 +6,7 @@ from django.views.generic import TemplateView
 from rest_framework import viewsets
 
 
-from agencyapi.forms import TiepNhan
+from agencyapi.forms import ThuTienForm, TiepNhan
 from agencyapi.models import LoaiDaiLy
 
 
@@ -28,7 +28,7 @@ def tiepnhan(request):
 
 @login_required(login_url='login')
 def nhaphang(request):
-    if request.method == 'GET':
+    if request.method == 'POST':
         # <view logic>
         return render(request, '2-lapphieunhaphang.html')
 
@@ -42,9 +42,12 @@ def xuathang(request):
 
 @login_required(login_url='login')
 def thutien(request):
-    if request.method == 'GET':
-        # <view logic>
-        return render(request, '4-lapphieuthutien.html')
+    if request.method == 'POST':
+        form= ThuTienForm(request.POST)
+        if form.is_valid():
+            print('TRUE')        
+            return render(request, '4-lapphieuthutien.html')
+    return render(request, '4-lapphieuthutien.html')
 
 
 @login_required(login_url='login')

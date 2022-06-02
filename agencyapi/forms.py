@@ -1,9 +1,12 @@
+from attr import field
 from django import forms as f
 from django.contrib.auth.forms import AuthenticationForm, UsernameField, UserCreationForm
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth import password_validation
 from django import forms
+from django.db import models
 from . import models
+
 class myAuthenticationForm(AuthenticationForm):
     username = UsernameField(
         # required=False,
@@ -38,3 +41,19 @@ class TiepNhan(forms.ModelForm):
         model = models.DaiLy
         fields = ['TenDaiLy', 'MaLoaiDaiLy','DienThoai','DiaChi', 'MaQuan','NgayTiepNhan']
     
+
+
+class ThuTienForm(forms.Form):
+    TenDaiLy = forms.CharField(max_length=50, min_length=0)
+    DiaChi = forms.CharField(max_length=50, min_length=0)
+    DienThoai = forms.CharField(max_length=50, min_length=0)
+    Email = forms.CharField(max_length=50, min_length=0)
+    NgayThuTien = forms.DateField()
+    SoTienThu = forms.IntegerField()
+    
+
+
+class PhieuThuTien(forms.ModelForm):
+    class Meta:
+        model= models.PhieuThuTien
+        fields = ['MaDaiLy', 'NgayThuTien', 'SoTienThu']

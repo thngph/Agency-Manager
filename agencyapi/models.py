@@ -96,9 +96,9 @@ class MatHang(models.Model):
 
 class PhieuXuatHang(models.Model):
     MaPhieuXuatHang = models.AutoField(primary_key=True)
-    NgayXuat = models.DateField()
+    NgayXuat = models.DateField(default="06-06-2022")
     MaDaiLy = models.ForeignKey('DaiLy', on_delete=models.CASCADE)
-    TongTien = models.IntegerField()
+    TongTien = models.IntegerField(blank=True, null=True)
 
     def __str__(self):
         return self.MaPhieuXuatHang
@@ -107,9 +107,9 @@ class ChiTietPhieuXuatHang(models.Model):
     MaChiTietPhieuXuatHang = models.AutoField(primary_key=True)
     MaPhieuXuatHang = models.ForeignKey(PhieuXuatHang, on_delete=models.CASCADE)
     MaMatHang = models.ForeignKey('MatHang', on_delete=models.CASCADE)
-    SoLuong = models.IntegerField()
-    DonGia = models.IntegerField()
-    ThanhTien = models.IntegerField()
+    SoLuong = models.IntegerField(blank=True, null=True)
+    DonGia = models.IntegerField(blank=True, null=True)
+    ThanhTien = models.IntegerField(blank=True, null=True)
 
     def __str__(self):
         return self.MaChiTietPhieuXuatHang
@@ -136,7 +136,7 @@ class DaiLy(models.Model):
     DiaChi = models.CharField(max_length=50)
     MaQuan = models.ForeignKey('Quan', on_delete=models.CASCADE)
     DienThoai = models.CharField(max_length=50)
-    Email = models.CharField(max_length=100, null=True, blank=True)
+    Email = models.EmailField(max_length=100, null=True, blank=True)
     SoTienNo = models.IntegerField(null=True, blank=True)
     NgayTiepNhan = models.DateField(default='2022-06-01')
     def __str__(self):

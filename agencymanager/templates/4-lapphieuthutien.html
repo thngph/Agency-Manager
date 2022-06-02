@@ -55,31 +55,32 @@
           </ul>
         </div>
         <form method="post" class="form">
+          {% csrf_token %}
           <div class="form-title">PHIẾU THU TIỀN</div>
           <div class="form-input-list">
             <div class="form-input-item">
               <label for="name">Đại lý</label>
-              <input type="text" id="name" />
+              <input type="text" id="name" name="TenDaiLy" />
             </div>
             <div class="form-input-item">
               <label for="address">Địa chỉ</label>
-              <input type="text" id="address" />
+              <input type="text" id="address" name="DiaChi" />
             </div>
             <div class="form-input-item">
               <label for="phone">Điện thoại</label>
-              <input type="tel" id="phone" />
+              <input type="tel" id="phone" name="DienThoai" />
             </div>
             <div class="form-input-item">
               <label for="email">Email</label>
-              <input type="email" id="email" />
+              <input type="email" id="email" name="Email" />
             </div>
             <div class="form-input-item">
               <label for="date">Ngày thu</label>
-              <input type="number" id="date" />
+              <input type="date" id="date" name="NgayThuTien" />
             </div>
             <div class="form-input-item">
               <label for="money">Số tiền thu</label>
-              <input type="number" id="money" />
+              <input type="number" id="money" name="SoTienThu" />
             </div>
           </div>
           <div class="btn-group">
