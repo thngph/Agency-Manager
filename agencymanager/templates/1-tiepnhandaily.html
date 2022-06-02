@@ -161,33 +161,20 @@
                 </tr>
               </thead>
               <tbody>
+                {% block content_tensach %}{% for item in daily %}
                 <tr>
-                  <td class="tg-wk8r">1</td>
-                  <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
+                
+                  <td class="tg-wk8r">{{ forloop.counter }}</td>
+                  <td class="tg-oe15">{{ item.TenDaiLy }}</td>
+                  <td class="tg-oe15">{{ item.MaLoaiDaiLy }}</td>
+                  <td class="tg-oe15">{{ item.DienThoai }}</td>
+                  <td class="tg-oe15">{{ item.DiaChi }}</td>
+                  <td class="tg-oe15">{{ item.MaQuan }}</td>
+                  <td class="tg-oe15">{{ item.NgayTiepNhan }}</td>
                 </tr>
-                <tr>
-                  <td class="tg-wk8r">2</td>
-                  <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
-                </tr>
-                <tr>
-                  <td class="tg-wk8r">3</td>
-                  <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
-                </tr>
+                
+                {% endfor %} {% endblock %}
+                
               </tbody>
             </table>
             <!--  -->
