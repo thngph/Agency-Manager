@@ -4,7 +4,7 @@
     color: black;
     text-align: center;
     font-weight: 600;
-    padding: 10px 0;
+    margin-bottom: 20px;
 }
 
 .form-input-group
@@ -13,6 +13,16 @@
     flex-wrap: wrap;
     justify-content: space-between;
 }
+.form-filter
+{
+    border: 1px solid #ccc;
+    padding: 20px 15px;
+    border-radius: 5px;
+}
+.form-filter .form-title
+{
+    font-size: 3rem;
+}
 .icon-search
 {
     position: absolute;
@@ -20,6 +30,30 @@
     top: 5px;
     border-radius: 10px;
     cursor: pointer;
+}
+/* Input Item Quarter */
+.form-input-item-quarter {
+    display: flex;
+    align-items: center;
+    width: calc(25% - 50px);
+}
+.form-input-item-quarter input,
+.form-input-item-quarter select
+ {
+    font-size: 2rem;
+    flex: 1;
+    height: 50px;
+    display: inline-block;
+    border-radius: 7px;
+    outline: none;
+    border: 1px solid var(--color-border-input);
+    padding: 5px 10px;
+    margin-left: 10px;
+}
+.form-input-item-quarter label {
+    font-size: 20px;
+    min-width: 50px;
+    display: inline-block;
 }
 /* Input Item Half */
 .form-input-group-half
