@@ -1,4 +1,4 @@
-from attr import field
+# from attr import field
 from django import forms as f
 from django.contrib.auth.forms import AuthenticationForm, UsernameField, UserCreationForm
 from django.utils.translation import gettext_lazy as _

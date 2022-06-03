@@ -3,5 +3,9 @@
   --green-color: #198754;
   --red-color: #CD4949;
   --light-green-color: #BBCD49;
-  --category-width: 300px;
+  --category-width: 270px;
+  --color-border-input:#000;
+  --color-content-background:#f9f9f9;
+  --white-color: #fff;
+  --header-height: 75px;
 }

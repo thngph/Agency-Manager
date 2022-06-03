@@ -1,202 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../static/css/global.css" />
-    <link rel="stylesheet" href="../static/css/main.css" />
-    <link rel="stylesheet" href="../static/css/variable.css" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <title>QUAN LY DAI LY</title>
-  </head>
-  <body>
-    <div class="main">
-      <div class="category">
-        <div class="title">
-          Phần mềm <br />
-          Quản lý đại lý
-        </div>
-        <div class="category-list">
-          <ul class="category-list-item">
-            <li class="category-item active">
-              <span>Chức năng</span>
-              <img src="../static/images/function-icon.png" alt="" />
-            </li>
-            <li class="category-item">
-              <span>Báo cáo</span
-              ><img src="../static/images/report-icon.png" alt="" />
-            </li>
-            <li class="category-item">
-              <span>Quy định</span
-              ><img src="../static/images/rule-icon.png" alt="" />
-            </li>
-            <li class="category-item">
-              <span>admin</span
-              ><img src="../static/images/user-icon.png" alt="" />
-            </li>
-          </ul>
-        </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- CSS -->
+  <link rel="stylesheet" href="../static/css/form.css" />
+  <link rel="stylesheet" href="../static/css/category.css" />
+  <link rel="stylesheet" href="../static/css/function-list.css">
+  <link rel="stylesheet" href="../static/css/global.css" />
+  <link rel="stylesheet" href="../static/css/main.css" />
+  <link rel="stylesheet" href="../static/css/variable.css" />
+  <!-- FONT -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <title>QUAN LY DAI LY</title>
+</head>
+
+<body>
+  <div class="main">
+    <div class="category">
+      <div class="title">
+        Quản lý đại lý
       </div>
-      <div class="content">
-        <div class="function-list">
-          <ul class="function-list-item">
-            <li class="function-item"><a href="{%url 'tiepnhan'%}">Tiếp nhận đại lý</a></li>
-            <li class="function-item"><a href="{%url 'nhaphang'%}">Lập phiếu nhập hàng</a></li>
-            <li class="function-item"><a href="{%url 'xuathang'%}">Lập phiếu xuất hàng</a></li>
-            <li class="function-item active"><a href="{%url 'thutien'%}">Lập phiếu thu tiền</a></li>
-            <li class="function-item"><a href="{%url 'tracuu'%}">Tra cứu</a></li>
-          </ul>
-        </div>
+      <div class="category-list">
+        <ul class="category-list-item">
+          <li class="category-item active">
+            <a href="" class="category-item-name">Chức năng</a>
+          </li>
+          <li class="category-item">
+            <a href="" class="category-item-name">Báo cáo</a>
+          </li>
+          <li class="category-item">
+            <a href="" class="category-item-name">Quy định</a>
+          </li>
+        </ul>
+        <ul class="category-user"> 
+          <li class="category-item">
+            <img src="../static/images/user-logo.png" alt="">
+            <a href="" class="category-item-name" >Admin</a>
+          </li>
+          <li class="category-item">
+            <a href="">
+              <img srcset="../static/images/logout.png 2x" alt="" />
+              <a href="" class="category-item-name" >Logout</a>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="content">
+      <ul class="function-list">
+          <li class="function-item"><a href="{%url 'tiepnhan'%}">Tiếp nhận đại lý</a></li>
+          <li class="function-item"><a href="{%url 'nhaphang'%}">Lập phiếu nhập hàng</a></li>
+          <li class="function-item"><a href="{%url 'xuathang'%}">Lập phiếu xuất hàng</a></li>
+          <li class="function-item active"><a href="{%url 'thutien'%}">Lập phiếu thu tiền</a></li>
+          <li class="function-item"><a href="{%url 'tracuu'%}">Tra cứu</a></li>
+      </ul>
+      <div class="content-body">
         <form method="post" class="form">
-          {% csrf_token %}
-          <div class="form-title">PHIẾU THU TIỀN</div>
-          <div class="form-input-list">
-            <div class="form-input-item">
-              <label for="name">Đại lý</label>
-              <input type="text" id="name" name="TenDaiLy" />
+          <!-- {% csrf_token %} -->
+          <div class="form-input-group">
+            <div class="form-input-item-full">
+              <label for="name">Mã Đại lý</label>
+              <input type="text" id="name" name="MaDaiLy" placeholder="Nhập mã đại lý..." />
+              <button type="submit">
+                <img srcset="../static/images/search-icon.png 3x" alt="" class="icon-search">
+              </button>
+              
             </div>
-            <div class="form-input-item">
-              <label for="address">Địa chỉ</label>
-              <input type="text" id="address" name="DiaChi" />
-            </div>
-            <div class="form-input-item">
-              <label for="phone">Điện thoại</label>
-              <input type="tel" id="phone" name="DienThoai" />
-            </div>
-            <div class="form-input-item">
-              <label for="email">Email</label>
-              <input type="email" id="email" name="Email" />
-            </div>
-            <div class="form-input-item">
-              <label for="date">Ngày thu</label>
-              <input type="date" id="date" name="NgayThuTien" />
-            </div>
-            <div class="form-input-item">
-              <label for="money">Số tiền thu</label>
-              <input type="number" id="money" name="SoTienThu" />
-            </div>
-          </div>
-          <div class="btn-group">
-            <button class="btn btn-red" type="reset">Nhập phiếu mới</button>
-            <button class="btn btn-blue" type="submit">Thêm phiếu</button>
           </div>
         </form>
         <div class="result">
           <div class="result-title">THÔNG TIN PHIẾU THU TIỀN</div>
-          <div class="result-table">
-            <!--  -->
-            <style type="text/css">
-              .tg {
-                border-collapse: collapse;
-                border-spacing: 0;
-              }
-              .tg td {
-                border-color: black;
-                border-style: solid;
-                border-width: 1px;
-                font-family: Arial, sans-serif;
-                font-size: 18px;
-                overflow: hidden;
-                padding: 10px 5px;
-                word-break: normal;
-              }
-              .tg th {
-                border-color: black;
-                border-style: solid;
-                border-width: 1px;
-                font-family: Arial, sans-serif;
-                font-size: 18px;
-                font-weight: normal;
-                overflow: hidden;
-                padding: 10px 5px;
-                word-break: normal;
-              }
-              .tg .tg-oe15 {
-                background-color: #ffffff;
-                border-color: #ffffff;
-                text-align: left;
-                vertical-align: center;
-              }
-              .tg .tg-wk8r {
-                background-color: #ffffff;
-                border-color: #ffffff;
-                text-align: center;
-                vertical-align: center;
-              }
-              .tg .tg-b0es {
-                background-color: #ffffff;
-                border-color: #ffffff;
-                font-weight: bold;
-                text-align: center;
-                vertical-align: center;
-              }
-            </style>
-            <table class="tg" style="table-layout: fixed; width: 100%">
-              <colgroup>
-                <col style="width: 47px" />
-                <col style="width: 113px" />
-                <col style="width: 107px" />
-                <col style="width: 94px" />
-                <col style="width: 125px" />
-                <col style="width: 80px" />
-                <col style="width: 133px" />
-              </colgroup>
-              <thead>
-                <tr>
-                  <th class="tg-b0es">STT</th>
-                  <th class="tg-b0es">Đại lý</th>
-                  <th class="tg-b0es">Địa chỉ</th>
-                  <th class="tg-b0es">Điện thoại</th>
-                  <th class="tg-b0es">Email</th>
-                  <th class="tg-b0es">Ngày thu tiền</th>
-                  <th class="tg-b0es">Số tiền thu</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td class="tg-wk8r">1</td>
-                  <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
-                </tr>
-                <tr>
-                  <td class="tg-wk8r">2</td>
-                  <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
-                </tr>
-                <tr>
-                  <td class="tg-wk8r">3</td>
-                  <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
-                </tr>
-              </tbody>
-            </table>
-            <!--  -->
+          <div class="result-form">
+            <!-- Nửa này điền được -->
+            <div class="form-input-group-half">
+              <div class="form-input-item-half">
+                <label for="">Ngày thu</label>
+                <input type="date" name="Ngaylapphieu" placeholder="Chọn ngày">
+              </div>
+              <div class="form-input-item-half">
+                <label for="">Số tiền thu</label>
+                <input type="number" name="SoTienThu" placeholder="Nhập số tiền thu">
+              </div>
+            </div>
+            <!-- Nửa này không điền được -->
+            <div class="form-input-group-half">
+              <div class="form-input-item-half">
+                <label for="">Mã đại lý</label>
+                <input type="name" name="MaDaiLy" placeholder="" disabled>
+              </div>
+              <div class="form-input-item-half">
+                <label for="">Tên đại lý</label>
+                <input type="name" name="TenDaiLy" placeholder="" disabled>
+              </div>
+              <div class="form-input-item-half">
+                <label for="">Địa chỉ</label>
+                <input type="name" name="DiaChi" placeholder="" disabled>
+              </div>
+              <div class="form-input-item-half">
+                <label for="">Email</label>
+                <input type="email" name="Email" placeholder="" disabled>
+              </div>
+              <div class="form-input-item-half">
+                <label for="">Điện thoại</label>
+                <input type="name" name="DienThoai" placeholder="" disabled>
+              </div>
+              <div class="form-input-item-half debt">
+                <label for="">Số tiền đang nợ:&nbsp;</label>
+                <label for="" class="debt-value"> 1.000.000 VND</label>
+              </div>
+              <div class="form-input-item-half debt">
+                <label for="">Số tiền nợ còn lại:&nbsp;</label>
+                <label for="" class="debt-value"> 1.000.000 VND</label>
+              </div>
+            </div>
           </div>
         </div>
         <div class="btn-group">
           <button class="btn btn-blue" type="submit">Lưu phiếu</button>
-          <button class="btn btn-light-green">In phiếu</button>
         </div>
       </div>
     </div>
-  </body>
+  </div>
+</body>
+
 </html>

@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 html {
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 62.5%;
 }
 
@@ -63,16 +63,24 @@ a
 .fw600 {
   font-weight: 600;
 }
+input:disabled
+{
+    background-color: #ccc;
+}
 /* Button */
+.btn-group {
+  margin-top: 32px;
+  display: flex;
+  justify-content: end;
+}
 .btn {
   font-size: 2rem;
   color: white;
   border-radius: 5px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border: 2px solid white;
   min-width: 160px;
-  padding: 5px 20px;
+  padding: 10px 20px;
   display: inline-block;
+  border: none;
 }
 .btn.btn-blue {
   background-color: var(--blue-color);
