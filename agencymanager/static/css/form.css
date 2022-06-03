@@ -90,13 +90,16 @@
     justify-content: space-between;
     width: 100%;
     position: relative;
+    margin-bottom: 15px;
 }
 .form-input-item-full label {
     font-size: 20px;
     min-width: 150px;
     display: inline-block;
 }
-.form-input-item-full input {
+.form-input-item-full input,
+.form-input-item-full select
+{
     font-size: 20px;
     flex: 1;
     height: 50px;
@@ -114,4 +117,25 @@
 {
     font-weight: 500; 
     text-align: right;
+}
+/* Form trang Quy định */
+.law .form-input-item-full label {
+    font-size: 20px;
+    min-width: 220px;
+    display: inline-block;
+}
+.law.content-body
+{
+    display: flex;
+    justify-content: center;
+}
+.law form
+{
+    width: 960px;
+    display: flex;
+    flex-direction: column;
+}
+.law form button
+{
+    align-self: flex-end;
 }

@@ -25,13 +25,13 @@
         </div>
         <div class="category-list">
           <ul class="category-list-item">
-            <li class="category-item active">
+            <li class="category-item">
               <a href="" class="category-item-name">Chức năng</a>
             </li>
             <li class="category-item">
               <a href="" class="category-item-name">Báo cáo</a>
             </li>
-            <li class="category-item">
+            <li class="category-item  active">
               <a href="" class="category-item-name">Quy định</a>
             </li>
           </ul>
@@ -50,127 +50,33 @@
         </div>
       </div>
       <div class="content">
-        <form method="post" class="form">
-          <div class="form-title">CẬP NHẬT QUY ĐỊNH</div>
-          <div class="form-input-list">
-            <div class="form-input-item">
-              <label for="number-type">Số lượng các loại đại lý</label>
-              <input type="number" id="number-type" />
+        <ul class="function-list">
+          <li class="function-item active"><a href="{%url 'tiepnhan'%}">Cập nhật quy định</a></li>
+        </ul>
+        <div class="law content-body">
+          <form method="post" class="form">
+            <div class="form-title">CẬP NHẬT QUY ĐỊNH</div>
+            <div class="form-input-group">
+              <div class="form-input-item-full">
+                <label for="number-max">Số đại lý tối đa</label>
+                <input type="number" id="number-max" />
+              </div>
+              <div class="form-input-item-full">
+                <label for="number-unit">Tỉ lệ đơn giá xuất</label>
+                <input type="number" id="number-unit" />
+              </div>
+              <div class="form-input-item-full">
+                <label for="number-debt">Kiểm tra số tiền thu-nợ</label>
+                <select id="check" name="CheckDebt">
+                  <option value="True">True</option>
+                  <option value="False">False</option>
+                </select>
+              </div>
             </div>
-            <div class="form-input-item">
-              <label for="number-max">Số đại lý tối đa</label>
-              <input type="number" id="number-max" />
+            <div class="btn-group">
+              <button class="btn btn-blue">Cập nhật</button>
             </div>
-            <div class="form-input-item">
-              <label for="number-product">Số lượng mặt hàng</label>
-              <input type="number" id="number-product" />
-            </div>
-            <div class="form-input-item">
-              <label for="number-unit">Số lượng đơn vị tính</label>
-              <input type="number" id="number-unit" />
-            </div>
-            <div class="form-input-item">
-              <label for="number-debt">Tiền nợ tối đa</label>
-              <input type="number" id="number-debt" />
-            </div>
-          </div>
-          <div class="btn-group">
-            <button class="btn btn-blue">Cập nhật</button>
-          </div>
-        </form>
-        <div class="result">
-          <div class="result-title">QUY ĐỊNH HIỆN TẠI</div>
-          <div class="result-table">
-            <!--  -->
-            <style type="text/css">
-              .tg {
-                border-collapse: collapse;
-                border-spacing: 0;
-              }
-              .tg td {
-                border-color: black;
-                border-style: solid;
-                border-width: 1px;
-                font-family: Arial, sans-serif;
-                font-size: 18px;
-                overflow: hidden;
-                padding: 10px 5px;
-                word-break: normal;
-              }
-              .tg th {
-                border-color: black;
-                border-style: solid;
-                border-width: 1px;
-                font-family: Arial, sans-serif;
-                font-size: 18px;
-                font-weight: normal;
-                overflow: hidden;
-                padding: 10px 5px;
-                word-break: normal;
-              }
-              .tg .tg-oe15 {
-                background-color: #ffffff;
-                border-color: #ffffff;
-                text-align: left;
-                vertical-align: center;
-              }
-              .tg .tg-wk8r {
-                background-color: #ffffff;
-                border-color: #ffffff;
-                text-align: center;
-                vertical-align: center;
-              }
-              .tg .tg-b0es {
-                background-color: #ffffff;
-                border-color: #ffffff;
-                font-weight: bold;
-                text-align: center;
-                vertical-align: center;
-              }
-            </style>
-            <table class="tg" style="table-layout: fixed; width: 100%">
-              <colgroup>
-                <col style="width: 47px" />
-                <col style="width: 200px" />
-                <col style="width: 100px" />
-              </colgroup>
-              <thead>
-                <tr>
-                  <th class="tg-b0es">STT</th>
-                  <th class="tg-b0es">Tên quy định</th>
-                  <th class="tg-b0es">Giá trị</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td class="tg-wk8r">1</td>
-                  <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
-                </tr>
-                <tr>
-                  <td class="tg-wk8r">2</td>
-                  <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
-                </tr>
-                <tr>
-                  <td class="tg-wk8r">3</td>
-                  <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
-                </tr>
-                <tr>
-                  <td class="tg-wk8r">4</td>
-                  <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
-                </tr>
-                <tr>
-                  <td class="tg-wk8r">5</td>
-                  <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
-                </tr>
-              </tbody>
-            </table>
-            <!--  -->
-          </div>
+          </form>
         </div>
       </div>
     </div>
