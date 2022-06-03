@@ -160,33 +160,17 @@
                 </tr>
               </thead>
               <tbody>
+                {% block thutien %}{% for item in phieuthutien %}
                 <tr>
-                  <td class="tg-wk8r">1</td>
-                  <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
+                  <td class="tg-wk8r">{{ forloop.counter }}</td>
+                  <td class="tg-oe15">{{ item.MaDaiLy }}</td>
+                  <td class="tg-oe15">{{ item. }}</td>
+                  <td class="tg-oe15">{{ item. }}</td>
+                  <td class="tg-oe15">{{ item. }}</td>
+                  <td class="tg-oe15">{{ item.NgayThuTien }}</td>
+                  <td class="tg-oe15">{{ item.SoTienThu }}</td>
                 </tr>
-                <tr>
-                  <td class="tg-wk8r">2</td>
-                  <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
-                </tr>
-                <tr>
-                  <td class="tg-wk8r">3</td>
-                  <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
-                </tr>
+                {% endfor %} {% endblock %}
               </tbody>
             </table>
             <!--  -->

@@ -160,8 +160,9 @@
                 </tr>
               </thead>
               <tbody>
+                {% block phieunhaphang %}{% for item in phieunhap %}
                 <tr>
-                  <td class="tg-wk8r">1</td>
+                  <td class="tg-wk8r">{{ forloop.counter }}</td>
                   <td class="tg-oe15"></td>
                   <td class="tg-oe15"></td>
                   <td class="tg-oe15"></td>
@@ -169,24 +170,7 @@
                   <td class="tg-oe15"></td>
                   <td class="tg-oe15"></td>
                 </tr>
-                <tr>
-                  <td class="tg-wk8r">2</td>
-                  <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
-                </tr>
-                <tr>
-                  <td class="tg-wk8r">3</td>
-                  <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
-                </tr>
+                {% endfor %} {% endblock %}
               </tbody>
             </table>
             <!--  -->
