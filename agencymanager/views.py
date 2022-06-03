@@ -7,7 +7,7 @@ from rest_framework import viewsets
 
 
 from agencyapi.forms import ThuTienForm, TiepNhan, PhieuThuTien
-from agencyapi.models import DaiLy, LoaiDaiLy, PhieuThuTien
+from agencyapi.models import DaiLy, LoaiDaiLy, PhieuNhapHang, PhieuThuTien
 
 
 @login_required(login_url='login')
@@ -34,7 +34,9 @@ def nhaphang(request):
     if request.method == 'POST':
         # <view logic>
         pass
-    return render(request, '2-lapphieunhaphang.html')
+    phieunhap_obj = PhieuNhapHang.objects.all()
+    context = {"phieunhap": phieunhap_obj}
+    return render(request, '2-lapphieunhaphang.html', context)
 
 
 @login_required(login_url='login')
@@ -46,6 +48,8 @@ def xuathang(request):
 
 @login_required(login_url='login')
 def thutien(request):
+    thutien_obj= PhieuThuTien.objects.all()
+    context = {"phieuthutien": thutien_obj}
     if request.method == 'POST':
         form= ThuTienForm(request.POST)
         if form.is_valid():
@@ -53,10 +57,10 @@ def thutien(request):
             daily= DaiLy.objects.get()
             a= PhieuThuTien(MaDaiLy = form.data['TenDaiLy'], ngayThuTien = form.data['NgayThuTien'], SoTienThu = form.data['SoTienThu'])
             a.save()
-            return render(request, '4-lapphieuthutien.html')
+            return render(request, '4-lapphieuthutien.html', context)
             
             
-    return render(request, '4-lapphieuthutien.html')
+    return render(request, '4-lapphieuthutien.html', context)
 
 
 @login_required(login_url='login')
