@@ -50,140 +50,149 @@
         </div>
       </div>
       <div class="content">
-        <div class="function-list">
-          <ul class="function-list-item">
+        <ul class="function-list">
             <li class="function-item"><a href="{%url 'tiepnhan'%}">Tiếp nhận đại lý</a></li>
             <li class="function-item active"><a href="{%url 'nhaphang'%}">Lập phiếu nhập hàng</a></li>
             <li class="function-item"><a href="{%url 'xuathang'%}">Lập phiếu xuất hàng</a></li>
             <li class="function-item"><a href="{%url 'thutien'%}">Lập phiếu thu tiền</a></li>
             <li class="function-item"><a href="{%url 'tracuu'%}">Tra cứu</a></li>
-          </ul>
-        </div>
-        <form method="POST" class="form">
-          {% csrf_token %}
-          <div class="form-title">PHIẾU NHẬP HÀNG</div>
-          <div class="form-input-item fw600">
-            <label for="date">Ngày lập phiếu</label>
-            <input type="date" id="date" name="NgayNhap" />
-          </div>
-          <div class="form-input-list">
-            <div class="form-input-item">
-              <label for="name">Nhà c.cấp</label>
-              <input type="text" id="name" name="MaNCC" />
-            </div>
-            <div class="form-input-item">
-              <label for="type">Mặt hàng</label>
-              <input type="number" id="type" name="MaMatHang" name="SoLuong" />
-            </div>
-            <div class="form-input-item">
-              <label for="unit">Đơn vị tính</label>
-              <input type="number" id="unit" />
-            </div>
-            <div class="form-input-item">
-              <label for="quantity">Số lượng</label>
-              <input type="number" id="quantity" name="SoLuong" />
-            </div>
-            <div class="form-input-item">
-              <label for="unit-price">Đơn giá nhập</label>
-              <input type="number" id="unit-price" name="DonGia" />
+        </ul>
+        <div class="content-body">
+          <form method="POST" class="form">
+            {% csrf_token %}
+            <form method="POST" action="" class="form">
+              {% csrf_token %}
+              <div class="form-wrap">
+                <div class="form-title">NHẬP CHI TIẾT PHIẾU NHẬP HÀNG</div>
+                <div class="form-input-group-half">
+                  <div class="form-input-item-half">
+                    <label for="name">Tên</label>
+                    <input type="text" id="name" name="TenDaiLy" required/>
+                  </div>
+                  <div class="form-input-item-half">
+                    <label for="type">Loại đại lý</label>
+                    <input type="number" id="type" name="MaLoaiDaiLy" required />
+                  </div>
+                  <div class="form-input-item-half">
+                    <label for="phone">Điện thoại</label>
+                    <input type="tel" id="phone"  name="DienThoai" required />
+                  </div>
+                  <div class="form-input-item-half">
+                    <label for="date">Ngày tiếp nhận</label>
+                    <input type="date" id="date" name="NgayTiepNhan" required />
+                  </div>
+                </div>
+                <div class="form-input-group-half">
+                  <div class="form-input-item-half">
+                    <label for="address">Địa chỉ</label>
+                    <input type="text" id="address" name="DiaChi" required />
+                  </div>
+                  <div class="form-input-item-half">
+                    <label for="district">Quận</label>
+                    <input type="text" id="district" name="MaQuan" required />
+                  </div>
+                  <div class="form-input-item-half">
+                    <label for="email">Email</label>
+                    <input type="email" id="email"  name="Email" required />
+                  </div>
+                </div>
+              </div>
+              <div class="btn-group">
+                <button class="btn btn-blue" type="submit">Thêm</button>
+              </div>
+            </form>
+          </form>
+          <div class="result">
+            <div class="result-title">THÔNG TIN PHIẾU NHẬP HÀNG</div>
+            <div class="result-table">
+              <!--  -->
+              <style type="text/css">
+                .tg {
+                  border-collapse: collapse;
+                  border-spacing: 0;
+                }
+                .tg td {
+                  border-color: black;
+                  border-style: solid;
+                  border-width: 1px;
+                  font-family: Arial, sans-serif;
+                  font-size: 18px;
+                  overflow: hidden;
+                  padding: 10px 5px;
+                  word-break: normal;
+                }
+                .tg th {
+                  border-color: black;
+                  border-style: solid;
+                  border-width: 1px;
+                  font-family: Arial, sans-serif;
+                  font-size: 18px;
+                  font-weight: normal;
+                  overflow: hidden;
+                  padding: 10px 5px;
+                  word-break: normal;
+                }
+                .tg .tg-oe15 {
+                  background-color: #ffffff;
+                  border-color: #ffffff;
+                  text-align: left;
+                  vertical-align: center;
+                }
+                .tg .tg-wk8r {
+                  background-color: #ffffff;
+                  border-color: #ffffff;
+                  text-align: center;
+                  vertical-align: center;
+                }
+                .tg .tg-b0es {
+                  background-color: #ffffff;
+                  border-color: #ffffff;
+                  font-weight: bold;
+                  text-align: center;
+                  vertical-align: center;
+                }
+              </style>
+              <table class="tg" style="table-layout: fixed; width: 100%">
+                <colgroup>
+                  <col style="width: 47px" />
+                  <col style="width: 113px" />
+                  <col style="width: 107px" />
+                  <col style="width: 94px" />
+                  <col style="width: 125px" />
+                  <col style="width: 80px" />
+                  <col style="width: 133px" />
+                </colgroup>
+                <thead>
+                  <tr>
+                    <th class="tg-b0es">STT</th>
+                    <th class="tg-b0es">Nhà Cung Cấp</th>
+                    <th class="tg-b0es">Mặt Hàng</th>
+                    <th class="tg-b0es">Đơn Vị Tính</th>
+                    <th class="tg-b0es">Số lượng</th>
+                    <th class="tg-b0es">Đơn Giá Nhập</th>
+                    <th class="tg-b0es">Thành Tiền</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% block phieunhaphang %}{% for item in phieunhap %}
+                  <tr>
+                    <td class="tg-wk8r">{{ forloop.counter }}</td>
+                    <td class="tg-oe15"></td>
+                    <td class="tg-oe15"></td>
+                    <td class="tg-oe15"></td>
+                    <td class="tg-oe15"></td>
+                    <td class="tg-oe15"></td>
+                    <td class="tg-oe15"></td>
+                  </tr>
+                  {% endfor %} {% endblock %}
+                </tbody>
+              </table>
+              <!--  -->
             </div>
           </div>
           <div class="btn-group">
-            <button class="btn btn-red" type="reset">Nhập phiếu mới</button>
-            <button class="btn btn-blue" type="submit">Thêm phiếu</button>
+            <button class="btn btn-blue" type="submit">Lưu phiếu</button>
           </div>
-        </form>
-        <div class="result">
-          <div class="result-title">THÔNG TIN PHIẾU NHẬP HÀNG</div>
-          <div class="result-table">
-            <!--  -->
-            <style type="text/css">
-              .tg {
-                border-collapse: collapse;
-                border-spacing: 0;
-              }
-              .tg td {
-                border-color: black;
-                border-style: solid;
-                border-width: 1px;
-                font-family: Arial, sans-serif;
-                font-size: 18px;
-                overflow: hidden;
-                padding: 10px 5px;
-                word-break: normal;
-              }
-              .tg th {
-                border-color: black;
-                border-style: solid;
-                border-width: 1px;
-                font-family: Arial, sans-serif;
-                font-size: 18px;
-                font-weight: normal;
-                overflow: hidden;
-                padding: 10px 5px;
-                word-break: normal;
-              }
-              .tg .tg-oe15 {
-                background-color: #ffffff;
-                border-color: #ffffff;
-                text-align: left;
-                vertical-align: center;
-              }
-              .tg .tg-wk8r {
-                background-color: #ffffff;
-                border-color: #ffffff;
-                text-align: center;
-                vertical-align: center;
-              }
-              .tg .tg-b0es {
-                background-color: #ffffff;
-                border-color: #ffffff;
-                font-weight: bold;
-                text-align: center;
-                vertical-align: center;
-              }
-            </style>
-            <table class="tg" style="table-layout: fixed; width: 100%">
-              <colgroup>
-                <col style="width: 47px" />
-                <col style="width: 113px" />
-                <col style="width: 107px" />
-                <col style="width: 94px" />
-                <col style="width: 125px" />
-                <col style="width: 80px" />
-                <col style="width: 133px" />
-              </colgroup>
-              <thead>
-                <tr>
-                  <th class="tg-b0es">STT</th>
-                  <th class="tg-b0es">Nhà Cung Cấp</th>
-                  <th class="tg-b0es">Mặt Hàng</th>
-                  <th class="tg-b0es">Đơn Vị Tính</th>
-                  <th class="tg-b0es">Số lượng</th>
-                  <th class="tg-b0es">Đơn Giá Nhập</th>
-                  <th class="tg-b0es">Thành Tiền</th>
-                </tr>
-              </thead>
-              <tbody>
-                {% block phieunhaphang %}{% for item in phieunhap %}
-                <tr>
-                  <td class="tg-wk8r">{{ forloop.counter }}</td>
-                  <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
-                </tr>
-                {% endfor %} {% endblock %}
-              </tbody>
-            </table>
-            <!--  -->
-          </div>
-        </div>
-        <div class="btn-group">
-          <button class="btn btn-blue" type="submit">Lưu phiếu</button>
-          <button class="btn btn-light-green">In phiếu</button>
         </div>
       </div>
     </div>

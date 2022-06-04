@@ -19,7 +19,7 @@
 .result {
   margin: 25px 0;
 }
-.result-form
+.form-wrap
 {
   display: flex;
   flex-wrap: wrap;

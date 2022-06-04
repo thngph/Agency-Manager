@@ -5,8 +5,8 @@
     text-align: center;
     font-weight: 600;
     margin-bottom: 20px;
+    width: 100%;
 }
-
 .form-input-group
 {
     display: flex;
