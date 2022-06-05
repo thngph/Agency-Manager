@@ -40,6 +40,7 @@
 .form-input-item-quarter input,
 .form-input-item-quarter select
  {
+     width: -webkit-fill-available;
     font-size: 2rem;
     flex: 1;
     height: 50px;
@@ -119,23 +120,23 @@
     text-align: right;
 }
 /* Form trang Quy định */
-.law .form-input-item-full label {
+.content-sm .form-input-item-full label {
     font-size: 20px;
     min-width: 220px;
     display: inline-block;
 }
-.law.content-body
+.content-sm.content-body
 {
     display: flex;
     justify-content: center;
 }
-.law form
+.content-sm form
 {
     width: 960px;
     display: flex;
     flex-direction: column;
 }
-.law form button
+.content-sm form button
 {
     align-self: flex-end;
 }

@@ -39,12 +39,25 @@ def nhaphang(request):
     context = {"phieunhap": phieunhap_obj}
     return render(request, '2-lapphieunhaphang.html', context)
 
+@login_required(login_url='login')
+def chitietnhaphang(request):
+    if request.method == 'GET':
+        # <view logic>
+        return render(request, '3-chitietnhaphang.html')
+
+
 
 @login_required(login_url='login')
 def xuathang(request):
     if request.method == 'GET':
         # <view logic>
         return render(request, '3-lapphieuxuathang.html')
+
+@login_required(login_url='login')
+def chitietxuathang(request):
+    if request.method == 'GET':
+        # <view logic>
+        return render(request, '3-chitietxuathang.html')
 
 
 @login_required(login_url='login')
