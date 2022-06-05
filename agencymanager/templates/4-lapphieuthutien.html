@@ -60,9 +60,10 @@
         <li class="function-item active"><a href="{%url 'thutien'%}">Lập phiếu thu tiền</a></li>
         <li class="function-item"><a href="{%url 'tracuu'%}">Tra cứu & Chỉnh sửa</a></li>
       </ul>
+      {% block DaiLy_info %}
       <div class="content-body">
         <form method="post" class="form">
-          <!-- {% csrf_token %} -->
+          {% csrf_token %}
           <div class="form-input-group">
             <div class="form-input-item-full">
               <label for="name">Mã Đại lý</label>
@@ -73,6 +74,7 @@
             </div>
           </div>
         </form>
+        
         <div class="result">
           <div class="form-wrap">
             <div class="form-title">THÔNG TIN PHIẾU THU TIỀN</div>
@@ -88,26 +90,29 @@
               </div>
             </div>
             <!-- Nửa này không điền được -->
+            {% if daily %}{% for item in daily%}
             <div class="form-input-group-half">
               <div class="form-input-item-half">
-                <label for="">Mã đại lý</label>
-                <input type="name" name="MaDaiLy" placeholder="" disabled>
+                
+                <label for=""> Ma đại lý </label>
+                
+                <input type="name" name="MaDaiLy" value="{{ item.MaDaiLy }}" placeholder="" disabled>
               </div>
               <div class="form-input-item-half">
                 <label for="">Tên đại lý</label>
-                <input type="name" name="TenDaiLy" placeholder="" disabled>
+                <input type="name" name="TenDaiLy" value="{{ item.TenDaiLy }}" placeholder="" disabled>
               </div>
               <div class="form-input-item-half">
                 <label for="">Địa chỉ</label>
-                <input type="name" name="DiaChi" placeholder="" disabled>
+                <input type="name" name="DiaChi" value="{{ item.DiaChi }}" placeholder=""  disabled>
               </div>
               <div class="form-input-item-half">
                 <label for="">Email</label>
-                <input type="email" name="Email" placeholder="" disabled>
+                <input type="email" name="Email" value="{{ item.Email }}" placeholder="" disabled>
               </div>
               <div class="form-input-item-half">
                 <label for="">Điện thoại</label>
-                <input type="name" name="DienThoai" placeholder="" disabled>
+                <input type="name" name="DienThoai" value="{{ item.DienThoai }}" placeholder="" disabled>
               </div>
               <div class="form-input-item-half debt">
                 <label for="">Số tiền đang nợ:&nbsp;</label>
@@ -120,10 +125,49 @@
             </div>
           </div>
         </div>
+        {% endfor %}
+        {% else %}
+        <div class="form-input-group-half">
+          <div class="form-input-item-half">
+            
+            <label for=""> Ma đại lý </label>
+            
+            <input type="name" name="MaDaiLy"  placeholder="" disabled>
+          </div>
+          <div class="form-input-item-half">
+            <label for="">Tên đại lý</label>
+            <input type="name" name="TenDaiLy"  placeholder="" disabled>
+          </div>
+          <div class="form-input-item-half">
+            <label for="">Địa chỉ</label>
+            <input type="name" name="DiaChi"  placeholder=""  disabled>
+          </div>
+          <div class="form-input-item-half">
+            <label for="">Email</label>
+            <input type="email" name="Email"  placeholder="" disabled>
+          </div>
+          <div class="form-input-item-half">
+            <label for="">Điện thoại</label>
+            <input type="name" name="DienThoai"  placeholder="" disabled>
+          </div>
+          <div class="form-input-item-half debt">
+            <label for="">Số tiền đang nợ:&nbsp;</label>
+            <label for="" class="debt-value"> 1.000.000 VND</label>
+          </div>
+          <div class="form-input-item-half debt">
+            <label for="">Số tiền nợ còn lại:&nbsp;</label>
+            <label for="" class="debt-value"> 1.000.000 VND</label>
+          </div>
+        </div>
+      </div>
+    </div>
+        {% endif %}
         <div class="btn-group">
           <button class="btn btn-blue" id="myBtn" type="submit">Lưu phiếu</button>
         </div>
       </div>
+      
+      {% endblock %}
     </div>
   </div>
   <div id="myModal" class="modal">
