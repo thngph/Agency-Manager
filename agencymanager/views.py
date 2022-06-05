@@ -68,3 +68,31 @@ def tracuu(request):
     if request.method == 'GET':
         # <view logic>
         return render(request, '5-tracuu.html')
+
+@login_required(login_url='login')
+def doanhso(request):
+    if request.method == 'GET':
+        # <view logic>
+        return render(request, 'baocaodoanhso.html')
+
+@login_required(login_url='login')
+def congno(request):
+    if request.method == 'GET':
+        # <view logic>
+        return render(request, 'baocaocongno.html')
+
+@login_required(login_url='login')
+def quydinh(request):
+    if request.method == 'GET':
+        # <view logic>
+        return render(request, 'capnhatquydinh.html')
+
+@login_required(login_url='login')
+def profile(request):
+    if request.method == 'GET':
+        # <view logic>
+        return render(request, 'trangcanhan.html')
+
+def logout(request):
+	logout(request)
+	return redirect("login")
