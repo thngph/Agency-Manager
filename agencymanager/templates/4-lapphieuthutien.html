@@ -65,7 +65,7 @@
         
         <form method="post" class="form">
           {% csrf_token %}
-          {% if daily%}
+          {% if daily or flag %}
           <div class="form-input-group">
             <div class="form-input-item-full">
               <label for="name">Mã Đại lý</label>

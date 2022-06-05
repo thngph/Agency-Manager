@@ -63,13 +63,18 @@ def chitietxuathang(request):
 @login_required(login_url='login')
 def thutien(request):    
     context = None
+    
     if request.method == 'POST':
         id= request.POST['MaDaiLy']
         daily_obj= DaiLy.objects.filter(MaDaiLy= id)
-        context= {"daily": daily_obj}
-        print(context)
-        return render(request, '4-lapphieuthutien.html', context)           
-    #return HttpResponse("MA DAI LY SAI")     
+        if daily_obj:
+            context= {"daily": daily_obj, "flag": TRUE}
+            return render(request, '4-lapphieuthutien.html', context)           
+        else:
+            context: {"daily": daily_obj, "flag": FALSE}
+            return render(request, '4-lapphieuthutien.html', context)
+    #return MA DAI LY SAI
+    context= {"flag": TRUE}
     return render(request, '4-lapphieuthutien.html', context)
 
 
