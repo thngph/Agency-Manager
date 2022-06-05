@@ -61,22 +61,23 @@
         <li class="function-item"><a href="{%url 'tracuu'%}">Tra cứu & Chỉnh sửa</a></li>
       </ul>
       <div class="content-sm content-body">
-        <form method="post" class="form">
-            <!-- {% csrf_token %} -->
+        <form method="POST" class="form">
+            {% csrf_token %}
             <div class="form-title">LẬP PHIẾU NHẬP HÀNG</div>
             <div class="form-input-group">
               <div class="form-input-item-full">
                 <label for="NgayLapPhieu">Ngày lập phiếu</label>
-                <input type="date" id="date" name="NgayLapPhieu"/>
+                <input type="date" id="date" name="NgayNhap"/>
               </div>
               <div class="form-input-item-full">
                 <label for="MaDaiLy">Mã nhà cung cấp</label>
-                <input type="number" id="MaDaiLy" name="MaDaiLy" />
+                <input type="number" id="MaDaiLy" name="MaNCC" />
               </div>
             </div>
             <div class="btn-group">
               <button type="submit" class="btn btn-blue">
-                  <a href="{%url 'chitietnhaphang'%}">Tiếp tục</a>
+                  <!-- <a href="{%url 'chitietnhaphang'%}">Tiếp tục</a> --> 
+                  <a>Tiếp tục</a>
                 </button>
             </div>
           </form>

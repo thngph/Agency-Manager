@@ -58,6 +58,7 @@ class DVT(models.Model):
     def __str__(self):
         return self.TenDVT
 
+
 class NhaCungCap(models.Model):
     MaNCC = models.AutoField(primary_key=True)
     TenNCC = models.CharField(max_length=100)
@@ -65,14 +66,15 @@ class NhaCungCap(models.Model):
     def __str__(self):
         return self.TenNCC
 
+
 class PhieuNhapHang(models.Model):
     MaPhieuNhapHang = models.AutoField(primary_key=True)
     NgayNhap = models.DateField()
-    TongTien = models.IntegerField()
+    TongTien = models.IntegerField(default= 0, blank=True, null= True)
     MaNCC = models.ForeignKey(NhaCungCap, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.MaPhieuNhapHang
+        return str(self.MaPhieuNhapHang)
 
 class ChiTietPhieuNhapHang(models.Model):
     MaChiTietPhieuNhapHang = models.AutoField(primary_key=True)

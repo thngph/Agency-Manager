@@ -58,8 +58,6 @@
             <li class="function-item"><a href="{%url 'tracuu'%}">Tra cứu & Chỉnh sửa</a></li>
         </ul>
         <div class="content-body">
-          <form method="POST" class="form">
-            {% csrf_token %}
             <form method="POST" action="" class="form">
               {% csrf_token %}
               <div class="form-wrap">
@@ -99,7 +97,7 @@
               </div>
             
             </form>
-          </form>
+          
           <div class="result">
             <div class="result-title">THÔNG TIN PHIẾU NHẬP HÀNG</div>
             <div class="result-table">

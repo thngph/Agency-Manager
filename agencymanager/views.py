@@ -7,7 +7,7 @@ from django.views.generic import TemplateView
 from rest_framework import viewsets
 
 
-from agencyapi.forms import ThuTienForm, TiepNhan, PhieuThuTien
+from agencyapi.forms import NhapHang, ThuTienForm, TiepNhan, PhieuThuTien
 from agencyapi.models import DaiLy, LoaiDaiLy, PhieuNhapHang, PhieuThuTien
 
 
@@ -16,6 +16,7 @@ def index(request):
     if request.method == 'GET':
         # <view logic>
         return redirect('tiepnhan')
+
 
 @login_required(login_url='login')
 def tiepnhan(request):    
@@ -30,20 +31,24 @@ def tiepnhan(request):
     print(FALSE)
     return render(request, '1-tiepnhandaily.html', context)
 
+
 @login_required(login_url='login')
 def nhaphang(request):
     if request.method == 'POST':
-        # <view logic>
-        pass
-    phieunhap_obj = PhieuNhapHang.objects.all()
-    context = {"phieunhap": phieunhap_obj}
-    return render(request, '2-lapphieunhaphang.html', context)
+        form= NhapHang(request.POST)
+        if form.is_valid():            
+            form.save()
+            print(True)
+            return render(request, '2-chitietnhaphang.html')
+    print(False)    
+    return render(request, '2-lapphieunhaphang.html')
+
 
 @login_required(login_url='login')
 def chitietnhaphang(request):
     if request.method == 'GET':
         # <view logic>
-        return render(request, '3-chitietnhaphang.html')
+        return render(request, '2-chitietnhaphang.html')
 
 
 

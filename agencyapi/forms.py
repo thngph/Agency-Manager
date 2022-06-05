@@ -57,3 +57,12 @@ class PhieuThuTien(forms.ModelForm):
     class Meta:
         model= models.PhieuThuTien
         fields = ['MaDaiLy', 'NgayThuTien', 'SoTienThu']
+
+
+
+
+class NhapHang(forms.ModelForm):
+    class Meta:
+        model = models.PhieuNhapHang
+        fields = ['NgayNhap', 'MaNCC']
+    
