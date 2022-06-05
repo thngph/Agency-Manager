@@ -62,8 +62,10 @@
       </ul>
       {% block DaiLy_info %}
       <div class="content-body">
+        
         <form method="post" class="form">
           {% csrf_token %}
+          {% if daily%}
           <div class="form-input-group">
             <div class="form-input-item-full">
               <label for="name">Mã Đại lý</label>
@@ -74,7 +76,17 @@
             </div>
           </div>
         </form>
-        
+        {% else %}
+        <div class="form-input-group">
+          <div class="form-input-item-full">
+            <label for="name">Mã Đại lý</label>
+            <input type="text" id="name" value="SAI MÃ ĐẠI LÝ" name="MaDaiLy" placeholder="Nhập mã đại lý..." />
+            <button type="submit">
+              <img srcset="../static/images/search-icon.png 3x" alt="" class="icon-search">
+            </button>
+          </div>
+        </div>
+        {% endif %}
         <div class="result">
           <div class="form-wrap">
             <div class="form-title">THÔNG TIN PHIẾU THU TIỀN</div>
