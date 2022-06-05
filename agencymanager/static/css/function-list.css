@@ -17,6 +17,16 @@
   font-size: 24px;
   font-weight: 400;
   color: #989898;
+  /* width: 20%;
+  text-align: center; */
+}
+.report .function-list
+{
+  justify-content: flex-start;
+}
+.report .function-item
+{
+  width: 20%;
 }
 .function-item.active {
   color: black;

@@ -40,38 +40,17 @@
   align-items: flex-end;
   justify-content: center;
   flex-direction: column;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 600;
   margin-top: 20px;
 }
-.result-money-total
+.money-value
 {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  font-size: 18px;
-  font-weight: 600;
-  margin-top: 20px;
-}
-.result-money-total span
-{
-  margin-left: 20px;
-}
-.total-revenue span {
-  font-size: 2rem;
-  font-weight: 600;
-  color: black;
-  margin-right: 30px;
-}
-
-.total-revenue input {
-  font-size: 1.6rem;
-  width: 300px;
-  height: 40px;
+  width: 150px;
   display: inline-block;
-  border-radius: 10px;
-  outline: none;
-  border: 1px solid #ccc;
-  padding: 5px 10px;
-  background-color: white;
+  text-align: right;
+}
+.result-money-item
+{
+  margin-top: 15px;
 }

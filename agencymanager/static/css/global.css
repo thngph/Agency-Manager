@@ -67,9 +67,14 @@ input:disabled
 {
     background-color: #ccc;
 }
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 /* Button */
 .btn-group {
-  margin-top: 32px;
+  margin-top: 25px;
   display: flex;
   justify-content: end;
   width: 100%;

@@ -49,34 +49,35 @@
           </ul>
         </div>
       </div>
-      <div class="content">
+      <div class="report content">
         <ul class="function-list">
           <li class="function-item"><a href="{%url 'doanhso'%}">Báo cáo doanh số</a></li>
           <li class="function-item active"><a href="{%url 'congno'%}">Báo cáo công nợ</a></li>
         </ul>
         <div class="content-body">
           <form method="post" class="form">
-            <div class="form-title">BÁO CÁO CÔNG NỢ ĐẠI LÝ</div>
-            <div class="form-input-list">
-              <div class="form-input-item">
-                <label for="month">Tháng</label>
-                <input type="month" id="month" />
+            <div class="form-wrap">
+              <div class="form-title">LẬP BÁO CÁO CÔNG NỢ</div>
+              <div class="form-input-group-half">
+                <div class="form-input-item-half">
+                  <label for="month">Tháng</label>
+                  <input type="number" id="month" />
+                </div>
               </div>
-              <div class="form-input-item">
-                <label for="year">Năm</label>
-                <input type="number" id="year" />
+              <div class="form-input-group-half">
+                <div class="form-input-item-half">
+                  <label for="number">Năm</label>
+                  <input type="number" id="year" />
+                </div>
               </div>
-              <div class="form-input-item">
-                <label for="name">Đại lý</label>
-                <input type="text" id="name" />
+              <div class="btn-group">
+                <button class="btn btn-blue">Lập báo cáo</button>
               </div>
-            </div>
-            <div class="btn-group">
-              <button class="btn btn-blue">Lập báo cáo</button>
             </div>
           </form>
           <div class="result">
             <div class="result-table">
+              <div class="result-title">BÁO CÁO CÔNG NỢ</div>
               <!--  -->
               <style type="text/css">
                 .tg {
@@ -106,22 +107,22 @@
                 }
                 .tg .tg-oe15 {
                   background-color: #ffffff;
-                  border-color: #ffffff;
+                  border-color: #000;
                   text-align: left;
-                  vertical-align: center;
+                  vertical-align: middle;
                 }
                 .tg .tg-wk8r {
                   background-color: #ffffff;
-                  border-color: #ffffff;
+                  border-color: #000;
                   text-align: center;
-                  vertical-align: center;
+                  vertical-align: middle;
                 }
                 .tg .tg-b0es {
                   background-color: #ffffff;
-                  border-color: #ffffff;
+                  border-color: #000;
                   font-weight: bold;
                   text-align: center;
-                  vertical-align: center;
+                  vertical-align: middle;
                 }
               </style>
               <table class="tg" style="table-layout: fixed; width: 100%">
@@ -135,7 +136,7 @@
                 <thead>
                   <tr>
                     <th class="tg-b0es">STT</th>
-                    <th class="tg-b0es">Đại lý</th>
+                    <th class="tg-b0es">Mã đại lý</th>
                     <th class="tg-b0es">Nợ đầu</th>
                     <th class="tg-b0es">Phát sinh</th>
                     <th class="tg-b0es">Nợ cuối</th>

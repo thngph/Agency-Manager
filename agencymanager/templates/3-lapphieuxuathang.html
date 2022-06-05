@@ -177,21 +177,25 @@
               </tbody>
             </table>
           </div>
-        </div>
-        <div class="form-input-group-half">
-          <div class="form-input-item-half">
-            <label for="cost-incurred">Số tiền trả</label>
-            <input type="number" id="cost-incurred" />
+          <div class="result-money">
+            <div class="result-money-item result-money-total">
+              <span>Tổng tiền: </span>
+              <span class="money-value">1000000</span>
+              <span>VND</span>
+            </div>
+            <div class="result-money-item result-money-paid">
+              <label for="money-paid">Số tiền trả: </label>
+              <input type="number" name="money-paid" class="money-value">
+              <span>VND</span>
+            </div>
+            <div class="result-money-item result-money-remain">
+              <span>Còn lại: </span>
+              <span class="money-value">1000000</span>
+              <span>VND</span>
+            </div>
           </div>
-          <div class="form-input-item-half">
-            <label for="cost-incurred">Còn lại</label>
-            <span class="cost-incured">1.000.000 VND</span>
-          </div>
         </div>
-        <div class="total-money">
-          <label for="">Tổng tiền</label>
-          <span>1.000.000VND</span>
-        </div>
+        
         <div class="btn-group">
           <button class="btn btn-blue" type="submit">Lưu phiếu</button>
         </div>
