@@ -54,121 +54,123 @@
           <li class="function-item"><a href="{%url 'doanhso'%}">Báo cáo doanh số</a></li>
           <li class="function-item active"><a href="{%url 'congno'%}">Báo cáo công nợ</a></li>
         </ul>
-        <form method="post" class="form">
-          <div class="form-title">BÁO CÁO CÔNG NỢ ĐẠI LÝ</div>
-          <div class="form-input-list">
-            <div class="form-input-item">
-              <label for="month">Tháng</label>
-              <input type="month" id="month" />
+        <div class="content-body">
+          <form method="post" class="form">
+            <div class="form-title">BÁO CÁO CÔNG NỢ ĐẠI LÝ</div>
+            <div class="form-input-list">
+              <div class="form-input-item">
+                <label for="month">Tháng</label>
+                <input type="month" id="month" />
+              </div>
+              <div class="form-input-item">
+                <label for="year">Năm</label>
+                <input type="number" id="year" />
+              </div>
+              <div class="form-input-item">
+                <label for="name">Đại lý</label>
+                <input type="text" id="name" />
+              </div>
             </div>
-            <div class="form-input-item">
-              <label for="year">Năm</label>
-              <input type="number" id="year" />
+            <div class="btn-group">
+              <button class="btn btn-blue">Lập báo cáo</button>
             </div>
-            <div class="form-input-item">
-              <label for="name">Đại lý</label>
-              <input type="text" id="name" />
+          </form>
+          <div class="result">
+            <div class="result-table">
+              <!--  -->
+              <style type="text/css">
+                .tg {
+                  border-collapse: collapse;
+                  border-spacing: 0;
+                }
+                .tg td {
+                  border-color: black;
+                  border-style: solid;
+                  border-width: 1px;
+                  font-family: Arial, sans-serif;
+                  font-size: 18px;
+                  overflow: hidden;
+                  padding: 10px 5px;
+                  word-break: normal;
+                }
+                .tg th {
+                  border-color: black;
+                  border-style: solid;
+                  border-width: 1px;
+                  font-family: Arial, sans-serif;
+                  font-size: 18px;
+                  font-weight: normal;
+                  overflow: hidden;
+                  padding: 10px 5px;
+                  word-break: normal;
+                }
+                .tg .tg-oe15 {
+                  background-color: #ffffff;
+                  border-color: #ffffff;
+                  text-align: left;
+                  vertical-align: center;
+                }
+                .tg .tg-wk8r {
+                  background-color: #ffffff;
+                  border-color: #ffffff;
+                  text-align: center;
+                  vertical-align: center;
+                }
+                .tg .tg-b0es {
+                  background-color: #ffffff;
+                  border-color: #ffffff;
+                  font-weight: bold;
+                  text-align: center;
+                  vertical-align: center;
+                }
+              </style>
+              <table class="tg" style="table-layout: fixed; width: 100%">
+                <colgroup>
+                  <col style="width: 47px" />
+                  <col style="width: 113px" />
+                  <col style="width: 107px" />
+                  <col style="width: 94px" />
+                  <col style="width: 125px" />
+                </colgroup>
+                <thead>
+                  <tr>
+                    <th class="tg-b0es">STT</th>
+                    <th class="tg-b0es">Đại lý</th>
+                    <th class="tg-b0es">Nợ đầu</th>
+                    <th class="tg-b0es">Phát sinh</th>
+                    <th class="tg-b0es">Nợ cuối</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="tg-wk8r">1</td>
+                    <td class="tg-oe15"></td>
+                    <td class="tg-oe15"></td>
+                    <td class="tg-oe15"></td>
+                    <td class="tg-oe15"></td>
+                  </tr>
+                  <tr>
+                    <td class="tg-wk8r">2</td>
+                    <td class="tg-oe15"></td>
+                    <td class="tg-oe15"></td>
+                    <td class="tg-oe15"></td>
+                    <td class="tg-oe15"></td>
+                  </tr>
+                  <tr>
+                    <td class="tg-wk8r">3</td>
+                    <td class="tg-oe15"></td>
+                    <td class="tg-oe15"></td>
+                    <td class="tg-oe15"></td>
+                    <td class="tg-oe15"></td>
+                  </tr>
+                </tbody>
+              </table>
+              <!--  -->
             </div>
           </div>
           <div class="btn-group">
-            <button class="btn btn-blue">Lập báo cáo</button>
+            <button class="btn btn-light-green">In báo cáo</button>
           </div>
-        </form>
-        <div class="result">
-          <div class="result-table">
-            <!--  -->
-            <style type="text/css">
-              .tg {
-                border-collapse: collapse;
-                border-spacing: 0;
-              }
-              .tg td {
-                border-color: black;
-                border-style: solid;
-                border-width: 1px;
-                font-family: Arial, sans-serif;
-                font-size: 18px;
-                overflow: hidden;
-                padding: 10px 5px;
-                word-break: normal;
-              }
-              .tg th {
-                border-color: black;
-                border-style: solid;
-                border-width: 1px;
-                font-family: Arial, sans-serif;
-                font-size: 18px;
-                font-weight: normal;
-                overflow: hidden;
-                padding: 10px 5px;
-                word-break: normal;
-              }
-              .tg .tg-oe15 {
-                background-color: #ffffff;
-                border-color: #ffffff;
-                text-align: left;
-                vertical-align: center;
-              }
-              .tg .tg-wk8r {
-                background-color: #ffffff;
-                border-color: #ffffff;
-                text-align: center;
-                vertical-align: center;
-              }
-              .tg .tg-b0es {
-                background-color: #ffffff;
-                border-color: #ffffff;
-                font-weight: bold;
-                text-align: center;
-                vertical-align: center;
-              }
-            </style>
-            <table class="tg" style="table-layout: fixed; width: 100%">
-              <colgroup>
-                <col style="width: 47px" />
-                <col style="width: 113px" />
-                <col style="width: 107px" />
-                <col style="width: 94px" />
-                <col style="width: 125px" />
-              </colgroup>
-              <thead>
-                <tr>
-                  <th class="tg-b0es">STT</th>
-                  <th class="tg-b0es">Đại lý</th>
-                  <th class="tg-b0es">Nợ đầu</th>
-                  <th class="tg-b0es">Phát sinh</th>
-                  <th class="tg-b0es">Nợ cuối</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td class="tg-wk8r">1</td>
-                  <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
-                </tr>
-                <tr>
-                  <td class="tg-wk8r">2</td>
-                  <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
-                </tr>
-                <tr>
-                  <td class="tg-wk8r">3</td>
-                  <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
-                </tr>
-              </tbody>
-            </table>
-            <!--  -->
-          </div>
-        </div>
-        <div class="btn-group">
-          <button class="btn btn-light-green">In báo cáo</button>
         </div>
       </div>
     </div>

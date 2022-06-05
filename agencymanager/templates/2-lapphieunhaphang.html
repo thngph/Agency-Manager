@@ -66,8 +66,12 @@
                 <div class="form-title">NHẬP CHI TIẾT PHIẾU NHẬP HÀNG</div>
                 <div class="form-input-group-half">
                   <div class="form-input-item-half">
-                    <label for="name">Mã mặt hàng</label>
+                    <label for="name">Mặt hàng</label>
                     <input type="text" id="name" name="Mamathang" required/>
+                  </div>
+                  <div class="form-input-item-half">
+                    <label for="type">Đơn vị tính</label>
+                    <input type="number" id="type" name="MaLoaiDaiLy" required />
                   </div>
                   <div class="form-input-item-half">
                     <label for="type">Đơn giá nhập</label>
@@ -89,98 +93,104 @@
                     <input type="name" id="producer" name="producer" disabled required />
                   </div>
                 </div>
+                <div class="btn-group">
+                  <button class="btn btn-blue" type="submit">Thêm</button>
+                </div>
               </div>
-              <div class="btn-group">
-                <button class="btn btn-blue" type="submit">Thêm</button>
-              </div>
+            
             </form>
           </form>
           <div class="result">
             <div class="result-title">THÔNG TIN PHIẾU NHẬP HÀNG</div>
             <div class="result-table">
-              <!--  -->
               <style type="text/css">
                 .tg {
                   border-collapse: collapse;
                   border-spacing: 0;
                 }
+    
                 .tg td {
                   border-color: black;
                   border-style: solid;
                   border-width: 1px;
-                  font-family: Arial, sans-serif;
                   font-size: 18px;
                   overflow: hidden;
-                  padding: 10px 5px;
+                  padding: 0 5px;
                   word-break: normal;
+                  text-overflow: ellipsis;
+    
                 }
+                
                 .tg th {
                   border-color: black;
                   border-style: solid;
                   border-width: 1px;
-                  font-family: Arial, sans-serif;
                   font-size: 18px;
-                  font-weight: normal;
+                  font-weight: bold;
                   overflow: hidden;
                   padding: 10px 5px;
                   word-break: normal;
+                  text-overflow: ellipsis;
                 }
-                .tg .tg-oe15 {
+    
+                .tg .tg-gvcd {
                   background-color: #ffffff;
-                  border-color: #ffffff;
-                  text-align: left;
-                  vertical-align: center;
-                }
-                .tg .tg-wk8r {
-                  background-color: #ffffff;
-                  border-color: #ffffff;
+                  border-color: #000000;
+                  color: #000000;
                   text-align: center;
-                  vertical-align: center;
-                }
-                .tg .tg-b0es {
-                  background-color: #ffffff;
-                  border-color: #ffffff;
-                  font-weight: bold;
-                  text-align: center;
-                  vertical-align: center;
+                  vertical-align:middle
                 }
               </style>
               <table class="tg" style="table-layout: fixed; width: 100%">
                 <colgroup>
-                  <col style="width: 47px" />
-                  <col style="width: 113px" />
-                  <col style="width: 107px" />
-                  <col style="width: 94px" />
-                  <col style="width: 125px" />
-                  <col style="width: 80px" />
-                  <col style="width: 133px" />
+                  <col style="width: 10%"> <!-- STT -->
+                  <col style="width: 10%"><!-- Mặt hàng -->
+                  <col style="width: 10%"><!-- Đơn vị tính -->
+                  <col style="width: 10%"><!-- Số lượng -->
+                  <col style="width: 10%"><!-- Đơn giá nhập -->
+                  <col style="width: 10%"><!-- Thành tiền -->
+                  <col style="width: 11%"><!-- Thao tác -->
                 </colgroup>
                 <thead>
                   <tr>
-                    <th class="tg-b0es">STT</th>
-                    <th class="tg-b0es">Nhà Cung Cấp</th>
-                    <th class="tg-b0es">Mặt Hàng</th>
-                    <th class="tg-b0es">Đơn Vị Tính</th>
-                    <th class="tg-b0es">Số lượng</th>
-                    <th class="tg-b0es">Đơn Giá Nhập</th>
-                    <th class="tg-b0es">Thành Tiền</th>
+                    <th class="tg-gvcd">STT</th>
+                    <th class="tg-gvcd">Mặt hàng</th>
+                    <th class="tg-gvcd">Đơn vị tính</th>
+                    <th class="tg-gvcd">Số lượng</th>
+                    <th class="tg-gvcd">Đơn giá nhập</th>
+                    <th class="tg-gvcd">Thành tiền</th>
+                    <th class="tg-gvcd">Thao tác</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {% block phieunhaphang %}{% for item in phieunhap %}
                   <tr>
-                    <td class="tg-wk8r">{{ forloop.counter }}</td>
-                    <td class="tg-oe15"></td>
-                    <td class="tg-oe15"></td>
-                    <td class="tg-oe15"></td>
-                    <td class="tg-oe15"></td>
-                    <td class="tg-oe15"></td>
-                    <td class="tg-oe15"></td>
+                    <td class="tg-gvcd">1</td><!-- STT -->
+                    <td class="tg-gvcd">Quần xì</td><!-- Mặt hàng -->
+                    <td class="tg-gvcd">Cái</td><!-- Đơn vị tính -->
+                    <td class="tg-gvcd">2</td><!-- Số lượng -->
+                    <td class="tg-gvcd">20.000</td><!-- Đơn giá xuất -->
+                    <td class="tg-gvcd">40.000</td><!-- Thành tiền -->
+                    <td class="tg-gvcd">
+                      <img class="btn-modify" srcset="../static/images/edit-icon.png 3x" alt="">
+                      <img class="btn-modify" srcset="../static/images/delete-icon.png 3x" alt="">
+                    </td><!-- Thao tác -->
                   </tr>
-                  {% endfor %} {% endblock %}
                 </tbody>
               </table>
-              <!--  -->
+            </div>
+            <div class="result-money">
+              <div class="result-money-total">
+                <span>Tổng tiền: </span>
+                <span>1000000 VND</span>
+              </div>
+              <div class="result-money-paid">
+                <label for="">Số tiền trả</label>
+                <input type="number" name="moneypaid">
+              </div>
+              <div class="result-money-remain">
+                <span>Còn lại: </span>
+                <span>1000000 VND</span>
+              </div>
             </div>
           </div>
           <div class="btn-group">

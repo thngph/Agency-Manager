@@ -59,32 +59,29 @@
           <li class="function-item active"><a href="{%url 'doanhso'%}">Báo cáo doanh số</a></li>
           <li class="function-item"><a href="{%url 'congno'%}">Báo cáo công nợ</a></li>
         </ul>
+       <div class="content-body">
         <form method="post" class="form">
-          <div class="form-title">BÁO CÁO DOANH SỐ THÁNG</div>
-          <div class="form-input-list">
-            <div class="form-input-item">
+        <div class="form-wrap">
+          <div class="form-title">LẬP BÁO CÁO</div>
+          <div class="form-input-group-half">
+            <div class="form-input-item-half">
               <label for="month">Tháng</label>
               <input type="month" id="month" />
             </div>
-            <div class="form-input-item">
+          </div>
+          <div class="form-input-group-half">
+            <div class="form-input-item-half">
               <label for="year">Năm</label>
-              <input type="number" id="year" />
-            </div>
-            <div class="form-input-item">
-              <label for="name">Đại lý</label>
-              <input type="text" id="name" />
+              <input type="year" id="year" />
             </div>
           </div>
           <div class="btn-group">
             <button class="btn btn-blue">Lập báo cáo</button>
           </div>
-        </form>
-        <div class="total-revenue">
-          <span>Tổng doanh thu</span>
-          <input type="text" disabled />
         </div>
+        </form>
         <div class="result">
-          <div class="result-title">THÔNG TIN TRA CỨU</div>
+          <div class="result-title">BÁO CÁO DOANH SỐ THÁNG</div>
           <div class="result-table">
             <!--  -->
             <style type="text/css">
@@ -177,9 +174,14 @@
             <!--  -->
           </div>
         </div>
-        <div class="btn-group">
-          <button class="btn btn-light-green">In báo cáo</button>
+        <div class="total-revenue">
+          <span>Tổng doanh thu: </span>
+          <span>100000000 VND</span>
         </div>
+        <div class="btn-group">
+          <button class="btn btn-blue">In</button>
+        </div>
+       </div>
       </div>
     </div>
   </body>
