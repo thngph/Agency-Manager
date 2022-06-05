@@ -1,3 +1,4 @@
+from pickle import FALSE, TRUE
 from django import http
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
@@ -23,10 +24,10 @@ def tiepnhan(request):
     if request.method == 'POST':
         form=TiepNhan(request.POST)
         if form.is_valid():
-            print(form.data)
+            print(TRUE)
             form.save()            
             return render(request, '1-tiepnhandaily.html', context)
-    
+    print(FALSE)
     return render(request, '1-tiepnhandaily.html', context)
 
 @login_required(login_url='login')
@@ -38,6 +39,13 @@ def nhaphang(request):
     context = {"phieunhap": phieunhap_obj}
     return render(request, '2-lapphieunhaphang.html', context)
 
+@login_required(login_url='login')
+def chitietnhaphang(request):
+    if request.method == 'GET':
+        # <view logic>
+        return render(request, '3-chitietnhaphang.html')
+
+
 
 @login_required(login_url='login')
 def xuathang(request):
@@ -45,21 +53,23 @@ def xuathang(request):
         # <view logic>
         return render(request, '3-lapphieuxuathang.html')
 
+@login_required(login_url='login')
+def chitietxuathang(request):
+    if request.method == 'GET':
+        # <view logic>
+        return render(request, '3-chitietxuathang.html')
+
 
 @login_required(login_url='login')
-def thutien(request):
-    thutien_obj= PhieuThuTien.objects.all()
-    context = {"phieuthutien": thutien_obj}
+def thutien(request):    
+    context = None
     if request.method == 'POST':
-        form= ThuTienForm(request.POST)
-        if form.is_valid():
-            print('TRUE')
-            daily= DaiLy.objects.get()
-            a= PhieuThuTien(MaDaiLy = form.data['TenDaiLy'], ngayThuTien = form.data['NgayThuTien'], SoTienThu = form.data['SoTienThu'])
-            a.save()
-            return render(request, '4-lapphieuthutien.html', context)
-            
-            
+        id= request.POST['MaDaiLy']
+        daily_obj= DaiLy.objects.filter(MaDaiLy= id)
+        context= {"daily": daily_obj}
+        print(context)
+        return render(request, '4-lapphieuthutien.html', context)           
+    #return HttpResponse("MA DAI LY SAI")     
     return render(request, '4-lapphieuthutien.html', context)
 
 
