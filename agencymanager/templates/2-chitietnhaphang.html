@@ -49,6 +49,7 @@
           </ul>
         </div>
       </div>
+      
       <div class="content">
         <ul class="function-list">
             <li class="function-item"><a href="{%url 'tiepnhan'%}">Tiếp nhận đại lý</a></li>
@@ -58,6 +59,7 @@
             <li class="function-item"><a href="{%url 'tracuu'%}">Tra cứu & Chỉnh sửa</a></li>
         </ul>
         <div class="content-body">
+          {% block phieunhap %}
             <form method="POST" action="" class="form">
               {% csrf_token %}
               <div class="form-wrap">
@@ -69,7 +71,7 @@
                   </div>
                   <div class="form-input-item-half">
                     <label for="type">Đơn vị tính</label>
-                    <input type="number" id="type" name="MaLoaiDaiLy" required />
+                    <input type="text" id="type" name="MaLoaiDaiLy" required />
                   </div>
                   <div class="form-input-item-half">
                     <label for="type">Đơn giá nhập</label>
@@ -84,11 +86,11 @@
                 <div class="form-input-group-half">
                   <div class="form-input-item-half">
                     <label for="date">Ngày lập phiếu</label>
-                    <input type="date" id="date" name="date" disabled required />
+                    <input type="date" id="date" value="{{ ngaynhap }}" name="date" required />
                   </div>
                   <div class="form-input-item-half">
                     <label for="producer">Nhà cung cấp</label>
-                    <input type="name" id="producer" name="producer" disabled required />
+                    <input type="name" id="producer" value="{{ MaNhaCC }}" name="producer"  required />
                   </div>
                 </div>
                 <div class="btn-group">
@@ -97,7 +99,7 @@
               </div>
             
             </form>
-          
+          {% endblock %}
           <div class="result">
             <div class="result-title">THÔNG TIN PHIẾU NHẬP HÀNG</div>
             <div class="result-table">
