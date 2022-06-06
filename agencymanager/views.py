@@ -70,14 +70,28 @@ def thutien(request):
     context = None
     
     if request.method == 'POST':
-        id= request.POST['MaDaiLy']
-        daily_obj= DaiLy.objects.filter(MaDaiLy= id)
-        if daily_obj:
-            context= {"daily": daily_obj, "flag": TRUE}
-            return render(request, '4-lapphieuthutien.html', context)           
-        else:
-            context: {"daily": daily_obj, "flag": FALSE}
-            return render(request, '4-lapphieuthutien.html', context)
+        print(request.POST)
+        
+        if 'tracuu' in request.POST:
+            print("CO TRA CUU")
+            id= request.POST['MaDaiLy']
+            daily_obj= DaiLy.objects.filter(MaDaiLy= id)
+            if daily_obj:
+                context= {"daily": daily_obj, "flag": TRUE}
+                return render(request, '4-lapphieuthutien.html', context)           
+            else:
+                context= {"daily": daily_obj, "flag": FALSE}
+                return render(request, '4-lapphieuthutien.html', context)
+        if 'phieumoi' in request.POST:
+            print("Co PHIEU MOI")
+            phieuthu= PhieuThuTien()
+            
+            phieuthu.SoTienThu=request.POST['SoTienThu']
+            phieuthu.MaDaiLy=DaiLy.objects.get(MaDaiLy=request.POST['MaDaiLy1'])
+            phieuthu.NgayThuTien=request.POST['NgayThuTien']                
+            phieuthu.save()
+            return render(request, '4-lapphieuthutien.html', {"flag": TRUE})
+              
     #return MA DAI LY SAI
     context= {"flag": TRUE}
     return render(request, '4-lapphieuthutien.html', context)
