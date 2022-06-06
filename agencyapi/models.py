@@ -114,7 +114,7 @@ class ChiTietPhieuXuatHang(models.Model):
     ThanhTien = models.IntegerField(blank=True, null=True)
 
     def __str__(self):
-        return self.MaChiTietPhieuXuatHang
+        return str(self.MaChiTietPhieuXuatHang)
 
 class LoaiDaiLy(models.Model):
     MaLoaiDaiLy = models.AutoField(primary_key=True)
