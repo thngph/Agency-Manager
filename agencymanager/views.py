@@ -57,15 +57,27 @@ def chitietnhaphang(request):
 
 @login_required(login_url='login')
 def xuathang(request):
+    if request.method == 'POST':
+        form= XuatHang(request.POST)
+        if form.is_valid():            
+            form.save(commit=False)
+            context = form.data
+            return redirect(chitietxuathang, MaDaiLy= context['MaDaiLy'], NgayXuat= context['NgayXuat'])
+        else:
+            daily = DaiLy.objects.all()
+        context = {"daily": daily}
+        return render(request, '3-lapphieuxuathang.html', context)
     if request.method == 'GET':
-        # <view logic>
-        return render(request, '3-lapphieuxuathang.html')
+        daily = DaiLy.objects.all()
+        context = {"daily": daily}
+        return render(request, '3-lapphieuxuathang.html', context)
+
 
 @login_required(login_url='login')
-def chitietxuathang(request):
+def chitietxuathang(request,MaDaiLy,NgayXuat):
     if request.method == 'GET':
-        # <view logic>
-        return render(request, '3-chitietxuathang.html')
+        context = {"daily": MaDaiLy, "ngayxuat": NgayXuat}
+        return render(request, '3-chitietxuathang.html', context)
 
 
 @login_required(login_url='login')
@@ -79,7 +91,7 @@ def thutien(request):
             context= {"daily": daily_obj, "flag": TRUE}
             return render(request, '4-lapphieuthutien.html', context)           
         else:
-            context: {"daily": daily_obj, "flag": FALSE}
+            context= {"daily": daily_obj, "flag": FALSE}
             return render(request, '4-lapphieuthutien.html', context)
     #return MA DAI LY SAI
     context= {"flag": TRUE}
@@ -116,6 +128,7 @@ def profile(request):
         # <view logic>
         return render(request, 'trangcanhan.html')
 
+@login_required(login_url='login')
 def logout(request):
 	logout(request)
 	return redirect("login")

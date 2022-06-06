@@ -103,7 +103,7 @@ class PhieuXuatHang(models.Model):
     TongTien = models.IntegerField(blank=True, null=True)
 
     def __str__(self):
-        return self.MaPhieuXuatHang
+        return str(self.MaPhieuXuatHang)
 
 class ChiTietPhieuXuatHang(models.Model):
     MaChiTietPhieuXuatHang = models.AutoField(primary_key=True)
@@ -142,4 +142,4 @@ class DaiLy(models.Model):
     SoTienNo = models.IntegerField(null=True, blank=True)
     NgayTiepNhan = models.DateField(default='2022-06-01')
     def __str__(self):
-        return self.TenDaiLy
+        return str(self.MaDaiLy)
