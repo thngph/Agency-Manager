@@ -92,6 +92,7 @@ class MatHang(models.Model):
     TenMatHang = models.CharField(max_length=100)
     DVT = models.ForeignKey(DVT, on_delete=models.CASCADE)
     SoLuongTon = models.IntegerField()
+    GiaNhap = models.IntegerField(default=0)
 
     def __str__(self):
         return self.TenMatHang
