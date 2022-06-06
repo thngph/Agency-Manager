@@ -89,7 +89,12 @@
                 </div>
                 <div class="form-input-item-half">
                   <label for="district">Quận</label>
-                  <input type="text" id="district" name="MaQuan" required />
+                  <select id="district" name="MaQuan">
+                    {% for item in quan %}
+                    <option value="{{item.MaQuan}}">{{item.TenQuan}}</option>
+                    {% endfor %}
+                  </select>
+                  <!-- <input type="text" id="district" name="MaQuan" required /> -->
                 </div>
                 <div class="form-input-item-half">
                   <label for="email">Email</label>

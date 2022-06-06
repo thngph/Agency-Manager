@@ -7,8 +7,8 @@ from django.views.generic import TemplateView
 from rest_framework import viewsets
 
 
-from agencyapi.forms import NhapHang, ThuTienForm, TiepNhan, PhieuThuTien
-from agencyapi.models import DaiLy, LoaiDaiLy, PhieuNhapHang, PhieuThuTien
+from agencyapi.forms import *
+from agencyapi.models import *
 
 
 @login_required(login_url='login')
@@ -21,7 +21,8 @@ def index(request):
 @login_required(login_url='login')
 def tiepnhan(request):    
     daily_obj = DaiLy.objects.all()
-    context= {"daily": daily_obj}
+    quan_obj = Quan.objects.all()
+    context= {"daily": daily_obj, "quan": quan_obj}
     if request.method == 'POST':
         form=TiepNhan(request.POST)
         if form.is_valid():

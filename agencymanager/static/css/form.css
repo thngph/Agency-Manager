@@ -68,7 +68,9 @@
     display: flex;
     align-items: center;
 }
-.form-input-item-half input {
+.form-input-item-half input,
+.form-input-item-half select 
+{
     font-size: 2rem;
     flex: 1;
     height: 50px;
