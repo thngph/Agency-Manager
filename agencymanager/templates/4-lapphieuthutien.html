@@ -63,30 +63,34 @@
       {% block DaiLy_info %}
       <div class="content-body">
         
-        <form method="post" class="form">
+        <form method="POST" class="form">
           {% csrf_token %}
           {% if daily or flag %}
           <div class="form-input-group">
             <div class="form-input-item-full">
               <label for="name">Mã Đại lý</label>
               <input type="text" id="name" name="MaDaiLy" placeholder="Nhập mã đại lý..." />
-              <button type="submit">
+              <button type="submit" name="tracuu">
                 <img srcset="../static/images/search-icon.png 3x" alt="" class="icon-search">
               </button>
             </div>
           </div>
         </form>
         {% else %}
+        <!-- KHÚC NÀY LÀ KHI NHẬP SAI MÃ ĐẠI LÝ-MÍ CHỊ SỬA LẠI CHO NÓ HIỆN MỘT CÁI THÔNG BÁO SAI MÃ CHO NÓ SANG NHA -->
         <div class="form-input-group">
           <div class="form-input-item-full">
             <label for="name">Mã Đại lý</label>
             <input type="text" id="name" value="SAI MÃ ĐẠI LÝ" name="MaDaiLy" placeholder="Nhập mã đại lý..." />
-            <button type="submit">
+            <button type="submit" name="tracuu">
               <img srcset="../static/images/search-icon.png 3x" alt="" class="icon-search">
             </button>
           </div>
         </div>
+        <!-- TỚI ĐÂY LÀ HẾT Á -->
         {% endif %}
+      <form method="POST" class="form">
+        {% csrf_token %}
         <div class="result">
           <div class="form-wrap">
             <div class="form-title">THÔNG TIN PHIẾU THU TIỀN</div>
@@ -94,7 +98,7 @@
             <div class="form-input-group-half">
               <div class="form-input-item-half">
                 <label for="">Ngày thu</label>
-                <input type="date" name="Ngaylapphieu" placeholder="Chọn ngày">
+                <input type="date" name="NgayThuTien" placeholder="Chọn ngày">
               </div>
               <div class="form-input-item-half">
                 <label for="">Số tiền thu</label>
@@ -106,9 +110,9 @@
             <div class="form-input-group-half">
               <div class="form-input-item-half">
                 
-                <label for=""> Ma đại lý </label>
+                <label for=""> Mã đại lý </label>
                 
-                <input type="name" name="MaDaiLy" value="{{ item.MaDaiLy }}" placeholder="" disabled>
+                <input type="name" name="MaDaiLy1" value="{{ item.MaDaiLy }}" placeholder="">
               </div>
               <div class="form-input-item-half">
                 <label for="">Tên đại lý</label>
@@ -137,14 +141,21 @@
             </div>
           </div>
         </div>
+      
+      <div class="btn-group">
+        <button class="btn btn-blue" name="phieumoi" id="myBtn" type="submit">Lưu phiếu</button>
+      </div>
+    </div>
+  </form>
         {% endfor %}
         {% else %}
+      
         <div class="form-input-group-half">
           <div class="form-input-item-half">
             
-            <label for=""> Ma đại lý </label>
+            <label for=""> Mã đại lý </label>
             
-            <input type="name" name="MaDaiLy"  placeholder="" disabled>
+            <input type="name"  placeholder="" disabled>
           </div>
           <div class="form-input-item-half">
             <label for="">Tên đại lý</label>
@@ -173,13 +184,13 @@
         </div>
       </div>
     </div>
-        {% endif %}
-        <div class="btn-group">
-          <button class="btn btn-blue" id="myBtn" type="submit">Lưu phiếu</button>
-        </div>
-      </div>
-      
-      {% endblock %}
+    <!-- <div class="btn-group">
+      <button class="btn btn-blue" name="phieumoi" id="myBtn" type="submit">Lưu phiếu</button>
+    </div> -->
+  </div>
+
+    {% endif %}
+    {% endblock %}
     </div>
   </div>
   <div id="myModal" class="modal">
@@ -236,10 +247,7 @@
           </tbody>
         </table>
       </div>
-      <div class="btn-group">
-        <button class="btn btn-white" id="myBtn" type="">Hủy</button>
-        <button class="btn btn-blue" id="myBtn" type="submit">In phiếu</button>
-      </div>
+      
     </div>
   </div>
   <script src="../static/script/main.js"></script>

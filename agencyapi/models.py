@@ -49,7 +49,7 @@ class PhieuThuTien(models.Model):
     SoTienThu = models.IntegerField()
     
     def __str__(self):
-        return self.MaPhieuThuTien
+        return str(self.MaPhieuThuTien)
 
 class DVT(models.Model):
     MaDVT = models.AutoField(primary_key=True)
