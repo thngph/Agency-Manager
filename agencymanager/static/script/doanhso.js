@@ -76,9 +76,8 @@ function handleData(dailyData,xuathangData,month,year)
                 }
             }
             doanhthutatca=doanhthutatca+doanhthudaili
-            
-
             // Thêm thuộc tính
+            Chitietphieunhap.madaily[i]=dailyData[i]
             console.log(`số ${dailyData[i].MaDaiLy} với ${sophieuXuat} phiếu ${doanhthudaili}`)
         }
     }
