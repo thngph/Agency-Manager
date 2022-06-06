@@ -66,3 +66,7 @@ class NhapHang(forms.ModelForm):
         model = models.PhieuNhapHang
         fields = ['NgayNhap', 'MaNCC']
     
+class XuatHang(forms.ModelForm):
+    class Meta:
+        model = models.PhieuXuatHang
+        fields = ['NgayXuat', 'MaDaiLy']

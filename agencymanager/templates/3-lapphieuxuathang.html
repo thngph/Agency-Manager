@@ -62,25 +62,35 @@
       </ul>
       <div class="content-sm content-body">
         <form method="post" class="form">
-          <!-- {% csrf_token %} -->
-          <form method="post" class="form">
+          {% csrf_token %}
             <div class="form-title">LẬP PHIẾU XUẤT HÀNG</div>
             <div class="form-input-group">
               <div class="form-input-item-full">
                 <label for="NgayLapPhieu">Ngày lập phiếu</label>
-                <input type="date" id="date" name="NgayLapPhieu"/>
+                <input type="date" id="date" name="NgayXuat"/>
               </div>
-              <div class="form-input-item-full">
+              <!-- <div class="form-input-item-full">
                 <label for="MaDaiLy">Mã đại lý</label>
                 <input type="number" id="MaDaiLy" name="MaDaiLy" />
+              </div> -->
+
+              <div class="form-input-item-full">
+                <label for="MaDaiLy">Mã đại lý</label>
+                <select id="MaDaiLy" name="MaDaiLy">
+                  {% for item in daily %}
+                  <option value="{{item.MaDaiLy}}">{{ item.MaDaiLy }} - {{item.TenDaiLy}}</option>
+                  {% endfor %}
+                </select>
+                <!-- <input type="text" id="district" name="MaQuan" required /> -->
               </div>
+
+
             </div>
             <div class="btn-group">
-                <button class="btn btn-blue">
-                    <a href="{%url 'chitietxuathang'%}">Tiếp tục</a>
+                <button class="btn btn-blue" type="submit">
+                    Tiếp tục
                 </button>
             </div>
-          </form>
         </form>
       </div>
     </div>

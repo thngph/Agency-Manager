@@ -1,3 +1,4 @@
+{%load static%}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,12 +7,12 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <!-- CSS -->
-  <link rel="stylesheet" href="../static/css/form.css" />
-  <link rel="stylesheet" href="../static/css/category.css" />
-  <link rel="stylesheet" href="../static/css/function-list.css">
-  <link rel="stylesheet" href="../static/css/global.css" />
-  <link rel="stylesheet" href="../static/css/main.css" />
-  <link rel="stylesheet" href="../static/css/variable.css" />
+  <link rel="stylesheet" href="{%static 'css/form.css' %}"/>
+  <link rel="stylesheet" href="{%static 'css/category.css' %}"/>
+  <link rel="stylesheet" href="{%static 'css/function-list.css'%} ">
+  <link rel="stylesheet" href="{%static 'css/global.css' %}"/>
+  <link rel="stylesheet" href="{%static 'css/main.css' %}"/>
+  <link rel="stylesheet" href="{%static 'css/variable.css' %}"/>
   <!-- FONT -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -63,35 +64,36 @@
       </ul>
       <div class="content-body">
         <form method="post" class="form">
+          {%csrf_token%}
           <div class="form-wrap">
             <div class="form-title">NHẬP CHI TIẾT PHIẾU XUẤT HÀNG</div>
             <div class="form-input-group-half">
               <div class="form-input-item-half">
                 <label for="name">Mặt hàng</label>
-                <input type="text" id="name" name="Mamathang" required />
+                <input type="text" id="name" name="MaMatHang" required />
               </div>
               <div class="form-input-item-half">
                 <label for="type">Đơn vị tính</label>
-                <input type="number" id="type" name="MaLoaiDaiLy" required />
+                <input type="number" id="type" name="DVT" required />
               </div>
               <div class="form-input-item-half">
                 <label for="type">Đơn giá xuất</label>
-                <input type="number" id="type" name="MaLoaiDaiLy" required />
+                <input type="number" id="type" name="DonGia" required />
               </div>
               <div class="form-input-item-half">
                 <label for="phone">Số lượng</label>
-                <input type="tel" id="phone" name="DienThoai" required />
+                <input type="tel" id="phone" name="SoLuong" required />
               </div>
 
             </div>
             <div class="form-input-group-half">
               <div class="form-input-item-half">
                 <label for="date">Ngày lập phiếu</label>
-                <input type="date" id="date" name="date" disabled required />
+                <input type="date" id="date" name="date" value="{{ ngayxuat }}" disabled required />
               </div>
               <div class="form-input-item-half">
-                <label for="producer">Đại lý</label>
-                <input type="name" id="producer" name="producer" disabled required />
+                <label for="producer">Mã Đại lý</label>
+                <input type="name" id="producer" name="producer" value="{{ daily }}" disabled required />
               </div>
             </div>
             <div class="btn-group">
@@ -99,6 +101,9 @@
             </div>
           </div>
         </form>
+        <div class="btn-group">
+          <a href="/delete/chitietxuathang/{{daily}}/{{ngayxuat}}/{{id}}"><button class="btn btn-white">Hủy</button></a>
+        </div>
         <div class="result">
           <div class="result-title">THÔNG TIN PHIẾU XUẤT HÀNG</div>
           <div class="result-table">
@@ -162,18 +167,21 @@
                 </tr>
               </thead>
               <tbody>
+                {% for item in ctxuathang %}
+                
                 <tr>
-                  <td class="tg-gvcd">1</td><!-- STT -->
-                  <td class="tg-gvcd">Quần xì</td><!-- Mặt hàng -->
-                  <td class="tg-gvcd">Cái</td><!-- Đơn vị tính -->
-                  <td class="tg-gvcd">2</td><!-- Số lượng -->
-                  <td class="tg-gvcd">20.000</td><!-- Đơn giá xuất -->
-                  <td class="tg-gvcd">40.000</td><!-- Thành tiền -->
+                  <td class="tg-gvcd">{{forloop.counter}}</td><!-- STT -->
+                  <td class="tg-gvcd">{{item.MaMatHang}}</td><!-- Mặt hàng -->
+                  <td class="tg-gvcd">{{item.DVT}}</td><!-- Đơn vị tính -->
+                  <td class="tg-gvcd">{{item.SoLuong}}</td><!-- Số lượng -->
+                  <td class="tg-gvcd">{{item.DonGia}}</td><!-- Đơn giá xuất -->
+                  <td class="tg-gvcd">{{item.ThanhTien}}</td><!-- Thành tiền -->
                   <td class="tg-gvcd">
-                    <img class="btn-modify" srcset="../static/images/edit-icon.png 3x" alt="">
-                    <img class="btn-modify" srcset="../static/images/delete-icon.png 3x" alt="">
+                    <img class="btn-modify" srcset="{ % static 'images/edit-icon.png' %}} 3x " alt="">
+                    <img class="btn-modify" srcset="{ % static 'images/delete-icon.png' %} 3x " alt="">
                   </td><!-- Thao tác -->
                 </tr>
+                {% endfor %}
               </tbody>
             </table>
           </div>

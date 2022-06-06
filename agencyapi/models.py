@@ -49,7 +49,7 @@ class PhieuThuTien(models.Model):
     SoTienThu = models.IntegerField()
     
     def __str__(self):
-        return self.MaPhieuThuTien
+        return str(self.MaPhieuThuTien)
 
 class DVT(models.Model):
     MaDVT = models.AutoField(primary_key=True)
@@ -114,7 +114,7 @@ class ChiTietPhieuXuatHang(models.Model):
     ThanhTien = models.IntegerField(blank=True, null=True)
 
     def __str__(self):
-        return self.MaChiTietPhieuXuatHang
+        return str(self.MaChiTietPhieuXuatHang)
 
 class LoaiDaiLy(models.Model):
     MaLoaiDaiLy = models.AutoField(primary_key=True)
@@ -142,4 +142,4 @@ class DaiLy(models.Model):
     SoTienNo = models.IntegerField(null=True, blank=True)
     NgayTiepNhan = models.DateField(default='2022-06-01')
     def __str__(self):
-        return self.TenDaiLy
+        return str(self.MaDaiLy)
