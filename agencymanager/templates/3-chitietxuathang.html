@@ -69,12 +69,20 @@
             <div class="form-title">NHẬP CHI TIẾT PHIẾU XUẤT HÀNG</div>
             <div class="form-input-group-half">
               <div class="form-input-item-half">
-                <label for="name">Mặt hàng</label>
-                <input type="text" id="name" name="MaMatHang" required />
+                <label for="name">Mặt hàng</label>
+              <select name="MaMatHang">
+                {% for item in tenmathang %}
+                <option value="{{item.MaMatHang}}">{{item.TenMatHang}}</option>
+                {% endfor %}
+              </select>
               </div>
               <div class="form-input-item-half">
                 <label for="type">Đơn vị tính</label>
-                <input type="number" id="type" name="DVT" required />
+                <select id="district" name="MaDVT">
+                  {% for item in dvt %}
+                  <option value="{{item.MaDVT}}">{{item.TenDVT}}</option>
+                  {% endfor %}
+                </select>
               </div>
               <div class="form-input-item-half">
                 <label for="type">Đơn giá xuất</label>

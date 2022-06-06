@@ -70,13 +70,18 @@
                 <input type="date" id="date" name="NgayNhap"/>
               </div>
               <div class="form-input-item-full">
+
+
                 <label for="MaDaiLy">Mã nhà cung cấp</label>
-                <input type="number" id="MaDaiLy" name="MaNCC" />
+                  <select id="number" name="MaNCC">
+                    {% for item in nhacungcap %}
+                    <option value="{{item.MaNCC}}">{{item.TenNCC}}</option>
+                    {% endfor %}
+                  </select>
               </div>
             </div>
             <div class="btn-group">
               <button type="submit" class="btn btn-blue">
-                  <!-- <a href="{%url 'chitietnhaphang'%}">Tiếp tục</a> --> 
                   <a>Tiếp tục</a>
                 </button>
             </div>
