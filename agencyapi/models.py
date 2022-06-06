@@ -16,7 +16,7 @@ class BaoCaoDoanhSo(models.Model):
     TongDoanhSo = models.IntegerField()
     
     def __str__(self):
-        return self.MaBaoCaoDoanhSo
+        return str(self.MaBaoCaoDoanhSo)
 
 class ChiTietBaoCaoDoanhSo(models.Model):
     MaChiTietBaoCaoDoanhSo = models.AutoField(primary_key=True)
@@ -103,7 +103,7 @@ class PhieuXuatHang(models.Model):
     TongTien = models.IntegerField(blank=True, null=True)
 
     def __str__(self):
-        return self.MaPhieuXuatHang
+        return str(self.MaPhieuXuatHang)
 
 class ChiTietPhieuXuatHang(models.Model):
     MaChiTietPhieuXuatHang = models.AutoField(primary_key=True)

@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -60,26 +61,27 @@
           <li class="function-item"><a href="{%url 'congno'%}">Báo cáo công nợ</a></li>
         </ul>
        <div class="content-body">
-        <form method="post" class="form">
-        <div class="form-wrap">
-          <div class="form-title">LẬP BÁO CÁO</div>
-          <div class="form-input-group-half">
-            <div class="form-input-item-half">
-              <label for="month">Tháng</label>
-              <input type="number" id="month" />
+        <div class="form">
+          {% csrf_token %}
+          <div class="form-wrap">
+            <div class="form-title">LẬP BÁO CÁO</div>
+            <div class="form-input-group-half">
+              <div class="form-input-item-half">
+                <label for="month">Tháng</label>
+                <input type="number" id="month" min="1" max="12" />
+              </div>
             </div>
-          </div>
-          <div class="form-input-group-half">
-            <div class="form-input-item-half">
-              <label for="number">Năm</label>
-              <input type="number" id="year" />
+            <div class="form-input-group-half">
+              <div class="form-input-item-half">
+                <label for="number">Năm</label>
+                <input type="number" id="year" min="2022" max="2030"/>
+              </div>
             </div>
-          </div>
-          <div class="btn-group">
-            <button class="btn btn-blue">Lập báo cáo</button>
+            <div class="btn-group">
+              <button class="btn btn-blue" id="myBtn" >Lập báo cáo</button>
+            </div>
           </div>
         </div>
-        </form>
         <div class="result">
           <div class="result-title">BÁO CÁO DOANH SỐ THÁNG</div>
           <div class="result-table">
@@ -181,10 +183,11 @@
          </div>
         </div>
         <div class="btn-group">
-          <button class="btn btn-blue">In</button>
+          <button class="btn btn-blue">Lưu</button>
         </div>
        </div>
       </div>
     </div>
+    <script src="{% static 'script/doanhso.js' %}"></script>
   </body>
 </html>

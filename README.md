@@ -26,7 +26,7 @@ py manage.py runserver
 ```
 
 
-#admin - 122345678
+#admin - 12345678
 
 
 #On going project
