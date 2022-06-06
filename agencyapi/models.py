@@ -102,6 +102,7 @@ class PhieuXuatHang(models.Model):
     NgayXuat = models.DateField(default="06-06-2022")
     MaDaiLy = models.ForeignKey('DaiLy', on_delete=models.CASCADE)
     TongTien = models.IntegerField(blank=True, null=True)
+    TienNo = models.IntegerField(blank=True, null=True)
 
     def __str__(self):
         return str(self.MaPhieuXuatHang)
