@@ -28,7 +28,9 @@ def tiepnhan(request):
             print(TRUE)
             form.save()            
             return render(request, '1-tiepnhandaily.html', context)
-    print(FALSE)
+        else:
+            print(form.errors)
+    print('FALSE')
     return render(request, '1-tiepnhandaily.html', context)
 
 

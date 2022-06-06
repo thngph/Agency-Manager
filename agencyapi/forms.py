@@ -39,7 +39,7 @@ class myUserCreationForm(UserCreationForm):
 class TiepNhan(forms.ModelForm):
     class Meta:
         model = models.DaiLy
-        fields = ['TenDaiLy', 'MaLoaiDaiLy','DienThoai','DiaChi', 'MaQuan','NgayTiepNhan']
+        fields = ['TenDaiLy', 'MaLoaiDaiLy','DienThoai','DiaChi', 'MaQuan','NgayTiepNhan', 'Email']
     
 
 
