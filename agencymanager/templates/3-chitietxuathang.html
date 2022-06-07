@@ -63,40 +63,6 @@
         <li class="function-item"><a href="{%url 'tracuu'%}">Tra cứu & Chỉnh sửa</a></li>
       </ul>
       <div class="content-body">
-        <script type="text/javascript">
-          function jsFunction(value) {
-            async function fetchData(url) {
-              try {
-                const response = await fetch(url, {
-                  method: 'GET',
-                  credentials: 'same-origin'
-                });
-                const exam = await response.json();
-                return exam;
-              } catch (error) {
-                console.error(error);
-              }
-            }
-            async function start() {
-              let data = await fetchData(`http://127.0.0.1:8000/api/MatHang/`);
-              let list_to_map = await fetchData(`http://127.0.0.1:8000/api/DVT/`);
-              let tigia = await fetchData(`http://127.0.0.1:8000/api/ThamSo/2`)
-              const x = document.querySelector("#TenDVT")
-              const y = document.querySelector("#DVT")
-              const z = document.querySelector("#DonGia")
-              const w = document.querySelector("#SoLuongTon")
-              const dvt = data.filter(item => item.MaMatHang == value)[0];
-              const tendvt = list_to_map.filter(item => item.MaDVT == dvt.DVT)[0];
-              x.value = tendvt.TenDVT;
-              y.value = dvt.DVT;
-              z.value = dvt.GiaNhap*parseInt(tigia.GiaTri)/100;
-              w.value = dvt.SoLuongTon;
-            }
-            start();
-
-          }
-        </script>
-
         <form method="post" class="form">
           {%csrf_token%}
           <div class="form-wrap">
@@ -105,6 +71,7 @@
               <div class="form-input-item-half">
                 <label for="name">Mặt hàng</label>
               <select name="MaMatHang" onmousedown="this.value='';" onchange="jsFunction(this.value);">
+                <option value="" disabled selected>Chọn mặt hàng</option>
                 {% for item in tenmathang %}
                 <option value="{{item.MaMatHang}}">{{item.TenMatHang}}</option>
                 {% endfor %}
@@ -130,7 +97,6 @@
                 <label for="SoLuong">Số lượng</label>
                 <input onchange="checkgia(this.value);" type="number" id="SoLuong" name="SoLuong" required />
               </div>
-
             </div>
             <div class="form-input-group-half">
               <div class="form-input-item-half">
@@ -142,8 +108,11 @@
                 <input type="name" id="producer" name="producer" value="{{ daily }}" disabled required />
               </div>
             </div>
+            <div class="text-error hidden">
+              *Số lượng không đủ
+            </div>
             <div class="btn-group">
-              <button class="btn btn-blue" type="submit">Thêm</button>
+              <button class="btn btn-blue" type="submit" disabled >Thêm</button>
             </div>
           </div>
         </form>
@@ -213,8 +182,7 @@
                 </tr>
               </thead>
               <tbody>
-                {% for item in ctxuathang %}
-                
+                {% for item in ctxuathang %}         
                 <tr>
                   <td class="tg-gvcd">{{forloop.counter}}</td><!-- STT -->
                   <td class="tg-gvcd">{{item.MaMatHang}}</td><!-- Mặt hàng -->
@@ -257,6 +225,7 @@
     </div>
   </div>
   </div>
+  <script src="{% static 'script/chitietxuathang.js' %}"></script>
 </body>
 
 </html>
