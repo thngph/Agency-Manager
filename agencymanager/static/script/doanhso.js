@@ -130,8 +130,8 @@ function handleData(dailyData,xuathangData,month,year)
         Nam: parseInt(year),
         TongDoanhSo: doanhthutatca,
     }
-    console.log(BaoCaoDoanhSo)
     renderData(Chitietdoanhso,BaoCaoDoanhSo)
+    postData('/api/BaoCaoDoanhSo/',BaoCaoDoanhSo)
 }
 
 const btn=document.querySelector("#myBtn")
