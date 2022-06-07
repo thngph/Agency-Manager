@@ -90,6 +90,7 @@ input::-webkit-inner-spin-button {
   border: none;
   font-weight: 500;
   height: 50px;
+  text-align: center;
 }
 .btn.btn-blue {
   background-color: var(--blue-color);

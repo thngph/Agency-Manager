@@ -61,7 +61,7 @@
           <li class="function-item"><a href="{%url 'congno'%}">Báo cáo công nợ</a></li>
         </ul>
        <div class="content-body">
-        <div class="form">
+        <form class="form">
           {% csrf_token %}
           <div class="form-wrap">
             <div class="form-title">LẬP BÁO CÁO</div>
@@ -78,10 +78,10 @@
               </div>
             </div>
             <div class="btn-group">
-              <button class="btn btn-blue" id="myBtn" >Lập báo cáo</button>
+              <div class="btn btn-blue" id="myBtn" >Lập báo cáo</div>
             </div>
           </div>
-        </div>
+        </form>
         <div class="result">
           <div class="result-title">BÁO CÁO DOANH SỐ THÁNG</div>
           <div class="result-table">
@@ -115,7 +115,7 @@
               .tg .tg-oe15 {
                 background-color: #ffffff;
                 border-color: #000;
-                text-align: left;
+                text-align: center;
                 vertical-align: middle;
               }
               .tg .tg-wk8r {
@@ -134,7 +134,6 @@
             </style>
             <table class="tg" style="table-layout: fixed; width: 100%">
               <colgroup>
-                <col style="width: 47px" />
                 <col style="width: 113px" />
                 <col style="width: 107px" />
                 <col style="width: 94px" />
@@ -142,31 +141,15 @@
               </colgroup>
               <thead>
                 <tr>
-                  <th class="tg-b0es">STT</th>
-                  <th class="tg-b0es">Đại lý</th>
+                  <th class="tg-b0es">Mã đại lý</th>
                   <th class="tg-b0es">Số phiếu xuất</th>
                   <th class="tg-b0es">Tổng giá trị</th>
                   <th class="tg-b0es">Tỷ lệ</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody id="detail">
                 <tr>
-                  <td class="tg-wk8r">1</td>
-                  <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
-                </tr>
-                <tr>
-                  <td class="tg-wk8r">2</td>
-                  <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
-                  <td class="tg-oe15"></td>
-                </tr>
-                <tr>
-                  <td class="tg-wk8r">3</td>
-                  <td class="tg-oe15"></td>
+                  <td class="tg-oe15">1</td>
                   <td class="tg-oe15"></td>
                   <td class="tg-oe15"></td>
                   <td class="tg-oe15"></td>
@@ -179,7 +162,7 @@
         <div class="result-money">
          <div class="result-money-item">
           <span>Tổng doanh thu: </span>
-          <span>100000000 VND</span>
+          <input id="tongdoanhthu" type="number" value=0 name="TongDoanhThu">
          </div>
         </div>
         <div class="btn-group">

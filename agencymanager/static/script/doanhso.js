@@ -1,7 +1,7 @@
 let xuathangUrl="/api/PhieuXuatHang/"
 let dailyUrl="/api/DaiLy/"
 
-async function fetchData(url) {
+async function GetData(url) {
     try {
         const response = await fetch(url, {
             method: 'GET',
@@ -13,12 +13,12 @@ async function fetchData(url) {
         console.error(error);
     }
 }
+  
 async function start() {
-    let dailyData=await fetchData(dailyUrl);
-    let xuathangData=await fetchData(xuathangUrl);
+    let dailyData=await GetData(dailyUrl);
+    let xuathangData=await GetData(xuathangUrl);
     const month=document.querySelector("#month").value
     const year=document.querySelector("#year").value
-
     handleData(dailyData,xuathangData,month,year)
 }
 function LayThang(date)
@@ -43,25 +43,39 @@ function KiemTraThangLapPhieu(thangbaocao,nambaocao,thanglapphieu,namlapphieu)
         return true
     return false
 }
+function renderData(Chitietdoanhso,BaoCaoDoanhSo) 
+{
+    let doanhso=document.querySelector('#tongdoanhthu')
+    console.log(doanhso.value)
+    let table = document.querySelector('#detail');
+    var htmls = Chitietdoanhso.map(function (item) {
+        return `
+        <tr>
+            <td class="tg-oe15">${item.madaily}</td>
+            <td class="tg-oe15">${item.sophieuxuat}</td>
+            <td class="tg-oe15">${item.doanhthudaili}</td>
+            <td class="tg-oe15">${item.tyle}</td>
+         </tr>
+        `;
+      });
+    table.innerHTML = htmls.join('');
+    console.log(BaoCaoDoanhSo.TongDoanhSo)
+    doanhso.value=BaoCaoDoanhSo.TongDoanhSo
+}
 function handleData(dailyData,xuathangData,month,year)
 {
     console.log("Tháng báo cáo: "+month)
     let lengthDaiLy=dailyData.length;
     let lengthXuatHang=xuathangData.length;
     let doanhthutatca=0
-    var Chitietphieunhap = 
-    {
-        madaily : "",
-        sophieuxuat : "",
-        tonggiatri : "",
-        tile : ""
-    };
+    let Chitietdoanhso =[];
+
     for(let i=0; i<lengthDaiLy; i++)
     {   
         if(KiemTraNgayTiepNhan(month,year,LayThang(dailyData[i].NgayTiepNhan), LayNam(dailyData[i].NgayTiepNhan))==true)
         {
             let doanhthudaili=0
-            let sophieuXuat=0
+            let sophieuxuat=0
             for(let j=0; j<lengthXuatHang; j++)
             {
                 if(xuathangData[j].MaDaiLy==dailyData[i].MaDaiLy)
@@ -70,19 +84,35 @@ function handleData(dailyData,xuathangData,month,year)
                     {
                         {
                             doanhthudaili=doanhthudaili+xuathangData[j].TongTien;
-                            sophieuXuat++;
+                            sophieuxuat++;
                         }   
                     }
                 }
             }
             doanhthutatca=doanhthutatca+doanhthudaili
             // Thêm thuộc tính
-            Chitietphieunhap.madaily[i]=dailyData[i]
-            console.log(`số ${dailyData[i].MaDaiLy} với ${sophieuXuat} phiếu ${doanhthudaili}`)
+            Chitietdoanhso.push({
+                madaily : dailyData[i].MaDaiLy,
+                sophieuxuat : sophieuxuat,
+                doanhthudaili : doanhthudaili,
+                tyle : 0
+            })
+            console.log(`số ${dailyData[i].MaDaiLy} với ${sophieuxuat} phiếu ${doanhthudaili}`)
         }
     }
-    console.log(doanhthutatca)
+    Chitietdoanhso.forEach(function(item)
+    {
+        item.tyle=(item.doanhthudaili/doanhthutatca).toFixed(3)
+    })
+    let BaoCaoDoanhSo={
+        Thang: parseInt(month),
+        Nam: parseInt(year),
+        TongDoanhSo: doanhthutatca,
+    }
+    console.log(BaoCaoDoanhSo)
+    renderData(Chitietdoanhso,BaoCaoDoanhSo)
 }
+
 const btn=document.querySelector("#myBtn")
 btn.onclick = function()
 {
