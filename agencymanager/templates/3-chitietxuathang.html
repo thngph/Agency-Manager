@@ -63,26 +63,72 @@
         <li class="function-item"><a href="{%url 'tracuu'%}">Tra cứu & Chỉnh sửa</a></li>
       </ul>
       <div class="content-body">
+        <script type="text/javascript">
+          function jsFunction(value) {
+            async function fetchData(url) {
+              try {
+                const response = await fetch(url, {
+                  method: 'GET',
+                  credentials: 'same-origin'
+                });
+                const exam = await response.json();
+                return exam;
+              } catch (error) {
+                console.error(error);
+              }
+            }
+            async function start() {
+              let data = await fetchData(`http://127.0.0.1:8000/api/MatHang/`);
+              let list_to_map = await fetchData(`http://127.0.0.1:8000/api/DVT/`);
+              let tigia = await fetchData(`http://127.0.0.1:8000/api/ThamSo/2`)
+              const x = document.querySelector("#TenDVT")
+              const y = document.querySelector("#DVT")
+              const z = document.querySelector("#DonGia")
+              const w = document.querySelector("#SoLuongTon")
+              const dvt = data.filter(item => item.MaMatHang == value)[0];
+              const tendvt = list_to_map.filter(item => item.MaDVT == dvt.DVT)[0];
+              x.value = tendvt.TenDVT;
+              y.value = dvt.DVT;
+              z.value = dvt.GiaNhap*parseInt(tigia.GiaTri)/100;
+              w.value = dvt.SoLuongTon;
+            }
+            start();
+
+          }
+        </script>
+
         <form method="post" class="form">
           {%csrf_token%}
           <div class="form-wrap">
             <div class="form-title">NHẬP CHI TIẾT PHIẾU XUẤT HÀNG</div>
             <div class="form-input-group-half">
               <div class="form-input-item-half">
-                <label for="name">Mặt hàng</label>
-                <input type="text" id="name" name="MaMatHang" required />
+                <label for="name">Mặt hàng</label>
+              <select name="MaMatHang" onmousedown="this.value='';" onchange="jsFunction(this.value);">
+                {% for item in tenmathang %}
+                <option value="{{item.MaMatHang}}">{{item.TenMatHang}}</option>
+                {% endfor %}
+              </select>
               </div>
               <div class="form-input-item-half">
                 <label for="type">Đơn vị tính</label>
-                <input type="number" id="type" name="DVT" required />
+                <input id="TenDVT" name="TenDVT" disabled/>
+                <input type="hidden" id="DVT" name="DVT" value="1" required>
               </div>
+              
               <div class="form-input-item-half">
                 <label for="type">Đơn giá xuất</label>
-                <input type="number" id="type" name="DonGia" required />
+                <input type="number" id="DonGia" name="DonGia" readonly required style="background-color: #ccc;color: rgb(84, 84, 84)"/>
               </div>
+
               <div class="form-input-item-half">
-                <label for="phone">Số lượng</label>
-                <input type="tel" id="phone" name="SoLuong" required />
+                <label for="SoLuongTon">Số lượng tồn</label>
+                <input  id="SoLuongTon" name="SoLuongTon" readonly required style="background-color: #ccc; color:rgb(84, 84, 84)"/>
+              </div>
+              <script class=""></script>
+              <div class="form-input-item-half">
+                <label for="SoLuong">Số lượng</label>
+                <input onchange="checkgia(this.value);" type="number" id="SoLuong" name="SoLuong" required />
               </div>
 
             </div>
@@ -172,7 +218,7 @@
                 <tr>
                   <td class="tg-gvcd">{{forloop.counter}}</td><!-- STT -->
                   <td class="tg-gvcd">{{item.MaMatHang}}</td><!-- Mặt hàng -->
-                  <td class="tg-gvcd">{{item.DVT}}</td><!-- Đơn vị tính -->
+                  <td class="tg-gvcd">{{item.MaMatHang.DVT}}</td><!-- Đơn vị tính -->
                   <td class="tg-gvcd">{{item.SoLuong}}</td><!-- Số lượng -->
                   <td class="tg-gvcd">{{item.DonGia}}</td><!-- Đơn giá xuất -->
                   <td class="tg-gvcd">{{item.ThanhTien}}</td><!-- Thành tiền -->

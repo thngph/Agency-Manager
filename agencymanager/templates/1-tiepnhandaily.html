@@ -71,7 +71,11 @@
                 </div>
                 <div class="form-input-item-half">
                   <label for="type">Loại đại lý</label>
-                  <input type="number" id="type" name="MaLoaiDaiLy" required />
+                  <select id="type" name="MaLoaiDaiLy">
+                    {% for item in loaidaily %}
+                    <option value="{{item.MaLoaiDaiLy}}">{{item.TenLoaiDaiLy}}</option>
+                    {% endfor %}
+                  </select>
                 </div>
                 <div class="form-input-item-half">
                   <label for="phone">Điện thoại</label>
