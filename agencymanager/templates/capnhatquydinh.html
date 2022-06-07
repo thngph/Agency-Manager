@@ -35,16 +35,16 @@
               <a href="{%url 'quydinh'%}" class="category-item-name">Quy định</a>
             </li>
           </ul>
-          <ul class="category-user"> 
+          <ul class="category-user">
             <li class="category-item">
-              <img src="../static/images/user-logo.png" alt="">
-              <a href="" class="category-item-name" >Admin</a>
+              <img src="{%static 'images/user-logo.png' %}" alt="">
+              <a href="{%url 'profile'%}" class="category-item-name">
+                Admin
+              </a>
             </li>
             <li class="category-item">
-              <a href="">
-                <img srcset="../static/images/logout.png 2x" alt="" />
-                <a href="" class="category-item-name" >Logout</a>
-              </a>
+                <img srcset="{%static 'images/logout.png' 2x %}" alt="" />
+                <a href="{%url 'logout'%}" class="category-item-name">Logout</a>
             </li>
           </ul>
         </div>

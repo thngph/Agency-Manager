@@ -40,16 +40,14 @@
         </ul>
         <ul class="category-user">
           <li class="category-item">
-            <img src="../static/images/user-logo.png" alt="">
+            <img src="{%static 'images/user-logo.png' %}" alt="">
             <a href="{%url 'profile'%}" class="category-item-name">
               Admin
             </a>
           </li>
           <li class="category-item">
-            <a href="">
-              <img srcset="../static/images/logout.png 2x" alt="" />
+              <img srcset="{%static 'images/logout.png' 2x %}" alt="" />
               <a href="{%url 'logout'%}" class="category-item-name">Logout</a>
-            </a>
           </li>
         </ul>
       </div>
@@ -191,8 +189,8 @@
                   <td class="tg-gvcd">{{item.DonGia}}</td><!-- Đơn giá xuất -->
                   <td class="tg-gvcd">{{item.ThanhTien}}</td><!-- Thành tiền -->
                   <td class="tg-gvcd">
-                    <img class="btn-modify" srcset="{ % static 'images/edit-icon.png' %}} 3x " alt="">
-                    <img class="btn-modify" srcset="{ % static 'images/delete-icon.png' %} 3x " alt="">
+                    <img class="btn-modify" src="{% static 'images/edit-icon.png'%}" alt="">
+                    <img class="btn-modify" src="{% static 'images/delete-icon.png'%}" alt="">
                   </td><!-- Thao tác -->
                 </tr>
                 {% endfor %}
