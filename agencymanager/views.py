@@ -134,15 +134,27 @@ def thutien(request):
     context = None
     
     if request.method == 'POST':
-        id= request.POST['MaDaiLy']
-        daily_obj= DaiLy.objects.filter(MaDaiLy= id)
-        if daily_obj:
-            context= {"daily": daily_obj, "flag": TRUE}
-            return render(request, '4-lapphieuthutien.html', context)           
-        else:
-            context= {"daily": daily_obj, "flag": FALSE}
-            return render(request, '4-lapphieuthutien.html', context)
-    #return MA DAI LY SAI
+        if 'tracuu' in request.POST:    
+            id= request.POST['MaDaiLy']
+            daily_obj= DaiLy.objects.filter(MaDaiLy= id)
+            if daily_obj:
+                context= {"daily": daily_obj, "flag": TRUE}
+                return render(request, '4-lapphieuthutien.html', context)           
+            else:
+                context= {"daily": daily_obj, "flag": FALSE}
+                return render(request, '4-lapphieuthutien.html', context)
+        if 'phieumoi' in request.POST:
+            dailythutien= DaiLy()
+            dailythutien = DaiLy.objects.get(MaDaiLy=  request.POST['MaDaiLy'])
+            if (int(request.POST['SoTienThu']) <= dailythutien.SoTienNo):
+                PhieuThu = PhieuThuTien()
+                PhieuThu.NgayThuTien= request.POST['NgayThuTien']
+                PhieuThu.SoTienThu= request.POST['SoTienThu']
+                PhieuThu.MaDaiLy= DaiLy.objects.get(MaDaiLy=  request.POST['MaDaiLy'])
+                PhieuThu.save()
+                dailythutien.SoTienNo= dailythutien.SoTienNo - int(request.POST['SoTienThu'])
+                dailythutien.save()
+            
     context= {"flag": TRUE}
     return render(request, '4-lapphieuthutien.html', context)
 
