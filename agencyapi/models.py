@@ -4,7 +4,7 @@ from django.db import models
 class ThamSo(models.Model):
     MaThamSo = models.AutoField(primary_key=True)
     TenThamSo = models.CharField(max_length=50)
-    GiaTri = models.CharField(max_length=50)
+    GiaTri = models.IntegerField(default = 0)
     
     def __str__(self):
         return self.TenThamSo
@@ -85,7 +85,7 @@ class ChiTietPhieuNhapHang(models.Model):
     ThanhTien = models.IntegerField()
 
     def __str__(self):
-        return self.MaChiTietPhieuNhapHang
+        return str(self.MaChiTietPhieuNhapHang)
 
 class MatHang(models.Model):
     MaMatHang = models.AutoField(primary_key=True)

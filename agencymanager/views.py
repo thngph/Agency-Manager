@@ -60,11 +60,12 @@ def chitietnhaphang(request, MaNhaCC, NgayNhap, id):
         ctnhaphang = ChiTietPhieuNhapHang.objects.filter(MaPhieuNhapHang=id)
         tenmathang = MatHang.objects.all()
         dvt = DVT.objects.all()
-        context= {"MaNhaCC": MaNhaCC, "NgayNhap": NgayNhap, "id": id, "ctnhaphang": ctnhaphang, "tenmathang": tenmathang, "dvt": dvt}
+        context= {"MaNhaCC": MaNhaCC, "NgayNhap": NgayNhap, "id": id, "ctnhaphang": ctnhaphang, "tenmathang": tenmathang}
         return render(request, '2-chitietnhaphang.html', context)
     if request.method == 'POST':
         data = request.POST
-        check_ctpn = ChiTietPhieuNhapHang.objects.filter(MaPhieuNhapHang=id,MaMatHang=data['MaMatHang'], DVT=data['DVT'])
+        print(data)
+        check_ctpn = ChiTietPhieuNhapHang.objects.filter(MaPhieuNhapHang=id,MaMatHang=data['MaMatHang'])
         if (check_ctpn):
             check_ctpn[0].SoLuong=check_ctpn[0].SoLuong+int(data['SoLuong'])
             check_ctpn[0].ThanhTien= check_ctpn[0].ThanhTien + int(data['DonGia'])*int(data['SoLuong'])
@@ -73,7 +74,7 @@ def chitietnhaphang(request, MaNhaCC, NgayNhap, id):
             ctphieunhap = ChiTietPhieuNhapHang(MaPhieuNhapHang=PhieuNhapHang.objects.get(MaPhieuNhapHang=id), MaMatHang=MatHang.objects.get(MaMatHang=data['MaMatHang']),SoLuong=data['SoLuong'],DonGia=data['DonGia'], ThanhTien=int(data['DonGia'])*int(data['SoLuong']))
             ctphieunhap.save()
         ctnhaphang = ChiTietPhieuNhapHang.objects.filter(MaPhieuNhapHang=id)
-        return redirect(chitietxuathang, MaNhaCC= MaNhaCC, NgayNhap= NgayNhap, id = id)
+        return redirect(chitietnhaphang, MaNhaCC= MaNhaCC, NgayNhap= NgayNhap, id = id)
 
 @login_required(login_url='login')
 def xuathang(request):
@@ -96,14 +97,13 @@ def xuathang(request):
 @login_required(login_url='login')
 def chitietxuathang(request,MaDaiLy,NgayXuat,id):
     if request.method == 'GET':
-        ctxuathang = ChiTietPhieuXuatHang.objects.filter(MaPhieuXuatHang=id)
+        ctxuathang = ChiTietPhieuXuatHang.objects.filter(MaPhieuXuatHang=id).select_related('MaMatHang')
         tenmathang = MatHang.objects.all()
-        dvt = DVT.objects.all()
-        context = {"daily": MaDaiLy, "ngayxuat": NgayXuat, "id": id, "ctxuathang": ctxuathang, "tenmathang": tenmathang, "dvt": dvt}
+        context = {"daily": MaDaiLy, "ngayxuat": NgayXuat, "id": id, "ctxuathang": ctxuathang, "tenmathang": tenmathang}
         return render(request, '3-chitietxuathang.html', context)
     if request.method == 'POST':
         data = request.POST
-        check_ctpx = ChiTietPhieuXuatHang.objects.filter(MaPhieuXuatHang=id,MaMatHang=data['MaMatHang'], DVT=data['DVT'])
+        check_ctpx = ChiTietPhieuXuatHang.objects.filter(MaPhieuXuatHang=id,MaMatHang=data['MaMatHang'])
         if (check_ctpx):
             check_ctpx[0].SoLuong=check_ctpx[0].SoLuong+int(data['SoLuong'])
             check_ctpx[0].ThanhTien= check_ctpx[0].ThanhTien + int(data['DonGia'])*int(data['SoLuong'])
@@ -111,7 +111,6 @@ def chitietxuathang(request,MaDaiLy,NgayXuat,id):
         else:
             ctphieuxuat = ChiTietPhieuXuatHang(MaPhieuXuatHang=PhieuXuatHang.objects.get(MaPhieuXuatHang=id), MaMatHang=MatHang.objects.get(MaMatHang=data['MaMatHang']),SoLuong=data['SoLuong'],DonGia=data['DonGia'], ThanhTien=int(data['DonGia'])*int(data['SoLuong']))
             ctphieuxuat.save()
-        ctxuathang = ChiTietPhieuXuatHang.objects.filter(MaPhieuXuatHang=id)
         return redirect(chitietxuathang, MaDaiLy= MaDaiLy, NgayXuat= NgayXuat, id = id)
 
 @login_required(login_url='login')
