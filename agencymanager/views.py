@@ -57,7 +57,7 @@ def nhaphang(request):
 @login_required(login_url='login')
 def chitietnhaphang(request, MaNhaCC, NgayNhap, id):
     if request.method == 'GET':
-        ctnhaphang = ChiTietPhieuNhapHang.objects.filter(MaPhieuNhapHang=id)
+        ctnhaphang = ChiTietPhieuNhapHang.objects.filter(MaPhieuNhapHang=id).select_related('MaMatHang')
         tenmathang = MatHang.objects.all()
         dvt = DVT.objects.all()
         context= {"MaNhaCC": MaNhaCC, "NgayNhap": NgayNhap, "id": id, "ctnhaphang": ctnhaphang, "tenmathang": tenmathang}
@@ -98,8 +98,10 @@ def xuathang(request):
 def chitietxuathang(request,MaDaiLy,NgayXuat,id):
     if request.method == 'GET':
         ctxuathang = ChiTietPhieuXuatHang.objects.filter(MaPhieuXuatHang=id).select_related('MaMatHang')
+        tongtien = sum(ctxuathang.values_list('ThanhTien', flat=True))
+        print(tongtien)
         tenmathang = MatHang.objects.all()
-        context = {"daily": MaDaiLy, "ngayxuat": NgayXuat, "id": id, "ctxuathang": ctxuathang, "tenmathang": tenmathang}
+        context = {"daily": MaDaiLy, "ngayxuat": NgayXuat, "id": id, "ctxuathang": ctxuathang, "tenmathang": tenmathang, "tongtien": tongtien}
         return render(request, '3-chitietxuathang.html', context)
     if request.method == 'POST':
         data = request.POST
@@ -112,6 +114,13 @@ def chitietxuathang(request,MaDaiLy,NgayXuat,id):
             ctphieuxuat = ChiTietPhieuXuatHang(MaPhieuXuatHang=PhieuXuatHang.objects.get(MaPhieuXuatHang=id), MaMatHang=MatHang.objects.get(MaMatHang=data['MaMatHang']),SoLuong=data['SoLuong'],DonGia=data['DonGia'], ThanhTien=int(data['DonGia'])*int(data['SoLuong']))
             ctphieuxuat.save()
         return redirect(chitietxuathang, MaDaiLy= MaDaiLy, NgayXuat= NgayXuat, id = id)
+
+@login_required(login_url='login')
+def delete_chitietnhaphang(request,MaNhaCC, NgayNhap, id):
+    if request.method == 'GET':
+        phieunhap = PhieuNhapHang.objects.get(MaPhieuNhapHang=id)
+        phieunhap.delete()
+        return redirect(reverse('nhaphang'))
 
 @login_required(login_url='login')
 def delete_chitietxuathang(request,MaDaiLy,NgayXuat,id):

@@ -26,6 +26,7 @@ urlpatterns = [
     path('xuathang/', xuathang, name='xuathang'),
     path('chitietnhaphang/<MaNhaCC>/<NgayNhap>/<id>/', chitietnhaphang, name='chitietnhaphang'),
     path('chitietxuathang/<MaDaiLy>/<NgayXuat>/<id>/', chitietxuathang, name='chitietxuathang'),
+    path('delete/chitietnhaphang/<MaNhaCC>/<NgayNhap>/<id>/', delete_chitietnhaphang, name='delete_chitietnhaphang'),
     path('delete/chitietxuathang/<MaDaiLy>/<NgayXuat>/<id>/', delete_chitietxuathang, name='delete_chitietxuathang'),
     path('thutien/', thutien, name='thutien'),
     path('tracuu/', tracuu, name='tracuu'),

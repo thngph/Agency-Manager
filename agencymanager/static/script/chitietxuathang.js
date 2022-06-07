@@ -27,15 +27,20 @@ function jsFunction(value) {
         y.value = dvt.DVT;
         z.value = dvt.GiaNhap * parseInt(tigia.GiaTri) / 100;
         w.value = dvt.SoLuongTon;
+        const submitbtn = document.getElementById("add")
+
         soluonginput.oninput=function()
         {
+            
             if(parseInt(soluonginput.value)>parseInt(w.value))
             {
-                errorMsg.classList.remove('hidden')
+                errorMsg.classList.remove('hidden');
+                submitbtn.disabled=true;
             }
             else
             {
-                errorMsg.classList.add('hidden')
+                errorMsg.classList.add('hidden');
+                submitbtn.disabled=false;
             }
         }
     }

@@ -141,6 +141,9 @@
               </div>
             
             </form>
+            <div class="btn-group">
+              <a href="/delete/chitietnhaphang/{{MaNhaCC}}/{{NgayNhap}}/{{id}}"><button class="btn btn-white">Hủy</button></a>
+            </div>
           {% endblock %}
           <div class="result">
             <div class="result-title">THÔNG TIN PHIẾU NHẬP HÀNG</div>
@@ -205,18 +208,20 @@
                   </tr>
                 </thead>
                 <tbody>
+                  {% for item in ctnhaphang %}
                   <tr>
-                    <td class="tg-gvcd">1</td><!-- STT -->
-                    <td class="tg-gvcd">Quần xì</td><!-- Mặt hàng -->
-                    <td class="tg-gvcd">Cái</td><!-- Đơn vị tính -->
-                    <td class="tg-gvcd">2</td><!-- Số lượng -->
-                    <td class="tg-gvcd">20.000</td><!-- Đơn giá xuất -->
-                    <td class="tg-gvcd">40.000</td><!-- Thành tiền -->
+                    <td class="tg-gvcd">{{forloop.counter}}</td><!-- STT -->
+                    <td class="tg-gvcd">{{item.MaMatHang}}</td><!-- Mặt hàng -->
+                    <td class="tg-gvcd">{{item.MaMatHang.DVT}}</td><!-- Đơn vị tính -->
+                    <td class="tg-gvcd">{{item.SoLuong}}</td><!-- Số lượng -->
+                    <td class="tg-gvcd">{{item.DonGia}}</td><!-- Đơn giá xuất -->
+                    <td class="tg-gvcd">{{item.ThanhTien}}</td><!-- Thành tiền -->
                     <td class="tg-gvcd">
                       <img class="btn-modify" srcset="../static/images/edit-icon.png 3x" alt="">
                       <img class="btn-modify" srcset="../static/images/delete-icon.png 3x" alt="">
                     </td><!-- Thao tác -->
                   </tr>
+                  {%endfor%}
                 </tbody>
               </table>
             </div>
