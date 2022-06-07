@@ -22,7 +22,8 @@ async function postData(url, data) {
       cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
       credentials: 'same-origin', // include, *same-origin, omit
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'X-CSRFToken': document.querySelector('[name="csrfmiddlewaretoken"]').value,
         // 'Content-Type': 'application/x-www-form-urlencoded',
       },
       redirect: 'follow', // manual, *follow, error
@@ -126,9 +127,11 @@ function handleData(dailyData,xuathangData,month,year)
         item.tyle=(item.doanhthudaili/doanhthutatca).toFixed(3)
     })
     let BaoCaoDoanhSo={
+        
         Thang: parseInt(month),
         Nam: parseInt(year),
         TongDoanhSo: doanhthutatca,
+        
     }
     renderData(Chitietdoanhso,BaoCaoDoanhSo)
     postData('/api/BaoCaoDoanhSo/',BaoCaoDoanhSo)
