@@ -1,6 +1,7 @@
 let xuathangUrl="/api/PhieuXuatHang/"
 let dailyUrl="/api/DaiLy/"
-
+let DSUrl='/api/BaoCaoDoanhSo/'
+let CTDSUrl='/api/ChiTietBaoCaoDoanhSo/'
 async function GetData(url) {
     try {
         const response = await fetch(url, {
@@ -32,16 +33,14 @@ async function postData(url, data) {
     });
     return response.json();
   }
-  
 //   postData('https://example.com/answer', { answer: 42 })
-
-
 async function start() {
     let dailyData=await GetData(dailyUrl);
     let xuathangData=await GetData(xuathangUrl);
     const month=document.querySelector("#month").value
     const year=document.querySelector("#year").value
     handleData(dailyData,xuathangData,month,year)
+    
 }
 function LayThang(date)
 {
@@ -68,30 +67,27 @@ function KiemTraThangLapPhieu(thangbaocao,nambaocao,thanglapphieu,namlapphieu)
 function renderData(Chitietdoanhso,BaoCaoDoanhSo) 
 {
     let doanhso=document.querySelector('#tongdoanhthu')
-    console.log(doanhso.value)
+
     let table = document.querySelector('#detail');
     var htmls = Chitietdoanhso.map(function (item) {
         return `
         <tr>
-            <td class="tg-oe15">${item.madaily}</td>
-            <td class="tg-oe15">${item.sophieuxuat}</td>
-            <td class="tg-oe15">${item.doanhthudaili}</td>
-            <td class="tg-oe15">${item.tyle}</td>
+            <td class="tg-oe15">${item.MaDaiLy}</td>
+            <td class="tg-oe15">${item.SoPhieuXuat}</td>
+            <td class="tg-oe15">${item.TongGiaTri}</td>
+            <td class="tg-oe15">${item.TiLe}</td>
          </tr>
         `;
       });
     table.innerHTML = htmls.join('');
-    console.log(BaoCaoDoanhSo.TongDoanhSo)
     doanhso.value=BaoCaoDoanhSo.TongDoanhSo
 }
-function handleData(dailyData,xuathangData,month,year)
+async function handleData(dailyData,xuathangData,month,year)
 {
-    console.log("Tháng báo cáo: "+month)
     let lengthDaiLy=dailyData.length;
     let lengthXuatHang=xuathangData.length;
     let doanhthutatca=0
     let Chitietdoanhso =[];
-
     for(let i=0; i<lengthDaiLy; i++)
     {   
         if(KiemTraNgayTiepNhan(month,year,LayThang(dailyData[i].NgayTiepNhan), LayNam(dailyData[i].NgayTiepNhan))==true)
@@ -114,29 +110,36 @@ function handleData(dailyData,xuathangData,month,year)
             doanhthutatca=doanhthutatca+doanhthudaili
             // Thêm thuộc tính
             Chitietdoanhso.push({
-                madaily : dailyData[i].MaDaiLy,
-                sophieuxuat : sophieuxuat,
-                doanhthudaili : doanhthudaili,
-                tyle : 0
+                MaDaiLy : parseInt(dailyData[i].MaDaiLy),
+                SoPhieuXuat : parseInt(sophieuxuat),
+                TongGiaTri : parseInt(doanhthudaili),
+                TiLe : 0
             })
-            console.log(`số ${dailyData[i].MaDaiLy} với ${sophieuxuat} phiếu ${doanhthudaili}`)
         }
     }
     Chitietdoanhso.forEach(function(item)
     {
-        item.tyle=(item.doanhthudaili/doanhthutatca).toFixed(3)
-    })
-    let BaoCaoDoanhSo={
+        item.TiLe=(item.TongGiaTri/doanhthutatca).toFixed(3)
         
+    })
+    let BaoCaoDoanhSo={    
         Thang: parseInt(month),
         Nam: parseInt(year),
         TongDoanhSo: doanhthutatca,
-        
     }
     renderData(Chitietdoanhso,BaoCaoDoanhSo)
-    postData('/api/BaoCaoDoanhSo/',BaoCaoDoanhSo)
+    await postData(DSUrl,BaoCaoDoanhSo)
+    let DSData=await GetData(DSUrl);
+    let BaoCaoCanChon=DSData.filter(function(item)
+    {
+        return parseInt(item.Thang)==parseInt(month) && parseInt(item.Nam)==parseInt(year);
+    })
+    Chitietdoanhso.forEach(function(item)
+    {
+        item.MaBaoCaoDoanhSo=BaoCaoCanChon[0].MaBaoCaoDoanhSo
+        postData(CTDSUrl,item)
+    })
 }
-
 const btn=document.querySelector("#myBtn")
 btn.onclick = function()
 {

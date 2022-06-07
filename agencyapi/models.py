@@ -27,7 +27,7 @@ class ChiTietBaoCaoDoanhSo(models.Model):
     TiLe = models.FloatField()
     
     def __str__(self):
-        return self.MaChiTietBaoCaoDoanhSo
+        return str(self.MaChiTietBaoCaoDoanhSo)
 
 class BaoCaoCongNo(models.Model):
     MaBaoCaoCongNo = models.AutoField(primary_key=True)
