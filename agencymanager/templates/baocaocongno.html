@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -127,7 +128,6 @@
               </style>
               <table class="tg" style="table-layout: fixed; width: 100%">
                 <colgroup>
-                  <col style="width: 47px" />
                   <col style="width: 113px" />
                   <col style="width: 107px" />
                   <col style="width: 94px" />
@@ -135,7 +135,6 @@
                 </colgroup>
                 <thead>
                   <tr>
-                    <th class="tg-b0es">STT</th>
                     <th class="tg-b0es">Mã đại lý</th>
                     <th class="tg-b0es">Nợ đầu</th>
                     <th class="tg-b0es">Phát sinh</th>
@@ -144,21 +143,6 @@
                 </thead>
                 <tbody>
                   <tr>
-                    <td class="tg-wk8r">1</td>
-                    <td class="tg-oe15"></td>
-                    <td class="tg-oe15"></td>
-                    <td class="tg-oe15"></td>
-                    <td class="tg-oe15"></td>
-                  </tr>
-                  <tr>
-                    <td class="tg-wk8r">2</td>
-                    <td class="tg-oe15"></td>
-                    <td class="tg-oe15"></td>
-                    <td class="tg-oe15"></td>
-                    <td class="tg-oe15"></td>
-                  </tr>
-                  <tr>
-                    <td class="tg-wk8r">3</td>
                     <td class="tg-oe15"></td>
                     <td class="tg-oe15"></td>
                     <td class="tg-oe15"></td>
@@ -175,5 +159,6 @@
         </div>
       </div>
     </div>
+    <script src="{% static 'script/congno.js' %}"></script>
   </body>
 </html>

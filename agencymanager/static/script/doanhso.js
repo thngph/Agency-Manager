@@ -40,7 +40,6 @@ async function start() {
     const month=document.querySelector("#month").value
     const year=document.querySelector("#year").value
     handleData(dailyData,xuathangData,month,year)
-    
 }
 function LayThang(date)
 {
@@ -54,9 +53,11 @@ function LayNam(date)
 }
 function KiemTraNgayTiepNhan(thangbaocao,nambaocao, thangtiepnhan,namtiepnhan)
 {
-    if(thangtiepnhan>thangbaocao && namtiepnhan >= nambaocao)
+    if((namtiepnhan>nambaocao)||((thangtiepnhan>thangbaocao)&&(namtiepnhan==nambaocao)))
+    {
         return false
-    return true
+    }
+    return true;
 }
 function KiemTraThangLapPhieu(thangbaocao,nambaocao,thanglapphieu,namlapphieu)
 {
@@ -119,8 +120,10 @@ async function handleData(dailyData,xuathangData,month,year)
     }
     Chitietdoanhso.forEach(function(item)
     {
-        item.TiLe=(item.TongGiaTri/doanhthutatca).toFixed(3)
-        
+        item.TiLe=(item.TongGiaTri/doanhthutatca).toFixed(3) 
+        if (isNaN(item.TiLe)) {
+            item.TiLe=0;
+        }
     })
     let BaoCaoDoanhSo={    
         Thang: parseInt(month),
