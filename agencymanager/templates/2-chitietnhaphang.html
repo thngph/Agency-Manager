@@ -125,7 +125,10 @@
                     <label for="SoLuong">Số lượng</label>
                     <input type="SoLuong" id="SoLuong"  name="SoLuong" required />
                   </div>
-
+                  <div class="form-input-item-half">
+                    <label for="SoLuong">Số lượng tồn</label>
+                    <input type="SoLuong" id="SoLuongTon" disabled name="SoLuong" required />
+                  </div>
                 </div>
                 <div class="form-input-group-half">
                   <div class="form-input-item-half">
@@ -192,10 +195,10 @@
                 <colgroup>
                   <col style="width: 10%"> <!-- STT -->
                   <col style="width: 10%"> <!-- Ma phieu -->
-                  <col style="width: 15%"><!-- Mặt hàng -->
+                  <col style="width: 20%"><!-- Mặt hàng -->
                   <col style="width: 15%"><!-- Đơn vị tính -->
                   <col style="width: 10%"><!-- Số lượng -->
-                  <col style="width: 15%"><!-- Đơn giá nhập -->
+                  <col style="width: 10%"><!-- Đơn giá nhập -->
                   <col style="width: 15%"><!-- Thành tiền -->
                   <col style="width: 10%"><!-- Thao tác -->
                   
@@ -219,10 +222,10 @@
                   <tr>
                     <td class="tg-gvcd">{{forloop.counter}}</td><!-- STT -->
                     <td class="tg-gvcd">
-                      <input type="text" name="xoaphieu" value="{{ item.MaChiTietPhieuNhapHang }}">
+                      <input type="text" name="xoaphieu" class="text-is-input text-center wd-100 " disabled value="{{ item.MaChiTietPhieuNhapHang }}">
                     </td>   
                     <td class="tg-gvcd">
-                      <input type="text" name="MaMatHang" value="{{item.MaMatHang}}">
+                      <input type="text" name="MaMatHang" class="text-is-input text-center wd-100" disabled value="{{item.MaMatHang}}">
                     </td>                 
                     
                     <td class="tg-gvcd">{{item.MaMatHang.DVT}}</td><!-- Đơn vị tính -->
@@ -231,7 +234,7 @@
                     <td class="tg-gvcd">{{item.ThanhTien}}</td><!-- Thành tiền -->
                     <td class="tg-gvcd">
                     
-                    <button type="submit" name="delete" name="delete">
+                    <button type="submit" class="btn-delete"name="delete" name="delete">
                       <img class="btn-modify" src="{% static 'images/delete-icon.png'%}" alt="">
                     </button>
                     </td> <!-- Thao tác -->

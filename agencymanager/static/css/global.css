@@ -151,3 +151,16 @@ button:disabled
   background-color: transparent !important;
   color: black;
 }
+.btn-delete
+{
+  background-color: transparent; 
+  border: none
+}
+.text-center
+{
+  text-align: center;
+}
+.wd-100
+{
+  width: 100%;
+}
