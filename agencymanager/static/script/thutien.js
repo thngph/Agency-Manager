@@ -43,14 +43,16 @@ async function renderData(daily)
     document.querySelector('#Quan').value="Quận " + daily.MaQuan
     document.querySelector('#Email').value=daily.Email
     document.querySelector('#DienThoai').value=daily.DienThoai
-    document.querySelector('#TienNo').innerText=daily.SoTienNo
-    document.querySelector('#TienConNo').innerText=daily.SoTienNo
+    document.querySelector('#TienNo').value=parseInt(daily.SoTienNo)
+    document.querySelector('#TienConNo').value=parseInt(daily.SoTienNo)
 }
 async function start()
 {
     let dailyData=await GetData(dailyUrl);
     let phieuthuData=await GetData(phieuthuUrl);
     let quidinhData=await GetData(quidinhUrl);
+    let check=quidinhData[2].GiaTri;
+    console.log(check)
     let dateInput=document.querySelector('#NgayThuTien')
     let moneyInput=document.querySelector('#SoTienThu')
     // console.log(dailyData)
@@ -66,9 +68,14 @@ async function start()
     {
         errorMsg.classList.add('hidden')
         dateInput.disabled=false
-        dateInput.max=new Date().toISOString().split("T")[0];
+        dateInput.value=new Date().toLocaleDateString('en-ca')
+        dateInput.max=new Date().toLocaleDateString('en-ca')
         moneyInput.disabled=false
         renderData(daily[0])
+        moneyInput.oninput=function()
+        {
+            
+        }
     }
 
 }

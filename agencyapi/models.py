@@ -140,7 +140,7 @@ class DaiLy(models.Model):
     MaQuan = models.ForeignKey('Quan', on_delete=models.CASCADE)
     DienThoai = models.CharField(max_length=50)
     Email = models.EmailField(max_length=100, null=True, blank=True)
-    SoTienNo = models.IntegerField(null=True, blank=True)
+    SoTienNo = models.IntegerField(default=0, blank=True)
     NgayTiepNhan = models.DateField(default='2022-06-01')
     def __str__(self):
         return str(self.MaDaiLy)
