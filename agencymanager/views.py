@@ -109,15 +109,19 @@ def chitietnhaphang(request, MaNhaCC, NgayNhap, id, sum):
 @login_required(login_url='login')
 def xuathang(request):
     if request.method == 'POST':
-        form= XuatHang(request.POST)
-        if form.is_valid():            
-            form.save()
-            context = form.data
-            return redirect(chitietxuathang, MaDaiLy= context['MaDaiLy'], NgayXuat= context['NgayXuat'], id = form.instance.MaPhieuXuatHang)
-        else:
-            daily = DaiLy.objects.all()
-        context = {"daily": daily}
-        return render(request, '3-lapphieuxuathang.html', context)
+        if 'phieumoi' in request.POST:
+            form= XuatHang(request.POST)
+            if form.is_valid():            
+                form.save()
+                context = form.data
+                return redirect(chitietxuathang, MaDaiLy= context['MaDaiLy'], NgayXuat= context['NgayXuat'], id = form.instance.MaPhieuXuatHang)
+            else:
+                daily = DaiLy.objects.all()
+            context = {"daily": daily}
+            return render(request, '3-lapphieuxuathang.html', context)
+        elif 'delete' in request.POST:
+            pass
+        
     if request.method == 'GET':
         daily = DaiLy.objects.all()
         context = {"daily": daily}
