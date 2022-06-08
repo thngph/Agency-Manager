@@ -73,6 +73,9 @@ def chitietnhaphang(request, MaNhaCC, NgayNhap, id, sum):
             else:
                 ctphieunhap = ChiTietPhieuNhapHang(MaPhieuNhapHang=PhieuNhapHang.objects.get(MaPhieuNhapHang=id), MaMatHang=MatHang.objects.get(MaMatHang=data['MaMatHang']),SoLuong=data['SoLuong'],DonGia=data['DonGia'], ThanhTien=int(data['DonGia'])*int(data['SoLuong']))
                 ctphieunhap.save()
+            mathang = MatHang.objects.get(MaMatHang= request.POST['MaMatHang'])
+            mathang.SoLuongTon = mathang.SoLuongTon + int(data['SoLuong'])
+            mathang.save()
             ctnhaphang = ChiTietPhieuNhapHang.objects.filter(MaPhieuNhapHang=id)
             return redirect(chitietnhaphang, MaNhaCC= MaNhaCC, NgayNhap= NgayNhap, id = id, sum=sum)
             
@@ -84,6 +87,7 @@ def chitietnhaphang(request, MaNhaCC, NgayNhap, id, sum):
             phieuxoa = ChiTietPhieuNhapHang.objects.get(MaChiTietPhieuNhapHang=id_delete)
             mathang= MatHang.objects.get(TenMatHang= request.POST['MaMatHang'])
             mathang.SoLuongTon= mathang.SoLuongTon- phieuxoa.SoLuong
+            mathang.save()
             sum = sum - phieuxoa.ThanhTien
             ChiTietPhieuNhapHang.objects.get(MaChiTietPhieuNhapHang=id_delete).delete()
             print("da xoa")
