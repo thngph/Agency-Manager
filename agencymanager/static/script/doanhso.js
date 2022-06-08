@@ -203,6 +203,35 @@ async function handleData(dailyData,xuathangData,month,year,baocaothangnay)
     successMsg.classList.remove('hidden')
 }
 const btn=document.querySelector("#myBtn")
+const monthInput=document.querySelector("#month")
+const yearInput=document.querySelector("#year")
+const today = new Date();
+const yearNow=today.getFullYear() 
+const monthNow=today.getMonth()+1
+monthInput.value=monthNow;
+yearInput.value=yearNow
+monthInput.oninput=function()
+{
+    if((monthInput.value<=monthNow && yearInput.value==yearNow)||yearInput.value<yearNow)
+    {
+        btn.disabled=false;
+    }
+    else
+    {
+        btn.disabled=true
+    }
+}
+yearInput.oninput=function()
+{
+    if((monthInput.value<=monthNow && yearInput.value==yearNow)||(yearInput.value<yearNow))
+    {
+        btn.disabled=false;
+    }
+    else
+    {
+        btn.disabled=true
+    }
+}   
 btn.onclick = function()
 {
     start()

@@ -3,255 +3,140 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- CSS -->
-  <link rel="stylesheet" href="../static/css/form.css" />
-  <link rel="stylesheet" href="../static/css/category.css" />
-  <link rel="stylesheet" href="../static/css/function-list.css">
-  <link rel="stylesheet" href="../static/css/global.css" />
-  <link rel="stylesheet" href="../static/css/main.css" />
-  <link rel="stylesheet" href="../static/css/variable.css" />
-  <link rel="stylesheet" href="../static/css/modal.css" />
-  <!-- FONT -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-  <title>QUAN LY DAI LY</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- CSS -->
+    <link rel="stylesheet" href="../static/css/form.css" />
+    <link rel="stylesheet" href="../static/css/category.css" />
+    <link rel="stylesheet" href="../static/css/function-list.css">
+    <link rel="stylesheet" href="../static/css/global.css" />
+    <link rel="stylesheet" href="../static/css/main.css" />
+    <link rel="stylesheet" href="../static/css/variable.css" />
+    <link rel="stylesheet" href="../static/css/modal.css" />
+    <!-- FONT -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <title>QUAN LY DAI LY</title>
 </head>
 
 <body>
-  <div class="main">
-    <div class="category">
-      <div class="title">
-        Quản lý đại lý
-      </div>
-      <div class="category-list">
-        <ul class="category-list-item">
-          <li class="category-item active">
-            <a href="{%url 'tiepnhan'%}" class="category-item-name">Chức năng</a>
-          </li>
-          <li class="category-item">
-            <a href="{%url 'doanhso'%}" class="category-item-name">Báo cáo</a>
-          </li>
-          <li class="category-item">
-            <a href="{%url 'quydinh'%}" class="category-item-name">Quy định</a>
-          </li>
-        </ul>
-        <ul class="category-user">
-          <li class="category-item">
-            <img src="{%static 'images/user-logo.png' %}" alt="">
-            <a href="{%url 'profile'%}" class="category-item-name">
-              Admin
-            </a>
-          </li>
-          <li class="category-item">
-              <img srcset="{%static 'images/logout.png' 2x %}" alt="" />
-              <a href="{%url 'logout'%}" class="category-item-name">Logout</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-    <div class="content">
-      <ul class="function-list">
-        <li class="function-item"><a href="{%url 'tiepnhan'%}">Tiếp nhận đại lý</a></li>
-        <li class="function-item"><a href="{%url 'nhaphang'%}">Lập phiếu nhập hàng</a></li>
-        <li class="function-item"><a href="{%url 'xuathang'%}">Lập phiếu xuất hàng</a></li>
-        <li class="function-item active"><a href="{%url 'thutien'%}">Lập phiếu thu tiền</a></li>
-        <li class="function-item"><a href="{%url 'tracuu'%}">Tra cứu & Chỉnh sửa</a></li>
-      </ul>
-      {% block DaiLy_info %}
-      <div class="content-body">
-        
-        <form method="POST" class="form">
-          {% csrf_token %}
-          {% if daily or flag %}
-          <div class="form-input-group">
-            <div class="form-input-item-full">
-              <label for="name">Mã Đại lý</label>
-              <input type="text" id="name" name="MaDaiLy" placeholder="Nhập mã đại lý..." />
-              <button type="submit" name="tracuu">
-                <img srcset="../static/images/search-icon.png 3x" alt="" class="icon-search">
-              </button>
+    <div class="main">
+        <div class="category">
+            <div class="title">
+                Quản lý đại lý
             </div>
-          </div>
-        </form>
-        {% else %}
-        <!-- KHÚC NÀY LÀ KHI NHẬP SAI MÃ ĐẠI LÝ-MÍ CHỊ SỬA LẠI CHO NÓ HIỆN MỘT CÁI THÔNG BÁO SAI MÃ CHO NÓ SANG NHA -->
-        <div class="form-input-group">
-          <div class="form-input-item-full">
-            <label for="name">Mã Đại lý</label>
-            <input type="text" id="name" value="SAI MÃ ĐẠI LÝ" name="MaDaiLy" placeholder="Nhập mã đại lý..." />
-            <button type="submit" name="tracuu">
-              <img srcset="../static/images/search-icon.png 3x" alt="" class="icon-search">
-            </button>
-          </div>
-        </div>
-        <!-- TỚI ĐÂY LÀ HẾT Á -->
-        {% endif %}
-      <form method="POST" class="form">
-        {% csrf_token %}
-        <div class="result">
-          <div class="form-wrap">
-            <div class="form-title">THÔNG TIN PHIẾU THU TIỀN</div>
-            <!-- Nửa này điền được -->
-            <div class="form-input-group-half">
-              <div class="form-input-item-half">
-                <label for="">Ngày thu</label>
-                <input type="date" name="NgayThuTien" placeholder="Chọn ngày">
-              </div>
-              <div class="form-input-item-half">
-                <label for="">Số tiền thu</label>
-                <input onkeydown="return event.keyCode !== 69" type="number" name="SoTienThu" placeholder="Nhập số tiền thu">
-              </div>
+            <div class="category-list">
+                <ul class="category-list-item">
+                    <li class="category-item active">
+                        <a href="{%url 'tiepnhan'%}" class="category-item-name">Chức năng</a>
+                    </li>
+                    <li class="category-item">
+                        <a href="{%url 'doanhso'%}" class="category-item-name">Báo cáo</a>
+                    </li>
+                    <li class="category-item">
+                        <a href="{%url 'quydinh'%}" class="category-item-name">Quy định</a>
+                    </li>
+                </ul>
+                <ul class="category-user">
+                    <li class="category-item">
+                        <img src="{%static 'images/user-logo.png' %}" alt="">
+                        <a href="{%url 'profile'%}" class="category-item-name">
+                            Admin
+                        </a>
+                    </li>
+                    <li class="category-item">
+                        <img srcset="{%static 'images/logout.png' 2x %}" alt="" />
+                        <a href="{%url 'logout'%}" class="category-item-name">Logout</a>
+                    </li>
+                </ul>
             </div>
-            <!-- Nửa này không điền được -->
-            {% if daily %}{% for item in daily%}
-            <div class="form-input-group-half">
-              <div class="form-input-item-half">
-                
-                <label for=""> Mã đại lý </label>
-                
-                <input type="name" name="MaDaiLy" value="{{ item.MaDaiLy }}" placeholder="">
-              </div>
-              <div class="form-input-item-half">
-                <label for="">Tên đại lý</label>
-                <input type="name"  value="{{ item.TenDaiLy }}" placeholder="" disabled>
-              </div>
-              <div class="form-input-item-half">
-                <label for="">Địa chỉ</label>
-                <input type="name"  value="{{ item.DiaChi }}" placeholder=""  disabled>
-              </div>
-              <div class="form-input-item-half">
-                <label for="">Email</label>
-                <input type="email" value="{{ item.Email }}" placeholder="" disabled>
-              </div>
-              <div class="form-input-item-half">
-                <label for="">Điện thoại</label>
-                <input type="name" value="{{ item.DienThoai }}" placeholder="" disabled>
-              </div>
-              <div class="form-input-item-half debt">
-                <label for="">Số tiền đang nợ:&nbsp;</label>
-                <label for="" class="debt-value"> {{ item.SoTienNo }}</label>
-              </div>
-              <div class="form-input-item-half debt">
-                <label for="">Số tiền nợ còn lại:&nbsp;</label>
-                <label for="" class="debt-value"> 1.000.000 VND</label>
-              </div>
+        </div>
+        <div class="content">
+            <ul class="function-list">
+                <li class="function-item"><a href="{%url 'tiepnhan'%}">Tiếp nhận đại lý</a></li>
+                <li class="function-item"><a href="{%url 'nhaphang'%}">Lập phiếu nhập hàng</a></li>
+                <li class="function-item"><a href="{%url 'xuathang'%}">Lập phiếu xuất hàng</a></li>
+                <li class="function-item active"><a href="{%url 'thutien'%}">Lập phiếu thu tiền</a></li>
+                <li class="function-item"><a href="{%url 'tracuu'%}">Tra cứu & Chỉnh sửa</a></li>
+            </ul>
+            <div class="content-body">
+                <div class="form">
+                    <div class="form-input-group">
+                        <div class="form-input-item-full">
+                            <label for="MaDaiLy">Mã Đại lý</label>
+                            <input type="text" id="MaDaiLy" name="MaDaiLy" placeholder="Nhập mã đại lý..." />
+                            <button type="submit" name="tracuu">
+                                <img srcset="../static/images/search-icon.png 3x" alt="" class="icon-search">
+                            </button>
+                        </div>
+                        <div class="text-error hidden">
+                            Mã đại lý không tồn tại!
+                        </div>
+                    </div>
+                </div>
+                <form method="POST" class="form">
+                    {% csrf_token %}
+                    <div class="result">
+                        <div class="form-wrap">
+                            <div class="form-title">THÔNG TIN PHIẾU THU TIỀN</div>
+                            <!-- Nửa này điền được -->
+                            <div class="form-input-group-half">
+                                <div class="form-input-item-half">
+                                    <label for="">Ngày thu</label>
+                                    <input type="date" id="NgayThuTien"disabled name="NgayThuTien" placeholder="Chọn ngày">
+                                </div>
+                                <div class="form-input-item-half">
+                                    <label for="">Số tiền thu</label>
+                                    <input onkeydown="return event.keyCode !== 69" type="number" id="SoTienThu" disabled name="SoTienThu" placeholder="Nhập số tiền thu">
+                                </div>
+                            </div>
+                            <!-- Nửa này không điền được -->
+                            <div class="form-input-group-half">
+                                <div class="form-input-item-half">
+                                    <label for=""> Mã đại lý </label>
+                                    <input type="number" id="MaDaiLy2" name="MaDaiLy" value="" placeholder="" disabled>
+                                </div>
+                                <div class="form-input-item-half">
+                                    <label for="">Tên đại lý</label>
+                                    <input type="name" id="TenDaiLy" value="" placeholder="" disabled>
+                                </div>
+                                <div class="form-input-item-half">
+                                    <label for="">Địa chỉ</label>
+                                    <input type="name" id="DiaChi" value="" placeholder="" disabled>
+                                </div>
+                                <div class="form-input-item-half">
+                                    <label for="">Quận</label>
+                                    <input type="text" id="Quan" value="" placeholder="" disabled>
+                                </div>
+                                <div class="form-input-item-half">
+                                    <label for="">Email</label>
+                                    <input type="text" id="Email" value="" placeholder="" disabled>
+                                </div>
+                                <div class="form-input-item-half">
+                                    <label for="">Điện thoại</label>
+                                    <input type="name" id="DienThoai" value="" placeholder="" disabled>
+                                </div>
+                                <div class="form-input-item-half debt">
+                                    <label for="">Số tiền đang nợ:&nbsp;</label>
+                                    <label for="" id="TienNo"  class="debt-value"></label>
+                                </div>
+                                <div class="form-input-item-half debt">
+                                    <label for="">Số tiền nợ còn lại:&nbsp;</label>
+                                    <label for="" id="TienConNo" class="debt-value"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="btn-group">
+                        <button class="btn btn-blue" name="phieumoi" id="myBtn" type="submit">Lưu phiếu</button>
+                    </div>
+                </form> 
             </div>
-          </div>
         </div>
-      
-      <div class="btn-group">
-        <button class="btn btn-blue" name="phieumoi" id="myBtn" type="submit">Lưu phiếu</button>
-      </div>
     </div>
-  </form>
-        {% endfor %}
-        {% else %}
-      
-        <div class="form-input-group-half">
-          <div class="form-input-item-half">
-            
-            <label for=""> Mã đại lý </label>
-            
-            <input type="name"  placeholder="" disabled>
-          </div>
-          <div class="form-input-item-half">
-            <label for="">Tên đại lý</label>
-            <input type="name" name="MaDaiLy"  placeholder="" disabled>
-          </div>
-          <div class="form-input-item-half">
-            <label for="">Địa chỉ</label>
-            <input type="name"   placeholder=""  disabled>
-          </div>
-          <div class="form-input-item-half">
-            <label for="">Email</label>
-            <input type="email"   placeholder="" disabled>
-          </div>
-          <div class="form-input-item-half">
-            <label for="">Điện thoại</label>
-            <input type="name"   placeholder="" disabled>
-          </div>
-          <div class="form-input-item-half debt">
-            <label for="">Số tiền đang nợ:&nbsp;</label>
-            <label for="" class="debt-value"> 1.000.000 VND</label>
-          </div>
-          <div class="form-input-item-half debt">
-            <label for="">Số tiền nợ còn lại:&nbsp;</label>
-            <label for="" class="debt-value"> 1.000.000 VND</label>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- <div class="btn-group">
-      <button class="btn btn-blue" name="phieumoi" id="myBtn" type="submit">Lưu phiếu</button>
-    </div> -->
-  </div>
-
-    {% endif %}
-    {% endblock %}
-    </div>
-  </div>
-  <div id="myModal" class="modal">
-    <!-- Modal content -->
-    <div class="modal-content">
-      <span class="close">&times;</span>
-      <p>PHIẾU THU TIỀN</p>
-      <div class="table-result">
-        <style type="text/css">
-          .tg {
-            border-collapse: collapse;
-            border-spacing: 0;
-          }
-          .tg td {
-            border-color: black;
-            border-style: solid;
-            border-width: 2px;
-            font-family: Arial, sans-serif;
-            font-size: 18px;
-            overflow: hidden;
-            padding: 20px 10px;
-            word-break: normal;
-          }
-          .tg .tg-0pky {
-            text-align: left;
-            vertical-align: top
-          }
-          .tg .tg-0lax
-          { text-align:left;
-            vertical-align:top
-          }
-        </style>
-        <table class="tg" style="table-layout: fixed; width: 100%">
-          <colgroup>
-            <col style="width: 50%">
-            <col style="width: 50%">
-          </colgroup>
-          <tbody>
-            <tr>
-              <td class="tg-0pky">Đại lý:</td>
-              <td class="tg-0pky">Địa chỉ:</td>
-            </tr>
-            <tr>
-              <td class="tg-0pky">Điện thoại:</td>
-              <td class="tg-0pky">Email:</td>
-            </tr>
-            <tr>
-              <td class="tg-0pky">Ngày thu tiền:</td>
-              <td class="tg-0pky">Số tiền thu:</td>
-            </tr>
-            <tr>
-              <td class="tg-0lax" colspan="2">Số tiền nợ còn lại: </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      
-    </div>
-  </div>
-  <script src="../static/script/main.js"></script>
+    <script src="{%static 'script/thutien.js'%}"></script>
 </body>
 
 </html>

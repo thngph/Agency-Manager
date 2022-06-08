@@ -130,7 +130,7 @@
 .content-sm.content-body
 {
     display: flex;
-    justify-content: center;
+    align-items: center;
     flex-direction: column;
 }
 .content-sm form
