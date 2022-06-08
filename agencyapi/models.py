@@ -37,7 +37,6 @@ class BaoCaoCongNo(models.Model):
     NoDau = models.IntegerField()
     NoCuoi = models.IntegerField()
     PhatSinh = models.IntegerField()
-    TongCongNo = models.IntegerField()
     
     def __str__(self):
         return self.MaBaoCaoCongNo
