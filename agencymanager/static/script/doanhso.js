@@ -2,10 +2,12 @@ let xuathangUrl="/api/PhieuXuatHang/"
 let dailyUrl="/api/DaiLy/"
 let DSUrl='/api/BaoCaoDoanhSo/'
 let CTDSUrl='/api/ChiTietBaoCaoDoanhSo/'
-async function putData(url, data, id) {
+const errorMsg=document.querySelector(".text-error")
+const successMsg=document.querySelector(".text-success")
+async function DelData(url, id) {
     // Default options are marked with *
     const response = await fetch(url+id+"/", {
-      method: 'PATCH', // *GET, POST, PUT, DELETE, etc.
+      method: 'DELETE', // *GET, POST, PUT, DELETE, etc.
       mode: 'cors', // no-cors, *cors, same-origin
       cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
       credentials: 'same-origin', // include, *same-origin, omit
@@ -16,9 +18,8 @@ async function putData(url, data, id) {
       },
       redirect: 'follow', // manual, *follow, error
       referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-      body: JSON.stringify(data) // body data type must match "Content-Type" header
+    
     });
-    return response.json();
   }
 async function GetData(url) {
     try {
@@ -112,7 +113,6 @@ async function start() {
     }
     else
     {
-        
         errorMsg.classList.remove('hidden')
         successMsg.classList.add('hidden')
         renderData([])
@@ -122,7 +122,7 @@ async function handleData(dailyData,xuathangData,month,year,baocaothangnay)
 {
     let lengthDaiLy=dailyData.length;
     let lengthXuatHang=xuathangData.length;
-    let doanhthutatca=0
+    let doanhthutatca=0;
     let Chitietdoanhso =[];
     
     for(let i=0; i<lengthDaiLy; i++)
@@ -169,11 +169,10 @@ async function handleData(dailyData,xuathangData,month,year,baocaothangnay)
     renderData(Chitietdoanhso,BaoCaoDoanhSo)
     if(baocaothangnay.length>0)
     {
-        console.log("Báo cáo có rồi")
-    }
-    else
-    {
-        renderData(Chitietdoanhso,BaoCaoDoanhSo)
+        baocaothangnay.forEach(function(item)
+        {
+            DelData(DSUrl,parseInt(item.MaBaoCaoDoanhSo))
+        })
         await postData(DSUrl,BaoCaoDoanhSo)
         let DSData=await GetData(DSUrl);
         let BaoCaoCanChon=DSData.filter(function(item)
@@ -186,6 +185,22 @@ async function handleData(dailyData,xuathangData,month,year,baocaothangnay)
             postData(CTDSUrl,item)
         })
     }
+    else
+    {
+        await postData(DSUrl,BaoCaoDoanhSo)
+        let DSData=await GetData(DSUrl);
+        let BaoCaoCanChon=DSData.filter(function(item)
+        {
+            return parseInt(item.Thang)==parseInt(month) && parseInt(item.Nam)==parseInt(year);
+        })
+        Chitietdoanhso.forEach(function(item)
+        {
+            item.MaBaoCaoDoanhSo=BaoCaoCanChon[0].MaBaoCaoDoanhSo
+            postData(CTDSUrl,item)
+        })
+    }
+    errorMsg.classList.add('hidden')
+    successMsg.classList.remove('hidden')
 }
 const btn=document.querySelector("#myBtn")
 btn.onclick = function()

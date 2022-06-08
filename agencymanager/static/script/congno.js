@@ -35,10 +35,10 @@ async function postData(url, data) {
     });
     return response.json();
   }
-async function patchData(url, data, id) {
+async function DelData(url, id) {
     // Default options are marked with *
     const response = await fetch(url+id+"/", {
-      method: 'PATCH', // *GET, POST, PUT, DELETE, etc.
+      method: 'DELETE', // *GET, POST, PUT, DELETE, etc.
       mode: 'cors', // no-cors, *cors, same-origin
       cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
       credentials: 'same-origin', // include, *same-origin, omit
@@ -49,9 +49,7 @@ async function patchData(url, data, id) {
       },
       redirect: 'follow', // manual, *follow, error
       referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-      body: JSON.stringify(data) // body data type must match "Content-Type" header
     });
-    return response.json();
   }
 function LayThang(date)
 {
@@ -101,6 +99,7 @@ async function start() {
     let xuathangData=await GetData(xuathangUrl);
     let phieuthuData=await GetData(phieuthuUrl);
     let congnoData=await GetData(congnoUrl);
+
     xuathangData=xuathangData.filter(function(item)
     {
         return KiemTraThangLapPhieu(month,year,LayThang(item.NgayXuat),LayNam(item.NgayXuat))
@@ -199,12 +198,13 @@ async function handleData(dailyData,xuathangData,congnothangtruocData,congnothan
     renderData(report)
     if(congnothangnayData.length>0)
     {
-        console.log("Check")
-        let id=0;
+        congnothangnayData.forEach(function(item)
+        {
+            DelData(congnoUrl,parseInt(item.MaBaoCaoCongNo))
+        })
         report.forEach(function(item)
         {
-            patchData(congnoUrl,item,parseInt(congnothangnayData[id].MaBaoCaoCongNo))
-            id++
+            postData(congnoUrl,item)
         })
     }
     else
@@ -217,6 +217,35 @@ async function handleData(dailyData,xuathangData,congnothangtruocData,congnothan
     successMsg.classList.remove("hidden")
 }
 const btn=document.querySelector("#myBtn")
+const monthInput=document.querySelector("#month")
+const yearInput=document.querySelector("#year")
+const today = new Date();
+const yearNow=today.getFullYear() 
+const monthNow=today.getMonth()+1
+monthInput.value=monthNow;
+yearInput.value=yearNow
+monthInput.oninput=function()
+{
+    if((monthInput.value<=monthNow && yearInput.value==yearNow)||yearInput.value<yearNow)
+    {
+        btn.disabled=false;
+    }
+    else
+    {
+        btn.disabled=true
+    }
+}
+yearInput.oninput=function()
+{
+    if((monthInput.value<=monthNow && yearInput.value==yearNow)||(yearInput.value<yearNow))
+    {
+        btn.disabled=false;
+    }
+    else
+    {
+        btn.disabled=true
+    }
+}
 btn.onclick = function()
 {
     start()
