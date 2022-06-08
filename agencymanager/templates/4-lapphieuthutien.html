@@ -76,7 +76,7 @@
                         </div>
                     </div>
                 </div>
-                <form method="POST" class="form">
+                <div class="form">
                     {% csrf_token %}
                     <div class="result">
                         <div class="form-wrap">
@@ -120,19 +120,25 @@
                                 </div>
                                 <div class="form-input-item-half debt">
                                     <label for="">Số tiền đang nợ:&nbsp;</label>
-                                    <input  id="TienNo" type="number" class="debt-value">
+                                    <input  id="TienNo" type="number" value=0 disabled class="debt-value text-is-input">
                                 </div>
                                 <div class="form-input-item-half debt">
                                     <label for="">Số tiền nợ còn lại:&nbsp;</label>
-                                    <input id="TienConNo" type="number" class="debt-value">
+                                    <input id="TienConNo" type="number" value=0 disabled class="debt-value text-is-input">
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="btn-group">
-                        <button class="btn btn-blue" name="phieumoi" id="myBtn" type="submit">Lưu phiếu</button>
+                    <div class="text-error hidden text-check-money">
+                        Số tiền thu phải bé hơn số tiền nợ!
                     </div>
-                </form> 
+                    <div class="text-success hidden">
+                        Lưu phiếu thành công
+                    </div>
+                    <div class="btn-group">
+                        <button class="btn btn-blue" name="phieumoi" id="saveBtn" disabled>Lưu phiếu</button>
+                    </div>
+                </div> 
             </div>
         </div>
     </div>
