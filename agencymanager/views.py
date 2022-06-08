@@ -76,12 +76,12 @@ def chitietnhaphang(request, MaNhaCC, NgayNhap, id):
         else:
             print("CO DELETE")
             print(request.POST)
-            id= int(request.POST['xoaphieu'])
+            id_delete= int(request.POST['xoaphieu'])
             
-            phieuxoa = ChiTietPhieuNhapHang.objects.get(MaChiTietPhieuNhapHang=id)
+            phieuxoa = ChiTietPhieuNhapHang.objects.get(MaChiTietPhieuNhapHang=id_delete)
             mathang= MatHang.objects.get(TenMatHang= request.POST['MaMatHang'])
             mathang.SoLuongTon= mathang.SoLuongTon- phieuxoa.SoLuong
-            ChiTietPhieuNhapHang.objects.get(MaChiTietPhieuNhapHang=id).delete()
+            ChiTietPhieuNhapHang.objects.get(MaChiTietPhieuNhapHang=id_delete).delete()
             print("da xoa")
             ctnhaphang = ChiTietPhieuNhapHang.objects.filter(MaPhieuNhapHang=id).select_related('MaMatHang')
             tenmathang = MatHang.objects.all()
