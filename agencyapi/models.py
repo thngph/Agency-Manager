@@ -39,7 +39,7 @@ class BaoCaoCongNo(models.Model):
     PhatSinh = models.IntegerField()
     
     def __str__(self):
-        return self.MaBaoCaoCongNo
+        return str(self.MaBaoCaoCongNo)
 
 class PhieuThuTien(models.Model):
     MaPhieuThuTien = models.AutoField(primary_key=True)

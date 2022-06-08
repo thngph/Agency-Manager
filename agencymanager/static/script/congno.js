@@ -2,6 +2,8 @@ let xuathangUrl="/api/PhieuXuatHang/" //Lấy số tiền nợ sau mỗi ph
 let dailyUrl="/api/DaiLy/" //Lấy mã đại lý
 let phieuthuUrl="/api/PhieuThuTien/"
 let congnoUrl="/api/BaoCaoCongNo/"
+const errorMsg=document.querySelector(".text-error")
+const successMsg=document.querySelector(".text-success")
 
 async function GetData(url) {
     try {
@@ -15,6 +17,42 @@ async function GetData(url) {
         console.error(error);
     }
 }
+async function postData(url, data) {
+    // Default options are marked with *
+    const response = await fetch(url, {
+      method: 'POST', // *GET, POST, PUT, DELETE, etc.
+      mode: 'cors', // no-cors, *cors, same-origin
+      cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+      credentials: 'same-origin', // include, *same-origin, omit
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRFToken': document.querySelector('[name="csrfmiddlewaretoken"]').value,
+        // 'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      redirect: 'follow', // manual, *follow, error
+      referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+      body: JSON.stringify(data) // body data type must match "Content-Type" header
+    });
+    return response.json();
+  }
+async function patchData(url, data, id) {
+    // Default options are marked with *
+    const response = await fetch(url+id+"/", {
+      method: 'PATCH', // *GET, POST, PUT, DELETE, etc.
+      mode: 'cors', // no-cors, *cors, same-origin
+      cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+      credentials: 'same-origin', // include, *same-origin, omit
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRFToken': document.querySelector('[name="csrfmiddlewaretoken"]').value,
+        // 'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      redirect: 'follow', // manual, *follow, error
+      referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+      body: JSON.stringify(data) // body data type must match "Content-Type" header
+    });
+    return response.json();
+  }
 function LayThang(date)
 {
     var arr = date.split("-")
@@ -39,6 +77,22 @@ function KiemTraThangTiepNhan(thangbaocao,nambaocao,thangtiepnhan,namtiepnhan)
     }
     return true;
 }
+
+function renderData(data)
+{
+    let table = document.querySelector('#detail');
+    var htmls = data.map(function (item) {
+        return `
+        <tr>
+            <td class="tg-oe15">${item.MaDaiLy}</td>
+            <td class="tg-oe15">${item.NoDau}</td>
+            <td class="tg-oe15">${item.PhatSinh}</td>
+            <td class="tg-oe15">${item.NoCuoi}</td>
+         </tr>
+        `;
+      });
+    table.innerHTML = htmls.join('');
+}
 async function start() {
     const month=document.querySelector("#month").value
     const year=document.querySelector("#year").value
@@ -59,7 +113,7 @@ async function start() {
     {
         return KiemTraThangLapPhieu(month,year,LayThang(item.NgayThuTien),LayNam(item.NgayThuTien))
     })
-    congnoData=congnoData.filter(function(item)
+    congnothangtruocData=congnoData.filter(function(item)
     {
         if(month==1)
         {
@@ -69,16 +123,29 @@ async function start() {
         {
             return KiemTraThangLapPhieu(month-1,year,item.Thang,item.Nam)
         }
-
     })
-    console.log(dailyData)
-    console.log(xuathangData)
-    console.log(phieuthuData)
-    console.log(congnoData)
-
-    handleData(dailyData,xuathangData,congnoData,phieuthuData)
+    congnothangnayData=congnoData.filter(function(item)
+    {
+        return KiemTraThangLapPhieu(month,year,item.Thang,item.Nam)
+    })
+    console.log(congnothangnayData)
+    // console.log(dailyData)
+    // console.log(xuathangData)
+    // console.log(phieuthuData)
+    // console.log(congnoData)
+    if(dailyData.length==0)
+    {
+        errorMsg.classList.remove('hidden')
+        successMsg.classList.add('hidden')
+        renderData([])
+    }
+    else
+    {
+        errorMsg.classList.add('hidden')
+        handleData(dailyData,xuathangData,congnothangtruocData,congnothangnayData,phieuthuData,month,year);
+    }
 }
-async function handleData(dailyData,xuathangData,congnoData,phieuthuData)
+async function handleData(dailyData,xuathangData,congnothangtruocData,congnothangnayData,phieuthuData,month,year)
 {
     //lọc theo mã đại lý
     //Nợ đầu= Nợ cuối tháng rồi
@@ -92,9 +159,11 @@ async function handleData(dailyData,xuathangData,congnoData,phieuthuData)
         let phatsinh=0;
         let tienthu=0;
         let nocuoi=0;
-        congnothangtruoc=congnoData.filter(function()
+        congnothangtruoc=congnothangtruocData.filter(function(item)
         {
-            return congnoData.MaDaiLy=daily.MaDaiLy
+            // console.log(daily.MaDaiLy)
+            // console.log(item.MaDaiLy)
+            return item.MaDaiLy==daily.MaDaiLy
         })
         if(congnothangtruoc.length==0)
         {
@@ -102,7 +171,7 @@ async function handleData(dailyData,xuathangData,congnoData,phieuthuData)
         }
         else
         {
-            nodau=congnothangtruoc.NoCuoi;
+            nodau=congnothangtruoc[0].NoCuoi;
         }
         xuathangData.forEach(function(xuathang)
         {
@@ -118,16 +187,37 @@ async function handleData(dailyData,xuathangData,congnoData,phieuthuData)
         })
         report.push(
             {
-                Thang: month,
-                Nam: year,
-                MaDaiLy: daily.MaDaiLy,
-                NoDau: nodau,
-                NoCuoi: nocuoi,
-                PhatSinh: phatsinh,
+                Thang: parseInt(month),
+                Nam: parseInt(year),
+                MaDaiLy: parseInt(daily.MaDaiLy),
+                NoDau: parseInt(nodau),
+                NoCuoi: parseInt(nodau+nocuoi+phatsinh-tienthu),
+                PhatSinh: parseInt(phatsinh)
             }
         )
     })
-
+    renderData(report)
+    if(congnothangnayData.length>0)
+    {
+        console.log("Check")
+        let id=0;
+        report.forEach(function(item)
+        {
+            patchData(congnoUrl,item,parseInt(congnothangnayData[id].MaBaoCaoCongNo))
+            id++
+        })
+    }
+    else
+    {
+        report.forEach(function(item)
+        {
+            postData(congnoUrl,item)
+        })
+    }
+    successMsg.classList.remove("hidden")
 }
-
-start()
+const btn=document.querySelector("#myBtn")
+btn.onclick = function()
+{
+    start()
+}

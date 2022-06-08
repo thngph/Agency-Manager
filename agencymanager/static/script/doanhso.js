@@ -2,7 +2,7 @@ let xuathangUrl="/api/PhieuXuatHang/"
 let dailyUrl="/api/DaiLy/"
 let DSUrl='/api/BaoCaoDoanhSo/'
 let CTDSUrl='/api/ChiTietBaoCaoDoanhSo/'
-async function postData(url, data, id) {
+async function putData(url, data, id) {
     // Default options are marked with *
     const response = await fetch(url+id+"/", {
       method: 'PATCH', // *GET, POST, PUT, DELETE, etc.
@@ -51,13 +51,6 @@ async function postData(url, data) {
     return response.json();
   }
 //   postData('https://example.com/answer', { answer: 42 })
-async function start() {
-    let dailyData=await GetData(dailyUrl);
-    let xuathangData=await GetData(xuathangUrl);
-    const month=document.querySelector("#month").value
-    const year=document.querySelector("#year").value
-    handleData(dailyData,xuathangData,month,year)
-}
 function LayThang(date)
 {
     var arr = date.split("-")
@@ -99,12 +92,39 @@ function renderData(Chitietdoanhso,BaoCaoDoanhSo)
     table.innerHTML = htmls.join('');
     doanhso.value=BaoCaoDoanhSo.TongDoanhSo
 }
-async function handleData(dailyData,xuathangData,month,year)
+async function start() {
+    let dailyData=await GetData(dailyUrl);
+    let xuathangData=await GetData(xuathangUrl);
+    const month=document.querySelector("#month").value
+    const year=document.querySelector("#year").value
+    dailyData=dailyData.filter(function(item)
+    {
+        return KiemTraNgayTiepNhan(month,year,LayThang(item.NgayTiepNhan), LayNam(item.NgayTiepNhan))
+    })
+    let baocaoData=await GetData(DSUrl)
+    let baocaothangnay= baocaoData.filter(function(item)
+    {
+        return KiemTraThangLapPhieu(month,year,item.Thang,item.Nam)
+    })
+    if(dailyData.length>0)
+    {
+        handleData(dailyData,xuathangData,month,year,baocaothangnay)
+    }
+    else
+    {
+        
+        errorMsg.classList.remove('hidden')
+        successMsg.classList.add('hidden')
+        renderData([])
+    }
+}
+async function handleData(dailyData,xuathangData,month,year,baocaothangnay)
 {
     let lengthDaiLy=dailyData.length;
     let lengthXuatHang=xuathangData.length;
     let doanhthutatca=0
     let Chitietdoanhso =[];
+    
     for(let i=0; i<lengthDaiLy; i++)
     {   
         if(KiemTraNgayTiepNhan(month,year,LayThang(dailyData[i].NgayTiepNhan), LayNam(dailyData[i].NgayTiepNhan))==true)
@@ -147,17 +167,25 @@ async function handleData(dailyData,xuathangData,month,year)
         TongDoanhSo: doanhthutatca,
     }
     renderData(Chitietdoanhso,BaoCaoDoanhSo)
-    await postData(DSUrl,BaoCaoDoanhSo)
-    let DSData=await GetData(DSUrl);
-    let BaoCaoCanChon=DSData.filter(function(item)
+    if(baocaothangnay.length>0)
     {
-        return parseInt(item.Thang)==parseInt(month) && parseInt(item.Nam)==parseInt(year);
-    })
-    Chitietdoanhso.forEach(function(item)
+        console.log("Báo cáo có rồi")
+    }
+    else
     {
-        item.MaBaoCaoDoanhSo=BaoCaoCanChon[0].MaBaoCaoDoanhSo
-        postData(CTDSUrl,item)
-    })
+        renderData(Chitietdoanhso,BaoCaoDoanhSo)
+        await postData(DSUrl,BaoCaoDoanhSo)
+        let DSData=await GetData(DSUrl);
+        let BaoCaoCanChon=DSData.filter(function(item)
+        {
+            return parseInt(item.Thang)==parseInt(month) && parseInt(item.Nam)==parseInt(year);
+        })
+        Chitietdoanhso.forEach(function(item)
+        {
+            item.MaBaoCaoDoanhSo=BaoCaoCanChon[0].MaBaoCaoDoanhSo
+            postData(CTDSUrl,item)
+        })
+    }
 }
 const btn=document.querySelector("#myBtn")
 btn.onclick = function()

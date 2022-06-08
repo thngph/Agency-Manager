@@ -56,7 +56,8 @@
           <li class="function-item active"><a href="{%url 'congno'%}">Báo cáo công nợ</a></li>
         </ul>
         <div class="content-body">
-          <form method="post" class="form">
+          <div class="form">
+            {% csrf_token %}
             <div class="form-wrap">
               <div class="form-title">LẬP BÁO CÁO CÔNG NỢ</div>
               <div class="form-input-group-half">
@@ -71,11 +72,18 @@
                   <input onkeydown="return event.keyCode !== 69" type="number" id="year" />
                 </div>
               </div>
+              
               <div class="btn-group">
-                <button class="btn btn-blue">Lập báo cáo</button>
+                <button id="myBtn" class="btn btn-blue">Lập báo cáo</button>
               </div>
             </div>
-          </form>
+          </div>
+          <div class="text-success hidden">
+            Lập thành công!
+          </div>
+          <div class="text-error hidden">
+            Tháng này chưa có đại lý!
+          </div>
           <div class="result">
             <div class="result-table">
               <div class="result-title">BÁO CÁO CÔNG NỢ</div>
@@ -141,21 +149,16 @@
                     <th class="tg-b0es">Nợ cuối</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr>
-                    <td class="tg-oe15"></td>
-                    <td class="tg-oe15"></td>
-                    <td class="tg-oe15"></td>
-                    <td class="tg-oe15"></td>
-                  </tr>
+                <tbody id="detail">
+                  
                 </tbody>
               </table>
               <!--  -->
             </div>
           </div>
-          <div class="btn-group">
+          <!-- <div class="btn-group">
             <button class="btn btn-light-green">In báo cáo</button>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>

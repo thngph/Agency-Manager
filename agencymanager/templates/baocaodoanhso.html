@@ -61,7 +61,7 @@
           <li class="function-item"><a href="{%url 'congno'%}">Báo cáo công nợ</a></li>
         </ul>
        <div class="content-body">
-        <form class="form">
+        <div class="form">
           {% csrf_token %}
           <div class="form-wrap">
             <div class="form-title">LẬP BÁO CÁO</div>
@@ -81,7 +81,13 @@
               <div class="btn btn-blue" id="myBtn" >Lập báo cáo</div>
             </div>
           </div>
-        </form>
+        </div>
+        <div class="text-success hidden">
+          Lập thành công!
+        </div>
+        <div class="text-error hidden">
+          Tháng này chưa có đại lý!
+        </div>
         <div class="result">
           <div class="result-title">BÁO CÁO DOANH SỐ THÁNG</div>
           <div class="result-table">
