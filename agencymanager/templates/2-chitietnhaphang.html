@@ -105,6 +105,7 @@
                   <div class="form-input-item-half">
                     <label for="name">Mặt hàng</label>
                   <select name="MaMatHang" onmousedown="this.value='';" onchange="jsFunction(this.value);">
+                    <option value="" disabled selected>Chọn mặt hàng</option>
                     {% for item in tenmathang %}
                     <option value="{{item.MaMatHang}}">{{item.TenMatHang}}</option>
                     {% endfor %}

@@ -55,31 +55,96 @@
           <li class="function-item active"><a href="{%url 'tiepnhan'%}">Cập nhật quy định</a></li>
         </ul>
         <div class="content-sm content-body">
-          <form method="post" class="form">
+          <div class="form">
+            {% csrf_token %}
             <div class="form-title">CẬP NHẬT QUY ĐỊNH</div>
             <div class="form-input-group">
               <div class="form-input-item-full">
-                <label for="number-max">Số đại lý tối đa</label>
-                <input type="number" id="number-max" />
+                <label for="number-max">Số đại lý tối đa/quận</label>
+                <input onkeydown="return event.keyCode !== 69" type="number" id="number-max" />
               </div>
               <div class="form-input-item-full">
                 <label for="number-unit">Tỉ lệ đơn giá xuất</label>
-                <input type="number" id="number-unit" />
+                <input onkeydown="return event.keyCode !== 69" type="number" id="number-unit" />
               </div>
               <div class="form-input-item-full">
                 <label for="number-debt">Kiểm tra số tiền thu-nợ</label>
-                <select id="check" name="CheckDebt">
-                  <option value="True">True</option>
-                  <option value="False">False</option>
+                <select id="checkdebt" name="CheckDebt">
+                  <option value="1">True</option>
+                  <option value="0">False</option>
                 </select>
               </div>
             </div>
-            <div class="btn-group">
-              <button class="btn btn-blue">Cập nhật</button>
+            <div class="text-success hidden">
+              Cập nhật thành công
             </div>
-          </form>
+            <div class="btn-group">
+              <button id="updateBtn" class="btn btn-blue">Cập nhật</button>
+            </div>
+          </div>
+          <div class="result">
+            <div class="result-title">THÔNG TIN  QUY ĐỊNH HIỆN TẠI</div>
+            <div class="result-table">
+              <style type="text/css">
+                .tg {
+                  border-collapse: collapse;
+                  border-spacing: 0;
+                }
+                .tg td {
+                  border-color: black;
+                  border-style: solid;
+                  border-width: 1px;
+                  font-size: 18px;
+                  overflow: hidden;
+                  padding: 0 5px;
+                  word-break: normal;
+                  text-overflow: ellipsis;
+    
+                }
+                
+                .tg th {
+                  border-color: black;
+                  border-style: solid;
+                  border-width: 1px;
+                  font-size: 18px;
+                  font-weight: bold;
+                  overflow: hidden;
+                  padding: 10px 5px;
+                  word-break: normal;
+                  text-overflow: ellipsis;
+                }
+    
+                .tg .tg-gvcd {
+                  background-color: #ffffff;
+                  border-color: #000000;
+                  color: #000000;
+                  text-align: center;
+                  vertical-align:middle
+                }
+              </style>
+              <table class="tg" style="table-layout: fixed; width: 100%">
+                <colgroup>
+                  <col style="width: 50%"><!-- Thành tiền -->
+                  <col style="width: 50%"><!-- Thao tác -->
+                </colgroup>
+                <thead>
+                  <tr>
+                    <th class="tg-gvcd">Tên quy định</th>
+                    <th class="tg-gvcd">Giá trị hiện tại</th>
+                  </tr>
+                </thead>
+                <tbody id="rule">
+                  <tr>
+                    <td class="tg-gvcd"></td>
+                    <td class="tg-gvcd"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+    <script src="{%static 'script/quydinh.js' %}"></script>
   </body>
 </html>

@@ -115,14 +115,28 @@ input::-webkit-inner-spin-button {
 .btn + .btn {
   margin-left: 20px;
 }
-.btn:hover {
+button:enabled.btn:hover {
   opacity: 0.7;
   cursor: pointer;
+}
+button:disabled
+{
+  background-color: rgb(223, 223, 223) !important;
+  color: #000 ;
+  cursor:not-allowed! important
 }
 /* Text */
 .text-error
 {
   color: red;
+  font-weight: 500;
+  width: 100%;
+  text-align: right;
+  font-size: 24px;
+}
+.text-success
+{
+  color: green;
   font-weight: 500;
   width: 100%;
   text-align: right;
