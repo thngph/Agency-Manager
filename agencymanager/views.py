@@ -56,25 +56,47 @@ def nhaphang(request):
 
 @login_required(login_url='login')
 def chitietnhaphang(request, MaNhaCC, NgayNhap, id):
+    
+    if request.method == 'POST':
+        if 'phieumoi' in request.POST:
+            print("CO PHIEU MOI")
+            data = request.POST
+            print(data)
+            check_ctpn = ChiTietPhieuNhapHang.objects.filter(MaPhieuNhapHang=id,MaMatHang=data['MaMatHang'])
+            if (check_ctpn):
+                check_ctpn[0].SoLuong=check_ctpn[0].SoLuong+int(data['SoLuong'])
+                check_ctpn[0].ThanhTien= check_ctpn[0].ThanhTien + int(data['DonGia'])*int(data['SoLuong'])
+                check_ctpn[0].save()
+            else:
+                ctphieunhap = ChiTietPhieuNhapHang(MaPhieuNhapHang=PhieuNhapHang.objects.get(MaPhieuNhapHang=id), MaMatHang=MatHang.objects.get(MaMatHang=data['MaMatHang']),SoLuong=data['SoLuong'],DonGia=data['DonGia'], ThanhTien=int(data['DonGia'])*int(data['SoLuong']))
+                ctphieunhap.save()
+            ctnhaphang = ChiTietPhieuNhapHang.objects.filter(MaPhieuNhapHang=id)
+            return redirect(chitietnhaphang, MaNhaCC= MaNhaCC, NgayNhap= NgayNhap, id = id)
+            
+        else:
+            print("CO DELETE")
+            print(request.POST)
+            id= int(request.POST['xoaphieu'])
+            
+            phieuxoa = ChiTietPhieuNhapHang.objects.get(MaChiTietPhieuNhapHang=id)
+            mathang= MatHang.objects.get(TenMatHang= request.POST['MaMatHang'])
+            mathang.SoLuongTon= mathang.SoLuongTon- phieuxoa.SoLuong
+            ChiTietPhieuNhapHang.objects.get(MaChiTietPhieuNhapHang=id).delete()
+            print("da xoa")
+            ctnhaphang = ChiTietPhieuNhapHang.objects.filter(MaPhieuNhapHang=id).select_related('MaMatHang')
+            tenmathang = MatHang.objects.all()
+            dvt = DVT.objects.all()
+            context= {"MaNhaCC": MaNhaCC, "NgayNhap": NgayNhap, "id": id, "ctnhaphang": ctnhaphang, "tenmathang": tenmathang}
+            return render(request, '2-chitietnhaphang.html', context)
+            #return redirect(chitietnhaphang, MaNhaCC= MaNhaCC, NgayNhap= NgayNhap, id = id)
     if request.method == 'GET':
+        print("KHONG CO GI HET")
         ctnhaphang = ChiTietPhieuNhapHang.objects.filter(MaPhieuNhapHang=id).select_related('MaMatHang')
         tenmathang = MatHang.objects.all()
         dvt = DVT.objects.all()
         context= {"MaNhaCC": MaNhaCC, "NgayNhap": NgayNhap, "id": id, "ctnhaphang": ctnhaphang, "tenmathang": tenmathang}
-        return render(request, '2-chitietnhaphang.html', context)
-    if request.method == 'POST':
-        data = request.POST
-        print(data)
-        check_ctpn = ChiTietPhieuNhapHang.objects.filter(MaPhieuNhapHang=id,MaMatHang=data['MaMatHang'])
-        if (check_ctpn):
-            check_ctpn[0].SoLuong=check_ctpn[0].SoLuong+int(data['SoLuong'])
-            check_ctpn[0].ThanhTien= check_ctpn[0].ThanhTien + int(data['DonGia'])*int(data['SoLuong'])
-            check_ctpn[0].save()
-        else:
-            ctphieunhap = ChiTietPhieuNhapHang(MaPhieuNhapHang=PhieuNhapHang.objects.get(MaPhieuNhapHang=id), MaMatHang=MatHang.objects.get(MaMatHang=data['MaMatHang']),SoLuong=data['SoLuong'],DonGia=data['DonGia'], ThanhTien=int(data['DonGia'])*int(data['SoLuong']))
-            ctphieunhap.save()
-        ctnhaphang = ChiTietPhieuNhapHang.objects.filter(MaPhieuNhapHang=id)
-        return redirect(chitietnhaphang, MaNhaCC= MaNhaCC, NgayNhap= NgayNhap, id = id)
+    return render(request, '2-chitietnhaphang.html', context)
+
 
 @login_required(login_url='login')
 def xuathang(request):
