@@ -209,10 +209,11 @@
               </tbody>
             </table>
           </div>
+          {% block thanhtien %}
           <div class="result-money">
             <div class="result-money-item result-money-total">
               <span>Tổng tiền: </span>
-              <span class="money-value">1000000</span>
+              <span class="money-value">{{ tongtien }}</span>
               <span>VND</span>
             </div>
             <div class="result-money-item result-money-paid">
@@ -232,6 +233,7 @@
           <button class="btn btn-blue" type="submit">Lưu phiếu</button>
         </div>
       </div>
+      {% endblock %}
     </div>
   </div>
   </div>
