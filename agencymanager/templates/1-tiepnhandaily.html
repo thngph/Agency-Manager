@@ -72,6 +72,7 @@
                 <div class="form-input-item-half">
                   <label for="type">Loại đại lý</label>
                   <select id="type" name="MaLoaiDaiLy">
+                    <option value="" disabled selected>Chọn loại đại lý</option>
                     {% for item in loaidaily %}
                     <option value="{{item.MaLoaiDaiLy}}">{{item.TenLoaiDaiLy}}</option>
                     {% endfor %}
@@ -94,6 +95,7 @@
                 <div class="form-input-item-half">
                   <label for="district">Quận</label>
                   <select id="district" name="MaQuan">
+                    <option value="" disabled selected>Chọn quận</option>
                     {% for item in quan %}
                     <option value="{{item.MaQuan}}">{{item.TenQuan}}</option>
                     {% endfor %}
@@ -105,8 +107,10 @@
                   <input type="email" id="email"  name="Email" required />
                 </div>
               </div>
+              <div class="text-error hidden"></div>
+              <div class="text-success hidden"></div>
               <div class="btn-group">
-                <button class="btn btn-blue" type="submit">Thêm</button>
+                <button class="btn btn-blue" disabled id="btn-add" type="submit">Thêm</button>
               </div>
             </div>
           </form>
@@ -206,5 +210,6 @@
         </div>
       </div>
     </div>
+    <script src="{%static 'script/tiepnhandaily.js'%}"></script>
   </body>
 </html>
