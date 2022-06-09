@@ -1,198 +1,245 @@
-{% load static %}
+{% load static %} {% csrf_token %}
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- CSS -->
+    <link rel="stylesheet" href="../static/css/form.css" />
+    <link rel="stylesheet" href="../static/css/category.css" />
+    <link rel="stylesheet" href="../static/css/function-list.css" />
+    <link rel="stylesheet" href="../static/css/global.css" />
+    <link rel="stylesheet" href="../static/css/main.css" />
+    <link rel="stylesheet" href="../static/css/variable.css" />
+    <!-- FONT -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>QUAN LY DAI LY</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- CSS -->
-  <link rel="stylesheet" href="../static/css/form.css" />
-  <link rel="stylesheet" href="../static/css/category.css" />
-  <link rel="stylesheet" href="../static/css/function-list.css">
-  <link rel="stylesheet" href="../static/css/global.css" />
-  <link rel="stylesheet" href="../static/css/main.css" />
-  <link rel="stylesheet" href="../static/css/variable.css" />
-  <!-- FONT -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-  <title>QUAN LY DAI LY</title>
-</head>
-
-<body>
-  <div class="main">
-    <div class="category">
-      <div class="title">
-        Quản lý đại lý
+  <body>
+    <div class="main">
+      <div class="category">
+        <div class="title">Quản lý đại lý</div>
+        <div class="category-list">
+          <ul class="category-list-item">
+            <li class="category-item active">
+              <a href="{%url 'tiepnhan'%}" class="category-item-name"
+                >Chức năng</a
+              >
+            </li>
+            <li class="category-item">
+              <a href="{%url 'doanhso'%}" class="category-item-name">Báo cáo</a>
+            </li>
+            <li class="category-item">
+              <a href="{%url 'quydinh'%}" class="category-item-name"
+                >Quy định</a
+              >
+            </li>
+          </ul>
+          <ul class="category-user">
+            <li class="category-item">
+              <img src="../static/images/user-logo.png" alt="" />
+              <a href="" class="category-item-name">Admin</a>
+            </li>
+            <li class="category-item">
+              <a href="">
+                <img srcset="../static/images/logout.png 2x" alt="" />
+                <a href="" class="category-item-name">Logout</a>
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
-      <div class="category-list">
-        <ul class="category-list-item">
-          <li class="category-item active">
-            <a href="{%url 'tiepnhan'%}" class="category-item-name">Chức năng</a>
+      <div class="content">
+        <ul class="function-list">
+          <li class="function-item">
+            <a href="{%url 'tiepnhan'%}">Tiếp nhận đại lý</a>
           </li>
-          <li class="category-item">
-            <a href="{%url 'doanhso'%}" class="category-item-name">Báo cáo</a>
+          <li class="function-item">
+            <a href="{%url 'nhaphang'%}">Lập phiếu nhập hàng</a>
           </li>
-          <li class="category-item">
-            <a href="{%url 'quydinh'%}" class="category-item-name">Quy định</a>
+          <li class="function-item">
+            <a href="{%url 'xuathang'%}">Lập phiếu xuất hàng</a>
+          </li>
+          <li class="function-item">
+            <a href="{%url 'thutien'%}">Lập phiếu thu tiền</a>
+          </li>
+          <li class="function-item active">
+            <a href="{%url 'tracuu'%}">Tra cứu & Chỉnh sửa</a>
           </li>
         </ul>
-        <ul class="category-user">
-          <li class="category-item">
-            <img src="../static/images/user-logo.png" alt="">
-            <a href="" class="category-item-name">Admin</a>
-          </li>
-          <li class="category-item">
-            <a href="">
-              <img srcset="../static/images/logout.png 2x" alt="" />
-              <a href="" class="category-item-name">Logout</a>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
-    <div class="content">
-      <ul class="function-list">
-        <li class="function-item"><a href="{%url 'tiepnhan'%}">Tiếp nhận đại lý</a></li>
-        <li class="function-item"><a href="{%url 'nhaphang'%}">Lập phiếu nhập hàng</a></li>
-        <li class="function-item"><a href="{%url 'xuathang'%}">Lập phiếu xuất hàng</a></li>
-        <li class="function-item"><a href="{%url 'thutien'%}">Lập phiếu thu tiền</a></li>
-        <li class="function-item active"><a href="{%url 'tracuu'%}">Tra cứu & Chỉnh sửa</a></li>
-      </ul>
-      <div class="content-body">
-        <form method="post" class="form">
-         <div class="form-filter">
-          <div class="form-title" >Bộ lọc</div>
-          <div class="form-input-group">
-            <div class="form-input-item-quarter">
-              <label for="name">Đại lý</label>
-              <input type="text" id="name" />
+        <div class="content-body">
+          <form method="post" class="form">
+            <div class="form-filter">
+              <div class="form-title">Bộ lọc</div>
+              <div class="form-input-group">
+                <div class="form-input-item-quarter">
+                  <label for="name">Đại lý</label>
+                  <input type="text" id="name" />
+                </div>
+                <div class="form-input-item-quarter">
+                  <label for="type">Loại</label>
+                  <select id="type" name="Loai">
+                    <option value="Tất cả">Tất cả</option>
+                    <!-- <option value="1">1</option>
+                    <option value="2">2</option> -->
+                  </select>
+                </div>
+                <div class="form-input-item-quarter">
+                  <label for="district">Quận</label>
+                  <select id="district" name="Quan">
+                    <option value="Tất cả">Tất cả</option>
+                    <!-- <option value="Quận 1">Quận 1</option>
+                    <option value="Quận 2">Quận 2</option>
+                    <option value="Quận 3">Quận 3</option> -->
+                  </select>
+                </div>
+                <div class="form-input-item-quarter">
+                  <label for="money">Số tiền nợ</label>
+                  <!-- <input type="range" min="0" max="2000000" id="money" /> -->
+                  <div class="min-max-money">
+                    <input
+                      style="max-width: 135px; margin-bottom: 10px"
+                      type="text"
+                      placeholder="Min"
+                      class="min-money"
+                    />
+                    <input
+                      style="max-width: 135px"
+                      type="text"
+                      placeholder="Max"
+                      class="max-money"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="btn-group">
+                <div class="btn btn-blue btn-tracuu">Tra cứu</div>
+              </div>
             </div>
-            <div class="form-input-item-quarter">
-              <label for="type">Loại</label>
-              <select id="type" name="Loai">
-                <option value="Tất cả">Tất cả</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-              </select>
-            </div>
-            <div class="form-input-item-quarter">
-              <label for="district">Quận</label>
-              <select id="district" name="Quan">
-                <option value="Tất cả">Tất cả</option>
-                <option value="Quận 1">Quận 1</option>
-                <option value="Quận 2">Quận 2</option>
-                <option value="Quận 3">Quận 3</option>
-              </select>
-            </div>
-            <div class="form-input-item-quarter">
-              <label for="money">Số tiền nợ</label>
-              <input type="range" min="0" max="2000000" id="money" />
+          </form>
+          <div class="result">
+            <div class="result-title">THÔNG TIN TRA CỨU</div>
+            <div class="result-table">
+              <style type="text/css">
+                .tg {
+                  border-collapse: collapse;
+                  border-spacing: 0;
+                }
+
+                .tg td {
+                  border-color: black;
+                  border-style: solid;
+                  border-width: 1px;
+                  font-size: 18px;
+                  overflow: hidden;
+                  padding: 0 5px;
+                  word-break: normal;
+                  text-overflow: ellipsis;
+                }
+
+                .tg th {
+                  border-color: black;
+                  border-style: solid;
+                  border-width: 1px;
+                  font-size: 18px;
+                  font-weight: bold;
+                  overflow: hidden;
+                  padding: 10px 5px;
+                  word-break: normal;
+                  text-overflow: ellipsis;
+                }
+
+                .tg .tg-gvcd {
+                  background-color: #ffffff;
+                  border-color: #000000;
+                  color: #000000;
+                  text-align: center;
+                  vertical-align: middle;
+                }
+              </style>
+              <table class="tg" style="table-layout: fixed; width: 100%">
+                <colgroup>
+                  <!-- STT -->
+                  <col style="width: 8%" />
+                  <!-- Mã Đại Lý -->
+                  <col style="width: 8%" />
+                  <!-- Tên Đại Lý -->
+                  <col style="width: 6%" />
+                  <!-- Loại -->
+                  <col style="width: 10%" />
+                  <!-- Quận -->
+                  <col style="width: 12%" />
+                  <!-- Địa chỉ -->
+                  <col style="width: 9%" />
+                  <!-- SĐT -->
+                  <col style="width: 15%" />
+                  <!-- Email -->
+                  <col style="width: 10%" />
+                  <!-- Ngày tiếp nhận -->
+                  <col style="width: 5%" />
+                  <!-- Tiền nợ -->
+                  <col style="width: 8%" />
+                  <!-- Thao tác -->
+                </colgroup>
+                <thead>
+                  <tr>
+                    <th class="tg-gvcd">Mã Đại Lý</th>
+                    <th class="tg-gvcd">Tên Đại Lý</th>
+                    <th class="tg-gvcd">Loại</th>
+                    <th class="tg-gvcd">Quận</th>
+                    <th class="tg-gvcd">Địa chỉ</th>
+                    <th class="tg-gvcd">Điện thoại</th>
+                    <th class="tg-gvcd">Email</th>
+                    <th class="tg-gvcd">Ngày tiếp nhận</th>
+                    <th class="tg-gvcd">Tiền nợ</th>
+                    <th class="tg-gvcd">Thao tác</th>
+                  </tr>
+                </thead>
+                <tbody class="table">
+                  {{ csrf }}
+                </tbody>
+              </table>
             </div>
           </div>
           <div class="btn-group">
-            <button class="btn btn-blue" type="submit">Tra cứu</button>
+            <button class="btn btn-blue" id="saveBtn">In phiếu</button>
           </div>
-         </div>
-        </form>
-        <div class="result">
-          <div class="result-title">THÔNG TIN TRA CỨU</div>
-          <div class="result-table">
-            <style type="text/css">
-              .tg {
-                border-collapse: collapse;
-                border-spacing: 0;
-              }
-  
-              .tg td {
-                border-color: black;
-                border-style: solid;
-                border-width: 1px;
-                font-size: 18px;
-                overflow: hidden;
-                padding: 0 5px;
-                word-break: normal;
-                text-overflow: ellipsis;
-  
-              }
-              
-              .tg th {
-                border-color: black;
-                border-style: solid;
-                border-width: 1px;
-                font-size: 18px;
-                font-weight: bold;
-                overflow: hidden;
-                padding: 10px 5px;
-                word-break: normal;
-                text-overflow: ellipsis;
-              }
-  
-              .tg .tg-gvcd {
-                background-color: #ffffff;
-                border-color: #000000;
-                color: #000000;
-                text-align: center;
-                vertical-align:middle
-              }
-            </style>
-            <table class="tg" style="table-layout: fixed; width: 100%">
-              <colgroup>
-                <col style="width: 4%"> <!-- STT -->
-                <col style="width: 8%"><!-- Mã Đại Lý -->
-                <col style="width: 8%"><!-- Tên Đại Lý -->
-                <col style="width: 4%"><!-- Loại -->
-                <col style="width: 10%"><!-- Quận -->
-                <col style="width: 12%"><!-- Địa chỉ -->
-                <col style="width: 9%"><!-- SĐT -->
-                <col style="width: 15%"><!-- Email -->
-                <col style="width: 10%"><!-- Ngày tiếp nhận -->
-                <col style="width: 5%"><!-- Tiền nợ -->
-                <col style="width: 8%"><!-- Thao tác -->
-              </colgroup>
-              <thead>
-                <tr>
-                  <th class="tg-gvcd">STT</th>
-                  <th class="tg-gvcd">Mã Đại Lý</th>
-                  <th class="tg-gvcd">Tên Đại Lý</th>
-                  <th class="tg-gvcd">Loại</th>
-                  <th class="tg-gvcd">Quận</th>
-                  <th class="tg-gvcd">Địa chỉ</th>
-                  <th class="tg-gvcd">Điện thoại</th>
-                  <th class="tg-gvcd">Email</th>
-                  <th class="tg-gvcd">Ngày tiếp nhận</th>
-                  <th class="tg-gvcd">Tiền nợ</th>
-                  <th class="tg-gvcd">Thao tác</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td class="tg-gvcd">1</td><!-- STT -->
-                  <td class="tg-gvcd">DL001</td><!-- Mã Đại Lý -->
-                  <td class="tg-gvcd">Trang Nemo</td><!-- Tên Đại Lý -->
-                  <td class="tg-gvcd">1</td><!-- Loại -->
-                  <td class="tg-gvcd">Thủ Đức</td><!-- Quận -->
-                  <td class="tg-gvcd">Ktx khu B ĐHQG</td><!-- Địa chỉ -->
-                  <td class="tg-gvcd">0123456789</td><!-- SĐT -->
-                  <td class="tg-gvcd">thinhkhoaloihung@gmail.com</td><!-- Email -->
-                  <td class="tg-gvcd">29/06/2001</td><!-- Ngày tiếp nhận -->
-                  <td class="tg-gvcd">700.000</td><!-- Tiền nợ -->
-                  <td class="tg-gvcd">
-                    <img class="btn-modify" src="{% static 'images/edit-icon.png'%}" alt="">
-                    <img class="btn-modify" src="{% static 'images/delete-icon.png'%}" alt="">
-                  </td><!-- Thao tác -->
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-        <div class="btn-group">
-          <button class="btn btn-blue" id="saveBtn">In phiếu</button>
         </div>
       </div>
     </div>
-  </div>
-</body>
 
+    <form action="" class="form-post hidden" autocomplete="off">
+      {% csrf_token %}
+      <p>Cập nhật đại lý</p>
+      <label for="TenDaiLy">Tên đại lý</label>
+      <input id="TenDaiLy" type="text" name="TenDaiLy" required />
+      <label for="MaLoaiDaiLy">Loại đại lý</label>
+      <select type="text" id="MaLoaiDaiLy" name="MaLoaiDaiLy" required></select>
+      <label for="MaQuan">Quận</label>
+      <select type="text" name="MaQuan" id="MaQuan" required></select>
+      <label for="DiaChi">Địa chỉ</label>
+      <input type="text" name="DiaChi" id="DiaChi" required />
+      <label for="DienThoai">Điện thoại</label>
+      <input type="text" name="DienThoai" id="DienThoai" required />
+      <label for="Email">Email</label>
+      <input type="email" name="Email" id="Email" />
+      <label for="NgayTiepNhan">Ngày tiếp nhận</label>
+      <input type="date" name="NgayTiepNhan" id="NgayTiepNhan" required />
+      <label for="SoTienNo">Số tiền nợ</label>
+      <input type="text" name="SoTienNo" id="SoTienNo" />
+      <div class="btn-group">
+        <button class="cancel-button">Hủy</button>
+        <button type="submit" class="submit-button">Cập nhật</button>
+      </div>
+    </form>
+
+    <script src="../static/script/tracuu.js"></script>
+  </body>
 </html>
