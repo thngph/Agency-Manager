@@ -74,6 +74,10 @@ class PhieuNhapHang(models.Model):
 
     def __str__(self):
         return str(self.MaPhieuNhapHang)
+    
+    def delete(self):
+        self.TongTien = 0
+        self.save()
 
 class ChiTietPhieuNhapHang(models.Model):
     MaChiTietPhieuNhapHang = models.AutoField(primary_key=True)

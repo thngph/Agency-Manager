@@ -16,6 +16,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
     <title>QUAN LY DAI LY</title>
   </head>
   <body>
@@ -26,18 +27,19 @@
         </div>
         <div class="category-list">
           <ul class="category-list-item">
-            <li class="category-item">
+            <li class="category-item active">
               <a href="{%url 'tiepnhan'%}" class="category-item-name">Chức năng</a>
             </li>
             <li class="category-item">
-              <a href="{%url 'danhmuc'%}" class="category-item-name">Danh mục</a>
-            </li>
+                <a href="{%url 'danhmuc'%}" class="category-item-name">Danh mục</a>
+              </li>
             <li class="category-item">
               <a href="{%url 'doanhso'%}" class="category-item-name">Báo cáo</a>
             </li>
-            <li class="category-item active">
+            <li class="category-item">
               <a href="{%url 'quydinh'%}" class="category-item-name">Quy định</a>
             </li>
+
           </ul>
           <ul class="category-user">
             <li class="category-item">
@@ -55,41 +57,18 @@
       </div>
       <div class="content">
         <ul class="function-list">
-          <li class="function-item active"><a href="{%url 'tiepnhan'%}">Cập nhật quy định</a></li>
+          <li class="function-item active"><a href="{%url 'tiepnhan'%}">Tiếp nhận đại lý</a></li>
+          <li class="function-item"><a href="{%url 'nhaphang'%}">Lập phiếu nhập hàng</a></li>
+          <li class="function-item"><a href="{%url 'xuathang'%}">Lập phiếu xuất hàng</a></li>
+          <li class="function-item"><a href="{%url 'thutien'%}">Lập phiếu thu tiền</a></li>
+          <li class="function-item"><a href="{%url 'tracuu'%}">Tra cứu & Chỉnh sửa</a></li>
         </ul>
-        <div class="content-sm content-body">
-          {% if user.is_superuser %}
-          <div class="form">
-            {% csrf_token %}
-            <div class="form-title">CẬP NHẬT QUY ĐỊNH</div>
-            <div class="form-input-group">
-              <div class="form-input-item-full">
-                <label for="number-max">Số đại lý tối đa/quận</label>
-                <input onkeydown="return event.keyCode !== 69" type="number" id="number-max" />
-              </div>
-              <div class="form-input-item-full">
-                <label for="number-unit">Tỉ lệ đơn giá xuất</label>
-                <input onkeydown="return event.keyCode !== 69" type="number" id="number-unit" />
-              </div>
-              <div class="form-input-item-full">
-                <label for="number-debt">Kiểm tra số tiền thu-nợ</label>
-                <select id="checkdebt" name="CheckDebt">
-                  <option value="1">True</option>
-                  <option value="0">False</option>
-                </select>
-              </div>
-            </div>
-            <div class="text-success hidden">
-              Cập nhật thành công
-            </div>
-            <div class="btn-group">
-              <button id="updateBtn" class="btn btn-blue">Cập nhật</button>
-            </div>
-          </div>
-          {% endif %}
+        <div class="content-body">
+
           <div class="result">
-            <div class="result-title">THÔNG TIN  QUY ĐỊNH HIỆN TẠI</div>
+            <div class="result-title">DANH SÁCH MẶT HÀNG</div>
             <div class="result-table">
+              <!--  -->
               <style type="text/css">
                 .tg {
                   border-collapse: collapse;
@@ -99,57 +78,80 @@
                   border-color: black;
                   border-style: solid;
                   border-width: 1px;
+                  font-family: Arial, sans-serif;
                   font-size: 18px;
                   overflow: hidden;
-                  padding: 0 5px;
+                  padding: 10px 5px;
                   word-break: normal;
-                  text-overflow: ellipsis;
-    
                 }
-                
                 .tg th {
                   border-color: black;
                   border-style: solid;
                   border-width: 1px;
+                  font-family: Arial, sans-serif;
                   font-size: 18px;
-                  font-weight: bold;
+                  font-weight: normal;
                   overflow: hidden;
                   padding: 10px 5px;
                   word-break: normal;
-                  text-overflow: ellipsis;
                 }
-    
-                .tg .tg-gvcd {
+                .tg .tg-oe15 {
                   background-color: #ffffff;
-                  border-color: #000000;
-                  color: #000000;
+                  border-color: #ffffff;
                   text-align: center;
-                  vertical-align:middle
+                  vertical-align: middle;
+                }
+                .tg .tg-wk8r {
+                  background-color: #ffffff;
+                  border-color: #ffffff;
+                  text-align: center;
+                  vertical-align:middle;
+                }
+                .tg .tg-b0es {
+                  background-color: #ffffff;
+                  border-color: #ffffff;
+                  font-weight: bold;
+                  text-align: center;
+                  vertical-align: middle;
                 }
               </style>
               <table class="tg" style="table-layout: fixed; width: 100%">
                 <colgroup>
-                  <col style="width: 50%"><!-- Thành tiền -->
-                  <col style="width: 50%"><!-- Thao tác -->
+                  <col style="width: 100%" />
+                  <col style="width: 100%" />
+                  <col style="width: 100%" />
+                  <col style="width: 100%" />
+                  <col style="width: 100%" />
                 </colgroup>
                 <thead>
                   <tr>
-                    <th class="tg-gvcd">Tên quy định</th>
-                    <th class="tg-gvcd">Giá trị hiện tại</th>
+                    <th class="tg-b0es">Mã mặt hàng</th>
+                    <th class="tg-b0es">Tên mặt hàng</th>
+                    <th class="tg-b0es">Đơn vị tính</th>
+                    <th class="tg-b0es">Số lượng tồn</th>
+                    <th class="tg-b0es">Đơn giá nhập</th>
                   </tr>
                 </thead>
-                <tbody id="rule">
+                <tbody>
+                  {% for item in danhmuc %}
                   <tr>
-                    <td class="tg-gvcd"></td>
-                    <td class="tg-gvcd"></td>
-                  </tr>
+                  
+                    <td class="tg-wk8r">{{ item.MaMatHang }}</td>
+                    <td class="tg-oe15">{{ item.TenMatHang }}</td>
+                    <td class="tg-oe15">{{ item.DVT }}</td>
+                    <td class="tg-oe15">{{ item.SoLuongTon }}</td>
+                    <td class="tg-oe15">{{ item.GiaNhap }}</td>
+                  </tr>           
+                  {% endfor %}
                 </tbody>
               </table>
+              <!--  -->
             </div>
           </div>
+          <div class="print-btn"></div>
         </div>
       </div>
     </div>
-    <script src="{%static 'script/quydinh.js' %}"></script>
+    <script src="{%static 'script/tiepnhandaily.js'%}"></script>
   </body>
 </html>

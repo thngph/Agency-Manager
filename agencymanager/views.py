@@ -263,3 +263,10 @@ def profile(request):
             context.update({"message": "failed"})
             print("failed")
             return render(request, 'trangcanhan.html', context)
+    
+@login_required(login_url='login')
+def danhmuc(request):
+    if request.method == 'GET':
+        context = {"danhmuc": MatHang.objects.all()}
+        print(context)
+        return render(request, 'danhmuchang.html', context)

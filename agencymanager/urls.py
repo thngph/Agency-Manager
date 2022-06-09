@@ -33,5 +33,6 @@ urlpatterns = [
     path('doanhso/', doanhso, name='doanhso'),
     path('congno/', congno, name='congno'),
     path('quydinh/', quydinh, name='quydinh'),
-    path('profile/', profile, name='profile')
+    path('profile/', profile, name='profile'),
+    path('danhmuc/', danhmuc, name='danhmuc'),
 ]
