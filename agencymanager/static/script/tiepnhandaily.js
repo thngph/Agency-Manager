@@ -32,7 +32,7 @@ async function start()
             errorMsg.classList.remove('hidden');
             successMsg.classList.add('hidden');
             btnAdd.disabled=true
-            errorMsg.innerText=`Quận ${districtInput.value} không thể tiếp nhận thêm đại lý`
+            errorMsg.innerText=`Quận ${districtInput.value} đã tiếp nhận đủ số đại lý tối đa, không thể thêm`
         }
         else
         {
