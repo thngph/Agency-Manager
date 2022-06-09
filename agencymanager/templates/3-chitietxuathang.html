@@ -71,7 +71,7 @@
             <div class="form-input-group-half">
               <div class="form-input-item-half">
                 <label for="name">Mặt hàng</label>
-              <select name="MaMatHang" onmousedown="this.value='';" onchange="jsFunction(this.value);">
+              <select name="MaMatHang" id="MatHang" >
                 <option value="" disabled selected>Chọn mặt hàng</option>
                 {% for item in tenmathang %}
                 <option value="{{item.MaMatHang}}">{{item.TenMatHang}}</option>
@@ -93,10 +93,10 @@
                 <label for="SoLuongTon">Số lượng tồn</label>
                 <input  id="SoLuongTon" name="SoLuongTon" readonly required style="background-color: #ccc; color:rgb(84, 84, 84)"/>
               </div>
-              <script class=""></script>
+             
               <div class="form-input-item-half">
                 <label for="SoLuong">Số lượng</label>
-                <input onchange="checkgia(this.value);" type="number" id="SoLuong" name="SoLuong" required />
+                <input  type="number" id="SoLuong" name="SoLuong" required />
               </div>
             </div>
             <div class="form-input-group-half">
@@ -105,12 +105,20 @@
                 <input type="date" id="date" name="date" value="{{ ngayxuat }}" disabled required />
               </div>
               <div class="form-input-item-half">
-                <label for="producer">Mã Đại lý</label>
-                <input type="name" id="producer" name="producer" value="{{ daily }}" disabled required />
+                <label for="producer">Mã đại lý</label>
+                <input type="name" id="MaDaiLy" name="producer" value="{{ daily }}" disabled required />
+              </div>
+              <div class="form-input-item-half">
+                <label for="producer">Tiền nợ</label>
+                <input type="name" id="TienNo" name="producer" value="" disabled required />
+              </div>
+              <div class="form-input-item-half">
+                <label for="producer">Số tiền nợ tối đa</label>
+                <input type="name" id="TienNoMax" name="producer" value="" disabled required />
               </div>
             </div>
             <div class="text-error hidden">
-              *Số lượng không đủ
+              *Số lượng xuất không hợp lệ
             </div>
             <div class="btn-group">
               <button id="add" class="btn btn-blue" type="submit" name="phieumoi" disabled >Thêm</button>
@@ -120,7 +128,7 @@
         <form action="" method="POST">
           {% csrf_token %} 
         <div class="btn-group">
-          <input id="" name="xoatatca" value="{{ id }}" />
+          <input id="MaPhieuXuatHang" type="hidden" name="xoatatca" value="{{ id }}" />
           <button name="xoatatcaphieu" class="btn btn-white">Hủy</button>
         </div>
       </form>
@@ -220,24 +228,30 @@
           <div class="result-money">
             <div class="result-money-item result-money-total">
               <span>Tổng tiền: </span>
-              <span class="money-value">{{ tongtien }}</span>
+              <input type="text" class="money-value money-sum text-is-input" value="{{ tongtien }}">
               <span>VND</span>
             </div>
             <div class="result-money-item result-money-paid">
               <label for="money-paid">Số tiền trả: </label>
-              <input type="number" name="money-paid" class="money-value">
+              <input type="number" value=0 name="money-paid" class="money-value money-paid">
               <span>VND</span>
             </div>
             <div class="result-money-item result-money-remain">
               <span>Còn lại: </span>
-              <span class="money-value">1000000</span>
+              <input type="number" class="money-value money-remain text-is-input">
               <span>VND</span>
+            </div>
+            <div class="text-success hidden">
+              Có thể lưu phiếu
+            </div>
+            <div class="text-error hidden text-check-money">
+              *Vượt mức tiền nợ tối đa
             </div>
           </div>
         </div>
         
         <div class="btn-group">
-          <button class="btn btn-blue" type="submit">Lưu phiếu</button>
+          <button class="btn btn-blue saveBtn" disabled>Lưu phiếu</button>
         </div>
       </div>
       {% endblock %}
