@@ -9,6 +9,7 @@ const tableChild = document.querySelectorAll(".table-child");
 const inputTienNoMin = document.querySelector(".min-money");
 const inputTienNoMax = document.querySelector(".max-money");
 const formPost = document.querySelector(".form-post");
+const errorMsg=document.querySelector(".text-error")
 let updateId = null;
 async function getAPI() {
   const response = await fetch(endpoint, {
@@ -39,7 +40,8 @@ async function handleClick() {
     newdata1 = data.filter(function (item) {
       return parseInt(item.MaDaiLy) == parseInt(inputDaiLy.value);
     });
-  } else {
+  } 
+  else {
     newdata1 = data;
   }
   // Loc loai dai ly
@@ -78,6 +80,14 @@ async function handleClick() {
   }
   else {
     newdata4 = newdata3;
+  }
+  if(newdata4.length==0)
+  { 
+    errorMsg.classList.remove("hidden")
+  }
+  else
+  {
+    errorMsg.classList.add("hidden")
   }
   newdata4.map((item) => {
     const template = `
