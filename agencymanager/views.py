@@ -210,10 +210,10 @@ def thutien(request):
             id= request.POST['MaDaiLy']
             daily_obj= DaiLy.objects.filter(MaDaiLy= id)
             if daily_obj:
-                context= {"daily": daily_obj, "flag": TRUE}
+                context= {"daily": daily_obj, "flag": True}
                 return render(request, '4-lapphieuthutien.html', context)           
             else:
-                context= {"daily": daily_obj, "flag": FALSE}
+                context= {"daily": daily_obj, "flag": False}
                 return render(request, '4-lapphieuthutien.html', context)
         if 'phieumoi' in request.POST:
             dailythutien= DaiLy()
@@ -227,7 +227,7 @@ def thutien(request):
                 dailythutien.SoTienNo= dailythutien.SoTienNo - int(request.POST['SoTienThu'])
                 dailythutien.save()
             
-    context= {"flag": TRUE}
+    context= {"flag": True}
     return render(request, '4-lapphieuthutien.html', context)
 
 
@@ -283,5 +283,4 @@ def profile(request):
 def danhmuc(request):
     if request.method == 'GET':
         context = {"danhmuc": MatHang.objects.all()}
-        print(context)
         return render(request, 'danhmuchang.html', context)
