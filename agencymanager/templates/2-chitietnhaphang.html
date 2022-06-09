@@ -149,9 +149,13 @@
               </div>
             
             </form>
+            <form action="" method="POST">
+              {% csrf_token %} 
             <div class="btn-group">
-              <a href="/delete/chitietnhaphang/{{MaNhaCC}}/{{NgayNhap}}/{{id}}"><button class="btn btn-white">Hủy</button></a>
+              <input id="" name="id_xoa" value="{{ id }}" />
+              <button name="xoatatca" class="btn btn-white">Hủy</button>
             </div>
+          </form>
           {% endblock %}
           <div class="result">
             <div class="result-title">THÔNG TIN PHIẾU NHẬP HÀNG</div>
@@ -237,7 +241,7 @@
                     <td class="tg-gvcd">{{item.ThanhTien}}</td><!-- Thành tiền -->
                     <td class="tg-gvcd">
                     
-                    <button type="submit" class="btn-delete"name="delete" name="delete">
+                    <button type="submit" class="btn-delete" name="delete" name="delete">
                       <img class="btn-modify" src="{% static 'images/delete-icon.png'%}" alt="">
                     </button>
                     </td> <!-- Thao tác -->

@@ -80,7 +80,7 @@ def chitietnhaphang(request, MaNhaCC, NgayNhap, id, sum):
             ctnhaphang = ChiTietPhieuNhapHang.objects.filter(MaPhieuNhapHang=id)
             return redirect(chitietnhaphang, MaNhaCC= MaNhaCC, NgayNhap= NgayNhap, id = id, sum=sum)
             
-        else:
+        if 'delete' in request.POST:
             print("CO DELETE")
             print(request.POST)
             id_delete= int(request.POST['xoaphieu'])
@@ -97,10 +97,19 @@ def chitietnhaphang(request, MaNhaCC, NgayNhap, id, sum):
             dvt = DVT.objects.all()
             context= {"MaNhaCC": MaNhaCC, "NgayNhap": NgayNhap, "id": id, "ctnhaphang": ctnhaphang, "tenmathang": tenmathang, "sum": sum}
             return render(request, '2-chitietnhaphang.html', context)
-            #return redirect(chitietnhaphang, MaNhaCC= MaNhaCC, NgayNhap= NgayNhap, id = id)
+            
+        if 'xoatatca' in request.POST:            
+            ctnhaphang = ChiTietPhieuNhapHang.objects.filter(MaPhieuNhapHang=id).select_related('MaMatHang')
+            print(ctnhaphang)
+            for item in ctnhaphang:
+                mathang= MatHang.objects.get(TenMatHang = item.MaMatHang)
+                mathang.SoLuongTon = mathang.SoLuongTon - item.SoLuong
+                mathang.save()
+            PhieuNhapHang.objects.get(MaPhieuNhapHang= id).delete()
+            print('xxx')
+            return redirect('/nhaphang/')
     if request.method == 'GET':
-        print("KHONG CO GI HET")
-        ctnhaphang = ChiTietPhieuNhapHang.objects.filter(MaPhieuNhapHang=id).select_related('MaMatHang')
+        print("KHONG CO GI HET")        
         tenmathang = MatHang.objects.all()
         dvt = DVT.objects.all()
         context= {"MaNhaCC": MaNhaCC, "NgayNhap": NgayNhap, "id": id, "ctnhaphang": ctnhaphang, "tenmathang": tenmathang,  "sum": sum}
