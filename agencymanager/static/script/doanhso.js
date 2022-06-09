@@ -4,6 +4,8 @@ let DSUrl='/api/BaoCaoDoanhSo/'
 let CTDSUrl='/api/ChiTietBaoCaoDoanhSo/'
 const errorMsg=document.querySelector(".text-error")
 const successMsg=document.querySelector(".text-success")
+const resultMoneyInput=document.querySelector(".result-money-item")
+
 async function DelData(url, id) {
     // Default options are marked with *
     const response = await fetch(url+id+"/", {
@@ -91,7 +93,7 @@ function renderData(Chitietdoanhso,BaoCaoDoanhSo)
         `;
       });
     table.innerHTML = htmls.join('');
-    doanhso.value=BaoCaoDoanhSo.TongDoanhSo
+    resultMoneyInput.innerHTML=`<span>Tổng doanh thu: ${BaoCaoDoanhSo.TongDoanhSo} VND </span>`
 }
 async function start() {
     let dailyData=await GetData(dailyUrl);

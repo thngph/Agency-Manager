@@ -80,8 +80,8 @@
               <div class="form-title">Bộ lọc</div>
               <div class="form-input-group">
                 <div class="form-input-item-quarter">
-                  <label for="name">Đại lý</label>
-                  <input type="text" id="name" />
+                  <label for="name">Mã đại lý</label>
+                  <input type="text" id="name" value=0 placeholder="Nhập 0 để tìm tất cả mã"/>
                 </div>
                 <div class="form-input-item-quarter">
                   <label for="type">Loại</label>
@@ -103,15 +103,16 @@
                 <div class="form-input-item-quarter">
                   <label for="money">Số tiền nợ</label>
                   <!-- <input type="range" min="0" max="2000000" id="money" /> -->
-                  <div class="min-max-money">
+                  <div class="min-max-money" style="width: -webkit-fill-available;
+                  max-width: 100%;">
                     <input
-                      style="max-width: 135px; margin-bottom: 10px"
+                      style="max-width: 100%; margin-bottom: 10px"
                       type="text"
                       placeholder="Min"
                       class="min-money"
                     />
                     <input
-                      style="max-width: 135px"
+                      style="max-width: 100%"
                       type="text"
                       placeholder="Max"
                       class="max-money"
@@ -139,7 +140,7 @@
                   border-width: 1px;
                   font-size: 18px;
                   overflow: hidden;
-                  padding: 0 5px;
+                  padding: 5px 0px;
                   word-break: normal;
                   text-overflow: ellipsis;
                 }
@@ -151,7 +152,7 @@
                   font-size: 18px;
                   font-weight: bold;
                   overflow: hidden;
-                  padding: 10px 5px;
+                  padding: 10px 10px;
                   word-break: normal;
                   text-overflow: ellipsis;
                 }
@@ -166,27 +167,26 @@
               </style>
               <table class="tg" style="table-layout: fixed; width: 100%">
                 <colgroup>
-                  <!-- STT -->
-                  <col style="width: 8%" />
                   <!-- Mã Đại Lý -->
-                  <col style="width: 8%" />
-                  <!-- Tên Đại Lý -->
                   <col style="width: 6%" />
-                  <!-- Loại -->
+                  <!-- Tên Đại Lý -->
                   <col style="width: 10%" />
+                  <!-- Loại -->
+                  <col style="width: 5%" />
                   <!-- Quận -->
-                  <col style="width: 12%" />
+                  <col style="width: 4%" />
                   <!-- Địa chỉ -->
                   <col style="width: 9%" />
                   <!-- SĐT -->
-                  <col style="width: 15%" />
-                  <!-- Email -->
                   <col style="width: 10%" />
+                  <!-- Email -->
+                  <col style="width: 15%" />
                   <!-- Ngày tiếp nhận -->
-                  <col style="width: 5%" />
+                  <col style="width: 10%" />
                   <!-- Tiền nợ -->
                   <col style="width: 8%" />
                   <!-- Thao tác -->
+                  <col style="width: 8%" />
                 </colgroup>
                 <thead>
                   <tr>
@@ -214,33 +214,52 @@
         </div>
       </div>
     </div>
-
     <form action="" class="form-post hidden" autocomplete="off">
       {% csrf_token %}
-      <p>Cập nhật đại lý</p>
-      <label for="TenDaiLy">Tên đại lý</label>
-      <input id="TenDaiLy" type="text" name="TenDaiLy" required />
-      <label for="MaLoaiDaiLy">Loại đại lý</label>
-      <select type="text" id="MaLoaiDaiLy" name="MaLoaiDaiLy" required>
-        <option value="0">Tất cả</option>
-      </select>
-      <label for="MaQuan">Quận</label>
-      <select type="text" name="MaQuan" id="MaQuan" required>
-        <option value="0">Tất cả</option>
-      </select>
-      <label for="DiaChi">Địa chỉ</label>
-      <input type="text" name="DiaChi" id="DiaChi" required />
-      <label for="DienThoai">Điện thoại</label>
-      <input type="text" name="DienThoai" id="DienThoai" required />
-      <label for="Email">Email</label>
-      <input type="email" name="Email" id="Email" />
-      <label for="NgayTiepNhan">Ngày tiếp nhận</label>
-      <input type="date" name="NgayTiepNhan" id="NgayTiepNhan" required />
-      <label for="SoTienNo">Số tiền nợ</label>
-      <input type="text" name="SoTienNo" id="SoTienNo" />
+      <div class="form-wrap">
+        <div class="form-title">Cập nhật đại lý</div>
+      <div class="form-input-group-half">
+        <div class="form-input-item-half">
+          <label for="TenDaiLy">Tên đại lý</label>
+          <input id="TenDaiLy" type="text" name="TenDaiLy" required />
+        </div>
+        <div class="form-input-item-half">
+          <label for="MaLoaiDaiLy">Loại đại lý</label>
+          <select type="text" id="MaLoaiDaiLy" name="MaLoaiDaiLy" required>
+          </select>
+        </div>
+        <div class="form-input-item-half">
+          <label for="MaQuan">Quận</label>
+          <select type="text" name="MaQuan" id="MaQuan" required>
+          </select>
+        </div>
+        <div class="form-input-item-half">
+          <label for="DiaChi">Địa chỉ</label>
+          <input type="text" name="DiaChi" id="DiaChi" required />
+        </div>
+      </div>
+      <div class="form-input-group-half">
+        <div class="form-input-item-half">
+          <label for="DienThoai">Điện thoại</label>
+          <input type="text" name="DienThoai" id="DienThoai" required />
+        </div>
+        <div class="form-input-item-half">
+          <label for="Email">Email</label>
+          <input type="email" name="Email" id="Email" />
+        </div>
+        <div class="form-input-item-half">
+          <label for="NgayTiepNhan">Ngày tiếp nhận</label>
+          <input type="date" disabled name="NgayTiepNhan" id="NgayTiepNhan" required />
+        </div>
+        <div class="form-input-item-half">
+          <label for="SoTienNo">Số tiền nợ</label>
+        <input type="text" disabled name="SoTienNo" id="SoTienNo" />
+        </div>
+      </div>
       <div class="btn-group">
-        <button class="cancel-button">Hủy</button>
-        <button type="submit" class="submit-button">Cập nhật</button>
+        <button class="btn btn-red cancel-button">Hủy</button>
+        <button type="submit" class="btn btn-blue submit-button">Cập nhật</button>
+      </div>
       </div>
     </form>
 

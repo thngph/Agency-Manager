@@ -35,8 +35,8 @@
 }
 .form-input-item-quarter input,
 .form-input-item-quarter select {
-  width: -webkit-fill-available;
-  font-size: 2rem;
+  width: inherit;
+  font-size: 1.8rem;
   flex: 1;
   height: 50px;
   display: inline-block;
@@ -132,91 +132,60 @@
 }
 
 .form-post {
-  width: 400px;
-  height: 90%;
-  background-color: white;
+  background-color: rgb(57 71 94 / 54%);
   position: fixed;
-  top: 0;
+  top: 0%;
   right: 0;
   left: 0;
   bottom: 0;
-  margin: auto;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-  padding: 20px 50px;
   display: flex;
   flex-direction: column;
+}
+.form-post .form-wrap
+{
+  border: none;
+  padding: 35px 50px;
+  width: 1080px;
+  background-color: white;
+  margin: auto;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  display: flex;
   border-radius: 10px;
 }
-
 .form-post.hidden {
   display: none;
 }
-
-.form-post p {
-  font-size: 24px;
-  color: blue;
-  font-weight: 600;
-  text-align: center;
-  margin-bottom: 10px;
+.form-post label
+{
+  min-width: 140px;
+  font-size: 18px;
 }
-
-.form-post label {
-  font-size: 16px;
-  font-weight: 500;
-  margin-bottom: 4px;
-}
-
-.form-post input {
-  font-size: 14px;
-  margin-bottom: 8px;
+.form-post input,
+.form-post select {
+  font-size: 18px;
   padding: 2px 8px;
   outline: none;
   border-radius: 8px;
 }
-
-#MaLoaiDaiLy,
-#MaQuan {
-  font-size: 14px;
-  margin-bottom: 8px;
-  padding: 2px 8px;
-  border-radius: 8px;
-  outline: none;
+.form-post .form-input-group-half
+{
+  width: calc(50% - 40px);
+}
+.form-post .form-title
+{
+  font-size: 28px;
+  margin-bottom: 25px;
 }
 
-.form-post option {
-  font-size: 14px;
-  margin-bottom: 8px;
-  padding: 2px 8px;
-  border-radius: 8px;
+.form-post .btn
+{
+  height: 45px;
+  min-width: 120px;
+  padding: 0;
+  font-size: 18px;
 }
-
-.submit-button {
-  padding: 5px 30px;
-  text-align: center;
-  color: white;
-  background-color: blue;
-  border-radius: 8px;
-  font-size: 20px;
-  font-weight: 500;
-  border: none;
-  cursor: pointer;
-}
-
-.cancel-button {
-  margin-right: 10px;
-  padding: 5px 30px;
-  text-align: center;
-  color: white;
-  background-color: red;
-  border-radius: 8px;
-  font-size: 20px;
-  font-weight: 500;
-  border: none;
-  cursor: pointer;
-}
-
-.btn-group {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.form-post .btn-group
+{
+  margin-top: 30px;
 }

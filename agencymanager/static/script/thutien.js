@@ -6,6 +6,7 @@ const btnSave=document.querySelector('#saveBtn')
 const searchInput=document.querySelector('#MaDaiLy')
 const successMsg=document.querySelector(".text-success")
 const errorMsg=document.querySelector(".text-error")
+const tienthucheckMsg=document.querySelector(".text-check-money-thu")
 searchInput.addEventListener("keyup", function(event) {
     // Number 13 is the "Enter" key on the keyboard
     if (event.keyCode === 13) {
@@ -84,6 +85,10 @@ async function start()
     let tiennoInput=document.querySelector('#TienNo')
     let tiennoconlaiInput=document.querySelector('#TienConNo')
     let msgCheckMoney=document.querySelector('.text-check-money')
+    tienthucheckMsg.classList.add('hidden')
+    msgCheckMoney.classList.add('hidden')
+    successMsg.classList.add('hidden')
+    tienthuInput.value=0
     daily=dailyData.filter(function(item)
     {
         return parseInt(item.MaDaiLy)==parseInt(searchInput.value);
@@ -91,6 +96,10 @@ async function start()
     if(daily.length==0)
     {
         errorMsg.classList.remove('hidden')
+        tienthucheckMsg.classList.add('hidden')
+        msgCheckMoney.classList.add('hidden')
+        successMsg.classList.add('hidden')
+        btnSave.disabled=true
     }
     else
     {
@@ -104,22 +113,32 @@ async function start()
         {
             successMsg.classList.add('hidden')
             tiennoconlaiInput.value=parseInt(tiennoInput.value)-parseInt(tienthuInput.value)
-            if(check==1)
+            if(tienthuInput.value>0)
             {
-                if(parseInt(tiennoconlaiInput.value)<0)
+                tienthucheckMsg.classList.add('hidden')
+                if(check==1 && tienthuInput.value>0)
                 {
-                    msgCheckMoney.classList.remove('hidden')
-                    btnSave.disabled=true
+                    if(parseInt(tiennoconlaiInput.value)<0)
+                    {
+                        msgCheckMoney.classList.remove('hidden')
+                        btnSave.disabled=true
+                    }
+                    else
+                    {
+                        msgCheckMoney.classList.add('hidden')
+                        btnSave.disabled=false
+                    }
                 }
                 else
                 {
-                    msgCheckMoney.classList.add('hidden')
                     btnSave.disabled=false
                 }
             }
             else
             {
-                btnSave.disabled=false
+                btnSave.disabled=true
+                msgCheckMoney.classList.add('hidden')
+                tienthucheckMsg.classList.remove('hidden')
             }
         }
         btnSave.onclick=function()
