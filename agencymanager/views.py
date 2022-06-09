@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from django.views.generic import TemplateView
 from rest_framework import viewsets
+from django.contrib.auth.models import User
 
 
 from agencyapi.forms import *
@@ -241,11 +242,24 @@ def quydinh(request):
 
 @login_required(login_url='login')
 def profile(request):
+    if request.user.is_superuser:
+        context = {"status":"Admin"}
+    else:
+        context = {"status":"Staff"}
     if request.method == 'GET':
-        # <view logic>
-        return render(request, 'trangcanhan.html')
-
-@login_required(login_url='login')
-def logout(request):
-	logout(request)
-	return redirect("login")
+        return render(request, 'trangcanhan.html', context)
+    if request.method == 'POST':
+        user = User.objects.get(id=request.user.id)
+        old_pwd = request.POST['pwd']
+        pwd_1 = request.POST['pwd1']
+        pwd_2 = request.POST['pwd2']
+        if user.check_password(old_pwd) and pwd_2 == pwd_1:
+            user.set_password(pwd_1)
+            user.save()
+            context.update({"message": "success"})
+            print("success")
+            return render(request, 'trangcanhan.html', context)
+        else:
+            context.update({"message": "failed"})
+            print("failed")
+            return render(request, 'trangcanhan.html', context)

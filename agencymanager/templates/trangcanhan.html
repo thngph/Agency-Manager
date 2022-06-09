@@ -41,7 +41,7 @@
             <li class="category-item active">
               <img src="{%static 'images/user-logo.png' %}" alt="">
               <a href="{%url 'profile'%}" class="category-item-name">
-                Admin
+                {{user.username}}
               </a>
             </li>
             <li class="category-item">
@@ -53,33 +53,46 @@
       </div>
       <div class="content">
         <div class="content-sm content-body">
-          <div class="form">
+
+          <form class="form" method="POST">
             {% csrf_token %}
             <div class="form-title">THÔNG TIN CÁ NHÂN</div>
             <div class="form-input-group">
               <div class="form-input-item-full">
                 <label for="username">Tài khoản</label>
-                <input type="text" id="number-max" />
+                <input type="text" id="number-max" value="{{user.username}}" disabled />
               </div>
               <div class="form-input-item-full">
                 <label for="passwd">Mật khẩu</label>
-                <input type="password" id="number-unit" value="" disabled />
+                <input type="password" id="number-unit" name="pwd" value="" />
+              </div>
+              <div class="form-input-item-full">
+                <label for="passwd">Mật khẩu mới</label>
+                <input type="password" id="number-unit" name="pwd1" value="" />
+              </div>
+              <div class="form-input-item-full">
+                <label for="passwd">Nhập lại mật khẩu mới</label>
+                <input type="password" id="number-unit" name="pwd2" value="" />
               </div>
               <div class="form-input-item-full">
                 <label for="number-debt">Chức vụ</label>
-                <select id="checkdebt" name="CheckDebt">
-                  <option value="1">Admin</option>
-                  <option value="0">Staff</option>
-                </select>
+                <input id="number-unit" value="{{status}}" disabled/>
               </div>
             </div>
-            <div class="text-success hidden">
+            {% if message and message == 'success' %}
+            <div class="text-success">
               Cập nhật thành công
             </div>
-            <div class="btn-group">
-              <button id="updateBtn" class="btn btn-blue">Cập nhật</button>
+            {%endif%}
+            {% if message and message == 'failed' %}
+            <div class="text-error">
+              Sai mật khẩu hoặc mật khẩu không khớp
             </div>
-          </div>
+            {%endif%}
+            <div class="btn-group">
+              <button id="updateBtn" class="btn btn-blue" type="submit">Cập nhật</button>
+            </div>
+          </form>
         </div>
       </div>
     </div>

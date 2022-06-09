@@ -40,7 +40,7 @@
             <li class="category-item">
               <img src="{%static 'images/user-logo.png' %}" alt="">
               <a href="{%url 'profile'%}" class="category-item-name">
-                Admin
+                {{user.username}}
               </a>
             </li>
             <li class="category-item">
@@ -55,6 +55,7 @@
           <li class="function-item active"><a href="{%url 'tiepnhan'%}">Cập nhật quy định</a></li>
         </ul>
         <div class="content-sm content-body">
+          {% if user.is_superuser %}
           <div class="form">
             {% csrf_token %}
             <div class="form-title">CẬP NHẬT QUY ĐỊNH</div>
@@ -82,6 +83,7 @@
               <button id="updateBtn" class="btn btn-blue">Cập nhật</button>
             </div>
           </div>
+          {% endif %}
           <div class="result">
             <div class="result-title">THÔNG TIN  QUY ĐỊNH HIỆN TẠI</div>
             <div class="result-table">
