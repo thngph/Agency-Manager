@@ -121,12 +121,15 @@
   display: flex;
   align-items: center;
   flex-direction: column;
+  width: 1111px;
+  margin: auto;
 }
 .content-sm form {
   width: 960px;
   display: flex;
   flex-direction: column;
 }
+
 .content-sm form button {
   align-self: flex-end;
 }

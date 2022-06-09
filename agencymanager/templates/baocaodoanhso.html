@@ -63,25 +63,26 @@
           <li class="function-item active"><a href="{%url 'doanhso'%}">Báo cáo doanh số</a></li>
           <li class="function-item"><a href="{%url 'congno'%}">Báo cáo công nợ</a></li>
         </ul>
-       <div class="content-body">
+       <div class="content-sm content-body">
         <div class="form">
           {% csrf_token %}
           <div class="form-wrap">
-            <div class="form-title">LẬP BÁO CÁO</div>
+            <div class="form-title">LẬP BÁO CÁO DOANH THU</div>
             <div class="form-input-group-half">
               <div class="form-input-item-half">
                 <label for="month">Tháng</label>
-                <input onkeydown="return event.keyCode !== 69" type="number" id="month" min="1" max="12" />
+                <input onkeydown="return event.keyCode !== 69" type="number" id="month" />
               </div>
             </div>
             <div class="form-input-group-half">
               <div class="form-input-item-half">
                 <label for="number">Năm</label>
-                <input onkeydown="return event.keyCode !== 69" type="number" id="year" min="2022" max="2030"/>
+                <input onkeydown="return event.keyCode !== 69" type="number" id="year" />
               </div>
             </div>
+            
             <div class="btn-group">
-              <div class="btn btn-blue" id="myBtn" >Lập báo cáo</div>
+              <button id="myBtn" class="btn btn-blue">Lập báo cáo</button>
             </div>
           </div>
         </div>
@@ -175,5 +176,6 @@
       </div>
     </div>
     <script src="{% static 'script/doanhso.js' %}"></script>
+
   </body>
 </html>

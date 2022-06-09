@@ -5,7 +5,7 @@ let CTDSUrl='/api/ChiTietBaoCaoDoanhSo/'
 const errorMsg=document.querySelector(".text-error")
 const successMsg=document.querySelector(".text-success")
 const resultMoneyInput=document.querySelector(".result-money-item")
-
+const resultTitle=document.querySelector(".result-title")
 async function DelData(url, id) {
     // Default options are marked with *
     const response = await fetch(url+id+"/", {
@@ -94,6 +94,7 @@ function renderData(Chitietdoanhso,BaoCaoDoanhSo)
       });
     table.innerHTML = htmls.join('');
     resultMoneyInput.innerHTML=`<span>Tổng doanh thu: ${BaoCaoDoanhSo.TongDoanhSo} VND </span>`
+    resultTitle.innerText=`BÁO CÁO DOANH SỐ THÁNG ${BaoCaoDoanhSo.Thang}-${BaoCaoDoanhSo.Nam}`
 }
 async function start() {
     let dailyData=await GetData(dailyUrl);
@@ -210,11 +211,12 @@ const yearInput=document.querySelector("#year")
 const today = new Date();
 const yearNow=today.getFullYear() 
 const monthNow=today.getMonth()+1
+
 monthInput.value=monthNow;
 yearInput.value=yearNow
 monthInput.oninput=function()
 {
-    if((monthInput.value<=monthNow && yearInput.value==yearNow)||yearInput.value<yearNow)
+    if (((monthInput.value<=monthNow && yearInput.value==yearNow)||(yearInput.value<yearNow)) &&(monthInput.value>0) && parseInt(monthInput.value)<13 )
     {
         btn.disabled=false;
     }
@@ -225,7 +227,7 @@ monthInput.oninput=function()
 }
 yearInput.oninput=function()
 {
-    if((monthInput.value<=monthNow && yearInput.value==yearNow)||(yearInput.value<yearNow))
+    if (((monthInput.value<=monthNow && yearInput.value==yearNow)||(yearInput.value<yearNow)) &&(monthInput.value>0) && parseInt(monthInput.value)<13 )
     {
         btn.disabled=false;
     }
@@ -233,7 +235,7 @@ yearInput.oninput=function()
     {
         btn.disabled=true
     }
-}   
+}
 btn.onclick = function()
 {
     start()

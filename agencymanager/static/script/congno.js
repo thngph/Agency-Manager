@@ -4,6 +4,7 @@ let phieuthuUrl="/api/PhieuThuTien/"
 let congnoUrl="/api/BaoCaoCongNo/"
 const errorMsg=document.querySelector(".text-error")
 const successMsg=document.querySelector(".text-success")
+const resultTitle=document.querySelector(".result-title")
 
 async function GetData(url) {
     try {
@@ -90,6 +91,7 @@ function renderData(data)
         `;
       });
     table.innerHTML = htmls.join('');
+    resultTitle.innerText=`BÁO CÁO CÔNG NỢ THÁNG ${data[0].Thang}-${data[0].Nam}`
 }
 async function start() {
     const month=document.querySelector("#month").value
@@ -226,7 +228,7 @@ monthInput.value=monthNow;
 yearInput.value=yearNow
 monthInput.oninput=function()
 {
-    if((monthInput.value<=monthNow && yearInput.value==yearNow)||yearInput.value<yearNow)
+    if (((monthInput.value<=monthNow && yearInput.value==yearNow)||(yearInput.value<yearNow)) &&(monthInput.value>0) && parseInt(monthInput.value)<13 )
     {
         btn.disabled=false;
     }
@@ -237,7 +239,7 @@ monthInput.oninput=function()
 }
 yearInput.oninput=function()
 {
-    if((monthInput.value<=monthNow && yearInput.value==yearNow)||(yearInput.value<yearNow))
+    if (((monthInput.value<=monthNow && yearInput.value==yearNow)||(yearInput.value<yearNow)) &&(monthInput.value>0) && parseInt(monthInput.value)<13 )
     {
         btn.disabled=false;
     }
