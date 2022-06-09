@@ -105,9 +105,22 @@ def chitietnhaphang(request, MaNhaCC, NgayNhap, id, sum):
                 mathang= MatHang.objects.get(TenMatHang = item.MaMatHang)
                 mathang.SoLuongTon = mathang.SoLuongTon - item.SoLuong
                 mathang.save()
-            PhieuNhapHang.objects.get(MaPhieuNhapHang= id).delete()
-            print('xxx')
+            print("id:", id)
+            for item in ctnhaphang:
+                item.delete()
+            
+            phieunhap= PhieuNhapHang.objects.get(MaPhieuNhapHang = id)
+            phieunhap.delete()
+            print(nhaphang)
+            
             return redirect('/nhaphang/')
+        if 'luu' in request.POST:
+            phieunhap= PhieuNhapHang.objects.get(MaPhieuNhapHang = id)
+            phieunhap.TongTien= int(request.POST['save'])
+            phieunhap.save()
+            return redirect('/nhaphang/')
+
+
     if request.method == 'GET':
         print("KHONG CO GI HET")        
         tenmathang = MatHang.objects.all()
@@ -188,8 +201,7 @@ def chitietxuathang(request,MaDaiLy,NgayXuat,id):
                 mathang.SoLuongTon= mathang.SoLuongTon + item.SoLuong
                 mathang.save()
             PhieuXuatHang.objects.get(MaPhieuXuatHang=id).delete()
-            daily = DaiLy.objects.all()
-            context = {"daily": daily}
+            
             return redirect('/xuathang/')
         return render(request, '3-chitietxuathang.html', context)
             
