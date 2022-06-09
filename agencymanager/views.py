@@ -1,4 +1,5 @@
 from pickle import FALSE, TRUE
+from cv2 import Mat
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
@@ -116,7 +117,7 @@ def xuathang(request):
             if form.is_valid():            
                 form.save()
                 context = form.data
-                return redirect(chitietxuathang, MaDaiLy= context['MaDaiLy'], NgayXuat= context['NgayXuat'], id = form.instance.MaPhieuXuatHang, sum= 0)
+                return redirect(chitietxuathang, MaDaiLy= context['MaDaiLy'], NgayXuat= context['NgayXuat'], id = form.instance.MaPhieuXuatHang)
             else:
                 daily = DaiLy.objects.all()
                 context = {"daily": daily}
@@ -130,7 +131,7 @@ def xuathang(request):
 
 
 @login_required(login_url='login')
-def chitietxuathang(request,MaDaiLy,NgayXuat,id, sum):
+def chitietxuathang(request,MaDaiLy,NgayXuat,id):
     ctxuathang1 = ChiTietPhieuXuatHang.objects.filter(MaPhieuXuatHang=id).select_related('MaMatHang')
     s=0
     for item in ctxuathang1:
@@ -156,7 +157,7 @@ def chitietxuathang(request,MaDaiLy,NgayXuat,id, sum):
             mathang= MatHang.objects.get(MaMatHang= request.POST['MaMatHang'])    
             mathang.SoLuongTon = mathang.SoLuongTon - int(data['SoLuong'])
             mathang.save()
-            return redirect(chitietxuathang, MaDaiLy= MaDaiLy, NgayXuat= NgayXuat, id = id, s=s)
+            return redirect(chitietxuathang, MaDaiLy= MaDaiLy, NgayXuat= NgayXuat, id = id)
         if 'delete' in request.POST:
             print("CO DELETE")
             print(request.POST)
@@ -171,7 +172,18 @@ def chitietxuathang(request,MaDaiLy,NgayXuat,id, sum):
             ctxuathang= ChiTietPhieuXuatHang.objects.filter(MaPhieuXuatHang= id)
             tenmathang = MatHang.objects.all()
             dvt = DVT.objects.all()
-            context= {"MaDaiLy": MaDaiLy, "NgayXuat": NgayXuat, "id": id, "ctxuathang": ctxuathang, "tenmathang": tenmathang, "sum": sum}
+            context= {"MaDaiLy": MaDaiLy, "NgayXuat": NgayXuat, "id": id, "ctxuathang": ctxuathang, "tenmathang": tenmathang}
+        if 'xoatatcaphieu' in request.POST:
+            ctxuathang= ChiTietPhieuXuatHang.objects.filter(MaPhieuXuatHang= id)
+            print("XXx")
+            for item in ctxuathang:
+                mathang= MatHang.objects.get(TenMatHang= item.MaMatHang)
+                mathang.SoLuongTon= mathang.SoLuongTon + item.SoLuong
+                mathang.save()
+            PhieuXuatHang.objects.get(MaPhieuXuatHang=id).delete()
+            daily = DaiLy.objects.all()
+            context = {"daily": daily}
+            return redirect('/xuathang/')
         return render(request, '3-chitietxuathang.html', context)
             
 
