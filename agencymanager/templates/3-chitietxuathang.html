@@ -110,7 +110,7 @@
               *Số lượng không đủ
             </div>
             <div class="btn-group">
-              <button id="add" class="btn btn-blue" type="submit" disabled >Thêm</button>
+              <button id="add" class="btn btn-blue" type="submit" name="phieumoi" disabled >Thêm</button>
             </div>
           </div>
         </form>
@@ -161,16 +161,18 @@
             <table class="tg" style="table-layout: fixed; width: 100%">
               <colgroup>
                 <col style="width: 10%"> <!-- STT -->
-                <col style="width: 10%"><!-- Mặt hàng -->
-                <col style="width: 10%"><!-- Đơn vị tính -->
+                <col style="width: 10%"> <!-- Ma phieu -->
+                <col style="width: 20%"><!-- Mặt hàng -->
+                <col style="width: 15%"><!-- Đơn vị tính -->
                 <col style="width: 10%"><!-- Số lượng -->
-                <col style="width: 10%"><!-- Đơn giá xuất -->
-                <col style="width: 10%"><!-- Thành tiền -->
-                <col style="width: 11%"><!-- Thao tác -->
+                <col style="width: 10%"><!-- Đơn giá xuat -->
+                <col style="width: 15%"><!-- Thành tiền -->
+                <col style="width: 10%"><!-- Thao tác -->
               </colgroup>
               <thead>
                 <tr>
                   <th class="tg-gvcd">STT</th>
+                  <th class="tg-gvcd">Mã phiếu</th>
                   <th class="tg-gvcd">Mặt hàng</th>
                   <th class="tg-gvcd">Đơn vị tính</th>
                   <th class="tg-gvcd">Số lượng</th>
@@ -180,19 +182,29 @@
                 </tr>
               </thead>
               <tbody>
-                {% for item in ctxuathang %}         
+                {% for item in ctxuathang %} 
+                <form action="" method="POST" name="delete">
+                  {% csrf_token %}    
                 <tr>
                   <td class="tg-gvcd">{{forloop.counter}}</td><!-- STT -->
-                  <td class="tg-gvcd">{{item.MaMatHang}}</td><!-- Mặt hàng -->
+                  <td class="tg-gvcd">
+                    <input type="text" name="xoaphieu" class="text-is-input text-center wd-100 " readonly value="{{ item.MaChiTietPhieuXuatHang }}">
+                  </td> 
+                  <td class="tg-gvcd">
+                    <input type="text" name="MaMatHang" class="text-is-input text-center wd-100" readonly value="{{item.MaMatHang}}">
+                  </td>
                   <td class="tg-gvcd">{{item.MaMatHang.DVT}}</td><!-- Đơn vị tính -->
                   <td class="tg-gvcd">{{item.SoLuong}}</td><!-- Số lượng -->
                   <td class="tg-gvcd">{{item.DonGia}}</td><!-- Đơn giá xuất -->
                   <td class="tg-gvcd">{{item.ThanhTien}}</td><!-- Thành tiền -->
                   <td class="tg-gvcd">
-                    <img class="btn-modify" src="{% static 'images/edit-icon.png'%}" alt="">
-                    <img class="btn-modify" src="{% static 'images/delete-icon.png'%}" alt="">
+                    
+                    <button type="submit" class="btn-delete"name="delete" name="delete">
+                      <img class="btn-modify" src="{% static 'images/delete-icon.png'%}" alt="">
+                    </button>
                   </td><!-- Thao tác -->
                 </tr>
+              </form>    
                 {% endfor %}
               </tbody>
             </table>
