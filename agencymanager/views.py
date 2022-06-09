@@ -109,16 +109,19 @@ def chitietnhaphang(request, MaNhaCC, NgayNhap, id, sum):
 @login_required(login_url='login')
 def xuathang(request):
     if request.method == 'POST':
-        form= XuatHang(request.POST)
-        if form.is_valid():            
-            form.save()
-            context = form.data
-            return redirect(chitietxuathang, MaDaiLy= context['MaDaiLy'], NgayXuat= context['NgayXuat'], id = form.instance.MaPhieuXuatHang)
-        else:
-            daily = DaiLy.objects.all()
-        context = {"daily": daily}
-        return render(request, '3-lapphieuxuathang.html', context)
-    if request.method == 'GET':
+        if 'phieumoi' in request.POST:
+            form= XuatHang(request.POST)
+            if form.is_valid():            
+                form.save()
+                context = form.data
+                return redirect(chitietxuathang, MaDaiLy= context['MaDaiLy'], NgayXuat= context['NgayXuat'], id = form.instance.MaPhieuXuatHang)
+            else:
+                daily = DaiLy.objects.all()
+                context = {"daily": daily}
+                return render(request, '3-lapphieuxuathang.html', context)
+        
+        
+    elif request.method == 'GET':
         daily = DaiLy.objects.all()
         context = {"daily": daily}
         return render(request, '3-lapphieuxuathang.html', context)
@@ -134,16 +137,36 @@ def chitietxuathang(request,MaDaiLy,NgayXuat,id):
         context = {"daily": MaDaiLy, "ngayxuat": NgayXuat, "id": id, "ctxuathang": ctxuathang, "tenmathang": tenmathang, "tongtien": tongtien}
         return render(request, '3-chitietxuathang.html', context)
     if request.method == 'POST':
-        data = request.POST
-        check_ctpx = ChiTietPhieuXuatHang.objects.filter(MaPhieuXuatHang=id,MaMatHang=data['MaMatHang'])
-        if (check_ctpx):
-            check_ctpx[0].SoLuong=check_ctpx[0].SoLuong+int(data['SoLuong'])
-            check_ctpx[0].ThanhTien= check_ctpx[0].ThanhTien + int(data['DonGia'])*int(data['SoLuong'])
-            check_ctpx[0].save()
-        else:
-            ctphieuxuat = ChiTietPhieuXuatHang(MaPhieuXuatHang=PhieuXuatHang.objects.get(MaPhieuXuatHang=id), MaMatHang=MatHang.objects.get(MaMatHang=data['MaMatHang']),SoLuong=data['SoLuong'],DonGia=data['DonGia'], ThanhTien=int(data['DonGia'])*int(data['SoLuong']))
-            ctphieuxuat.save()
-        return redirect(chitietxuathang, MaDaiLy= MaDaiLy, NgayXuat= NgayXuat, id = id)
+        if 'phieumoi' in request.POST:
+            data = request.POST
+            check_ctpx = ChiTietPhieuXuatHang.objects.filter(MaPhieuXuatHang=id,MaMatHang=data['MaMatHang'])
+            if (check_ctpx):
+                check_ctpx[0].SoLuong=check_ctpx[0].SoLuong+int(data['SoLuong'])
+                check_ctpx[0].ThanhTien= check_ctpx[0].ThanhTien + int(data['DonGia'])*int(data['SoLuong'])
+                check_ctpx[0].save()
+            else:
+                ctphieuxuat = ChiTietPhieuXuatHang(MaPhieuXuatHang=PhieuXuatHang.objects.get(MaPhieuXuatHang=id), MaMatHang=MatHang.objects.get(MaMatHang=data['MaMatHang']),SoLuong=data['SoLuong'],DonGia=data['DonGia'], ThanhTien=int(data['DonGia'])*int(data['SoLuong']))
+                ctphieuxuat.save()
+            return redirect(chitietxuathang, MaDaiLy= MaDaiLy, NgayXuat= NgayXuat, id = id)
+        if 'delete' in request.POST:
+            print("CO DELETE")
+            print(request.POST)
+            id_delete= int(request.POST['xoaphieu'])
+            phieuxoa= ChiTietPhieuXuatHang.objects.get(MaChiTietPhieuXuatHang= id_delete)
+            mathang= MatHang.objects.get(TenMatHang= request.POST['MaMatHang'])
+            mathang.SoLuongTon= mathang.SoLuongTon - phieuxoa.SoLuong
+            mathang.save()
+            ChiTietPhieuXuatHang.objects.get(MaChiTietPhieuXuatHang= id_delete).delete()
+            print("da xoa")
+
+            ctxuathang= ChiTietPhieuXuatHang.objects.filter(MaPhieuXuatHang= id)
+            tenmathang = MatHang.objects.all()
+            dvt = DVT.objects.all()
+            context= {"MaDaiLy": MaDaiLy, "NgayXuat": NgayXuat, "id": id, "ctxuathang": ctxuathang, "tenmathang": tenmathang}
+        return render(request, '3-chitietxuathang.html', context)
+            
+
+
 
 @login_required(login_url='login')
 def delete_chitietnhaphang(request,MaNhaCC, NgayNhap, id):
