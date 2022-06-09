@@ -27,18 +27,18 @@
         </div>
         <div class="category-list">
           <ul class="category-list-item">
-            <li class="category-item active">
-              <a href="" class="category-item-name">Chức năng</a>
+            <li class="category-item">
+              <a href="{%url 'tiepnhan'%}" class="category-item-name">Chức năng</a>
             </li>
             <li class="category-item">
-              <a href="" class="category-item-name">Báo cáo</a>
+              <a href="{%url 'doanhso'%}" class="category-item-name">Báo cáo</a>
             </li>
             <li class="category-item">
-              <a href="" class="category-item-name">Quy định</a>
+              <a href="{%url 'quydinh'%}" class="category-item-name">Quy định</a>
             </li>
           </ul>
-          <ul class="category-user">
-            <li class="category-item">
+          <ul class="category-user ">
+            <li class="category-item active">
               <img src="{%static 'images/user-logo.png' %}" alt="">
               <a href="{%url 'profile'%}" class="category-item-name">
                 Admin
@@ -48,35 +48,38 @@
                 <img srcset="{%static 'images/logout.png' 2x %}" alt="" />
                 <a href="{%url 'logout'%}" class="category-item-name">Logout</a>
             </li>
-          </ul>
+          </ul>   
         </div>
       </div>
       <div class="content">
-        <form method="post" class="form">
-          <div class="form-title">TRANG CÁ NHÂN</div>
-          <div class="form-input-list">
-            <div class="form-input-item">
-              <label for="name">Tên</label>
-              <input type="text" id="name" />
+        <div class="content-sm content-body">
+          <div class="form">
+            {% csrf_token %}
+            <div class="form-title">THÔNG TIN CÁ NHÂN</div>
+            <div class="form-input-group">
+              <div class="form-input-item-full">
+                <label for="username">Tài khoản</label>
+                <input type="text" id="number-max" />
+              </div>
+              <div class="form-input-item-full">
+                <label for="passwd">Mật khẩu</label>
+                <input type="password" id="number-unit" value="" disabled />
+              </div>
+              <div class="form-input-item-full">
+                <label for="number-debt">Chức vụ</label>
+                <select id="checkdebt" name="CheckDebt">
+                  <option value="1">Admin</option>
+                  <option value="0">Staff</option>
+                </select>
+              </div>
             </div>
-            <div class="form-input-item">
-              <label for="password">Mật khẩu</label>
-              <input type="password" id="password" />
+            <div class="text-success hidden">
+              Cập nhật thành công
             </div>
-            <div class="form-input-item">
-              <label for="position">Chức vụ</label>
-              <input type="text" id="position" />
+            <div class="btn-group">
+              <button id="updateBtn" class="btn btn-blue">Cập nhật</button>
             </div>
           </div>
-          <div class="btn-group">
-            <button class="btn btn-blue">Cập nhật</button>
-          </div>
-        </form>
-        <div
-          class="btn-group"
-          style="display: flex; flex-direction: row-reverse"
-        >
-          <button class="btn btn-red">Đăng xuất</button>
         </div>
       </div>
     </div>
