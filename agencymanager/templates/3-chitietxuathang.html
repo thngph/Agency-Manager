@@ -120,7 +120,7 @@
         <form action="" method="POST">
           {% csrf_token %} 
         <div class="btn-group">
-          <input id="" name="xoatatca" value="{{ id }}" />
+          <input id="" name="xoatatca" type="hidden" value="{{ id }}" />
           <button name="xoatatcaphieu" class="btn btn-white">Hủy</button>
         </div>
       </form>
@@ -237,7 +237,7 @@
         </div>
         
         <div class="btn-group">
-          <button class="btn btn-blue" type="submit">Lưu phiếu</button>
+          <button class="btn btn-blue"  type="submit">Lưu phiếu</button>
         </div>
       </div>
       {% endblock %}

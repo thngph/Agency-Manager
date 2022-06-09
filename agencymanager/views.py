@@ -108,10 +108,19 @@ def chitietnhaphang(request, MaNhaCC, NgayNhap, id, sum):
             print("id:", id)
             for item in ctnhaphang:
                 item.delete()
-            nhaphang= PhieuNhapHang.objects.get(MaPhieuNhapHang = id)
+            
+            phieunhap= PhieuNhapHang.objects.get(MaPhieuNhapHang = id)
+            phieunhap.delete()
             print(nhaphang)
-            nhaphang.delete()      
+            
             return redirect('/nhaphang/')
+        if 'luu' in request.POST:
+            phieunhap= PhieuNhapHang.objects.get(MaPhieuNhapHang = id)
+            phieunhap.TongTien= int(request.POST['save'])
+            phieunhap.save()
+            return redirect('/nhaphang/')
+
+
     if request.method == 'GET':
         print("KHONG CO GI HET")        
         tenmathang = MatHang.objects.all()
