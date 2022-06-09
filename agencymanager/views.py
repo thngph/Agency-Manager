@@ -1,4 +1,3 @@
-from pickle import FALSE, TRUE
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
@@ -76,6 +75,7 @@ def chitietnhaphang(request, MaNhaCC, NgayNhap, id, sum):
                 ctphieunhap.save()
             mathang = MatHang.objects.get(MaMatHang= request.POST['MaMatHang'])
             mathang.SoLuongTon = mathang.SoLuongTon + int(data['SoLuong'])
+            mathang.GiaNhap = int(request.POST['DonGia'])
             mathang.save()
             ctnhaphang = ChiTietPhieuNhapHang.objects.filter(MaPhieuNhapHang=id)
             return redirect(chitietnhaphang, MaNhaCC= MaNhaCC, NgayNhap= NgayNhap, id = id, sum=sum)
@@ -130,6 +130,10 @@ def xuathang(request):
 
 @login_required(login_url='login')
 def chitietxuathang(request,MaDaiLy,NgayXuat,id):
+    ctxuathang1 = ChiTietPhieuXuatHang.objects.filter(MaPhieuXuatHang=id).select_related('MaMatHang')
+    s=0
+    for item in ctxuathang1:
+        s = s + item.ThanhTien
     if request.method == 'GET':
         ctxuathang = ChiTietPhieuXuatHang.objects.filter(MaPhieuXuatHang=id).select_related('MaMatHang')
         tongtien = sum(ctxuathang.values_list('ThanhTien', flat=True))
@@ -167,6 +171,17 @@ def chitietxuathang(request,MaDaiLy,NgayXuat,id):
             tenmathang = MatHang.objects.all()
             dvt = DVT.objects.all()
             context= {"MaDaiLy": MaDaiLy, "NgayXuat": NgayXuat, "id": id, "ctxuathang": ctxuathang, "tenmathang": tenmathang}
+        if 'xoatatcaphieu' in request.POST:
+            ctxuathang= ChiTietPhieuXuatHang.objects.filter(MaPhieuXuatHang= id)
+            print("XXx")
+            for item in ctxuathang:
+                mathang= MatHang.objects.get(TenMatHang= item.MaMatHang)
+                mathang.SoLuongTon= mathang.SoLuongTon + item.SoLuong
+                mathang.save()
+            PhieuXuatHang.objects.get(MaPhieuXuatHang=id).delete()
+            daily = DaiLy.objects.all()
+            context = {"daily": daily}
+            return redirect('/xuathang/')
         return render(request, '3-chitietxuathang.html', context)
             
 
@@ -195,10 +210,10 @@ def thutien(request):
             id= request.POST['MaDaiLy']
             daily_obj= DaiLy.objects.filter(MaDaiLy= id)
             if daily_obj:
-                context= {"daily": daily_obj, "flag": TRUE}
+                context= {"daily": daily_obj, "flag": True}
                 return render(request, '4-lapphieuthutien.html', context)           
             else:
-                context= {"daily": daily_obj, "flag": FALSE}
+                context= {"daily": daily_obj, "flag": False}
                 return render(request, '4-lapphieuthutien.html', context)
         if 'phieumoi' in request.POST:
             dailythutien= DaiLy()
@@ -212,7 +227,7 @@ def thutien(request):
                 dailythutien.SoTienNo= dailythutien.SoTienNo - int(request.POST['SoTienThu'])
                 dailythutien.save()
             
-    context= {"flag": TRUE}
+    context= {"flag": True}
     return render(request, '4-lapphieuthutien.html', context)
 
 
@@ -263,3 +278,9 @@ def profile(request):
             context.update({"message": "failed"})
             print("failed")
             return render(request, 'trangcanhan.html', context)
+    
+@login_required(login_url='login')
+def danhmuc(request):
+    if request.method == 'GET':
+        context = {"danhmuc": MatHang.objects.all()}
+        return render(request, 'danhmuchang.html', context)

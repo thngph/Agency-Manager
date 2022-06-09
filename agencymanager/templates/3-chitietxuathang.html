@@ -32,6 +32,9 @@
             <a href="{%url 'tiepnhan'%}" class="category-item-name">Chức năng</a>
           </li>
           <li class="category-item">
+            <a href="{%url 'danhmuc'%}" class="category-item-name">Danh mục</a>
+          </li>
+          <li class="category-item">
             <a href="{%url 'doanhso'%}" class="category-item-name">Báo cáo</a>
           </li>
           <li class="category-item">
@@ -114,9 +117,13 @@
             </div>
           </div>
         </form>
+        <form action="" method="POST">
+          {% csrf_token %} 
         <div class="btn-group">
-          <a href="/delete/chitietxuathang/{{daily}}/{{ngayxuat}}/{{id}}"><button class="btn btn-white">Hủy</button></a>
+          <input id="" name="xoatatca" value="{{ id }}" />
+          <button name="xoatatcaphieu" class="btn btn-white">Hủy</button>
         </div>
+      </form>
         <div class="result">
           <div class="result-title">THÔNG TIN PHIẾU XUẤT HÀNG</div>
           <div class="result-table">
