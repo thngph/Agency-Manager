@@ -145,8 +145,11 @@ def chitietxuathang(request,MaDaiLy,NgayXuat,id):
                 check_ctpx[0].ThanhTien= check_ctpx[0].ThanhTien + int(data['DonGia'])*int(data['SoLuong'])
                 check_ctpx[0].save()
             else:
-                ctphieuxuat = ChiTietPhieuXuatHang(MaPhieuXuatHang=PhieuXuatHang.objects.get(MaPhieuXuatHang=id), MaMatHang=MatHang.objects.get(MaMatHang=data['MaMatHang']),SoLuong=data['SoLuong'],DonGia=data['DonGia'], ThanhTien=int(data['DonGia'])*int(data['SoLuong']))
+                ctphieuxuat = ChiTietPhieuXuatHang(MaPhieuXuatHang=PhieuXuatHang.objects.get(MaPhieuXuatHang=id), MaMatHang=MatHang.objects.get(MaMatHang=data['MaMatHang']),SoLuong=data['SoLuong'],DonGia=data['DonGia'], ThanhTien=int(data['DonGia'])*int(data['SoLuong']))                
                 ctphieuxuat.save()
+            mathang= MatHang.objects.get(MaMatHang= request.POST['MaMatHang'])    
+            mathang.SoLuongTon = mathang.SoLuongTon - int(data['SoLuong'])
+            mathang.save()
             return redirect(chitietxuathang, MaDaiLy= MaDaiLy, NgayXuat= NgayXuat, id = id)
         if 'delete' in request.POST:
             print("CO DELETE")
@@ -154,7 +157,7 @@ def chitietxuathang(request,MaDaiLy,NgayXuat,id):
             id_delete= int(request.POST['xoaphieu'])
             phieuxoa= ChiTietPhieuXuatHang.objects.get(MaChiTietPhieuXuatHang= id_delete)
             mathang= MatHang.objects.get(TenMatHang= request.POST['MaMatHang'])
-            mathang.SoLuongTon= mathang.SoLuongTon - phieuxoa.SoLuong
+            mathang.SoLuongTon= mathang.SoLuongTon + phieuxoa.SoLuong
             mathang.save()
             ChiTietPhieuXuatHang.objects.get(MaChiTietPhieuXuatHang= id_delete).delete()
             print("da xoa")
