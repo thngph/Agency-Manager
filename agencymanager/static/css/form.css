@@ -1,146 +1,222 @@
 /* Form */
 .form-title {
-    font-size: 2.2rem;
-    color: black;
-    text-align: center;
-    font-weight: 600;
-    margin-bottom: 20px;
-    width: 100%;
+  font-size: 2.2rem;
+  color: black;
+  text-align: center;
+  font-weight: 600;
+  margin-bottom: 20px;
+  width: 100%;
 }
-.form-input-group
-{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+.form-input-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
-.form-filter
-{
-    border: 1px solid #ccc;
-    padding: 20px 15px;
-    border-radius: 5px;
+.form-filter {
+  border: 1px solid #ccc;
+  padding: 20px 15px;
+  border-radius: 5px;
 }
-.form-filter .form-title
-{
-    font-size: 3rem;
+.form-filter .form-title {
+  font-size: 3rem;
 }
-.icon-search
-{
-    position: absolute;
-    right: 15px;
-    top: 5px;
-    border-radius: 10px;
-    cursor: pointer;
+.icon-search {
+  position: absolute;
+  right: 15px;
+  top: 5px;
+  border-radius: 10px;
+  cursor: pointer;
 }
 /* Input Item Quarter */
 .form-input-item-quarter {
-    display: flex;
-    align-items: center;
-    width: calc(25% - 50px);
+  display: flex;
+  align-items: center;
+  width: calc(25% - 50px);
 }
 .form-input-item-quarter input,
-.form-input-item-quarter select
- {
-     width: -webkit-fill-available;
-    font-size: 2rem;
-    flex: 1;
-    height: 50px;
-    display: inline-block;
-    border-radius: 7px;
-    outline: none;
-    border: 1px solid var(--color-border-input);
-    padding: 5px 10px;
-    margin-left: 10px;
+.form-input-item-quarter select {
+  width: -webkit-fill-available;
+  font-size: 2rem;
+  flex: 1;
+  height: 50px;
+  display: inline-block;
+  border-radius: 7px;
+  outline: none;
+  border: 1px solid var(--color-border-input);
+  padding: 5px 10px;
+  margin-left: 10px;
 }
 .form-input-item-quarter label {
-    font-size: 20px;
-    min-width: 50px;
-    display: inline-block;
+  font-size: 20px;
+  min-width: 50px;
+  display: inline-block;
 }
 /* Input Item Half */
-.form-input-group-half
-{
-    display: flex;
-    flex-direction: column;
-    width: calc(50% - 60px) ;
+.form-input-group-half {
+  display: flex;
+  flex-direction: column;
+  width: calc(50% - 60px);
 }
 .form-input-item-half {
-    margin: 10px 0;
-    display: flex;
-    align-items: center;
+  margin: 10px 0;
+  display: flex;
+  align-items: center;
 }
 .form-input-item-half input,
-.form-input-item-half select 
-{
-    font-size: 2rem;
-    flex: 1;
-    height: 50px;
-    display: inline-block;
-    border-radius: 7px;
-    outline: none;
-    border: 1px solid var(--color-border-input);
-    padding: 5px 10px;
+.form-input-item-half select {
+  font-size: 2rem;
+  flex: 1;
+  height: 50px;
+  display: inline-block;
+  border-radius: 7px;
+  outline: none;
+  border: 1px solid var(--color-border-input);
+  padding: 5px 10px;
 }
 .form-input-item-half label {
-    font-size: 20px;
-    min-width: 150px;
-    display: inline-block;
+  font-size: 20px;
+  min-width: 150px;
+  display: inline-block;
 }
 /* Input Item full*/
-.form-input-item-full
-{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    position: relative;
-    margin-bottom: 15px;
+.form-input-item-full {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  position: relative;
+  margin-bottom: 15px;
 }
 .form-input-item-full label {
-    font-size: 20px;
-    min-width: 150px;
-    display: inline-block;
+  font-size: 20px;
+  min-width: 150px;
+  display: inline-block;
 }
 .form-input-item-full input,
-.form-input-item-full select
-{
-    font-size: 20px;
-    flex: 1;
-    height: 50px;
-    display: inline-block;
-    border-radius: 7px;
-    outline: none;
-    border: 1px solid var(--color-border-input);
-    padding: 0 20px;
+.form-input-item-full select {
+  font-size: 20px;
+  flex: 1;
+  height: 50px;
+  display: inline-block;
+  border-radius: 7px;
+  outline: none;
+  border: 1px solid var(--color-border-input);
+  padding: 0 20px;
 }
-.debt
-{
-    justify-content: flex-end;
+.debt {
+  justify-content: flex-end;
 }
-.debt label
-{
-    font-weight: 500; 
-    text-align: left;
-    min-width: 164px;
+.debt label {
+  font-weight: 500;
+  text-align: left;
+  min-width: 164px;
 }
 /* Form trang Quy định */
 .content-sm .form-input-item-full label {
-    font-size: 20px;
-    min-width: 220px;
-    display: inline-block;
+  font-size: 20px;
+  min-width: 220px;
+  display: inline-block;
 }
-.content-sm.content-body
-{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+.content-sm.content-body {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
-.content-sm form
-{
-    width: 960px;
-    display: flex;
-    flex-direction: column;
+.content-sm form {
+  width: 960px;
+  display: flex;
+  flex-direction: column;
 }
-.content-sm form button
-{
-    align-self: flex-end;
+.content-sm form button {
+  align-self: flex-end;
+}
+
+.form-post {
+  width: 400px;
+  height: 90%;
+  background-color: white;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  margin: auto;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  padding: 20px 50px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+}
+
+.form-post.hidden {
+  display: none;
+}
+
+.form-post p {
+  font-size: 24px;
+  color: blue;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.form-post label {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.form-post input {
+  font-size: 14px;
+  margin-bottom: 8px;
+  padding: 2px 8px;
+  outline: none;
+  border-radius: 8px;
+}
+
+#MaLoaiDaiLy,
+#MaQuan {
+  font-size: 14px;
+  margin-bottom: 8px;
+  padding: 2px 8px;
+  border-radius: 8px;
+  outline: none;
+}
+
+.form-post option {
+  font-size: 14px;
+  margin-bottom: 8px;
+  padding: 2px 8px;
+  border-radius: 8px;
+}
+
+.submit-button {
+  padding: 5px 30px;
+  text-align: center;
+  color: white;
+  background-color: blue;
+  border-radius: 8px;
+  font-size: 20px;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+}
+
+.cancel-button {
+  margin-right: 10px;
+  padding: 5px 30px;
+  text-align: center;
+  color: white;
+  background-color: red;
+  border-radius: 8px;
+  font-size: 20px;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
