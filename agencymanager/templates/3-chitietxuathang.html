@@ -117,9 +117,13 @@
             </div>
           </div>
         </form>
+        <form action="" method="POST">
+          {% csrf_token %} 
         <div class="btn-group">
-          <a href="/delete/chitietxuathang/{{daily}}/{{ngayxuat}}/{{id}}"><button class="btn btn-white">Hủy</button></a>
+          <input id="" name="xoatatca" value="{{ id }}" />
+          <button name="xoatatcaphieu" class="btn btn-white">Hủy</button>
         </div>
+      </form>
         <div class="result">
           <div class="result-title">THÔNG TIN PHIẾU XUẤT HÀNG</div>
           <div class="result-table">

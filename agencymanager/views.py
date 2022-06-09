@@ -1,4 +1,5 @@
 from pickle import FALSE, TRUE
+from cv2 import Mat
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
@@ -76,6 +77,7 @@ def chitietnhaphang(request, MaNhaCC, NgayNhap, id, sum):
                 ctphieunhap.save()
             mathang = MatHang.objects.get(MaMatHang= request.POST['MaMatHang'])
             mathang.SoLuongTon = mathang.SoLuongTon + int(data['SoLuong'])
+            mathang.GiaNhap = int(request.POST['DonGia'])
             mathang.save()
             ctnhaphang = ChiTietPhieuNhapHang.objects.filter(MaPhieuNhapHang=id)
             return redirect(chitietnhaphang, MaNhaCC= MaNhaCC, NgayNhap= NgayNhap, id = id, sum=sum)
@@ -130,6 +132,10 @@ def xuathang(request):
 
 @login_required(login_url='login')
 def chitietxuathang(request,MaDaiLy,NgayXuat,id):
+    ctxuathang1 = ChiTietPhieuXuatHang.objects.filter(MaPhieuXuatHang=id).select_related('MaMatHang')
+    s=0
+    for item in ctxuathang1:
+        s = s + item.ThanhTien
     if request.method == 'GET':
         ctxuathang = ChiTietPhieuXuatHang.objects.filter(MaPhieuXuatHang=id).select_related('MaMatHang')
         tongtien = sum(ctxuathang.values_list('ThanhTien', flat=True))
@@ -167,6 +173,17 @@ def chitietxuathang(request,MaDaiLy,NgayXuat,id):
             tenmathang = MatHang.objects.all()
             dvt = DVT.objects.all()
             context= {"MaDaiLy": MaDaiLy, "NgayXuat": NgayXuat, "id": id, "ctxuathang": ctxuathang, "tenmathang": tenmathang}
+        if 'xoatatcaphieu' in request.POST:
+            ctxuathang= ChiTietPhieuXuatHang.objects.filter(MaPhieuXuatHang= id)
+            print("XXx")
+            for item in ctxuathang:
+                mathang= MatHang.objects.get(TenMatHang= item.MaMatHang)
+                mathang.SoLuongTon= mathang.SoLuongTon + item.SoLuong
+                mathang.save()
+            PhieuXuatHang.objects.get(MaPhieuXuatHang=id).delete()
+            daily = DaiLy.objects.all()
+            context = {"daily": daily}
+            return redirect('/xuathang/')
         return render(request, '3-chitietxuathang.html', context)
             
 
