@@ -76,6 +76,7 @@ def chitietnhaphang(request, MaNhaCC, NgayNhap, id, sum):
                 ctphieunhap.save()
             mathang = MatHang.objects.get(MaMatHang= request.POST['MaMatHang'])
             mathang.SoLuongTon = mathang.SoLuongTon + int(data['SoLuong'])
+            mathang.GiaNhap = int(request.POST['DonGia'])
             mathang.save()
             ctnhaphang = ChiTietPhieuNhapHang.objects.filter(MaPhieuNhapHang=id)
             return redirect(chitietnhaphang, MaNhaCC= MaNhaCC, NgayNhap= NgayNhap, id = id, sum=sum)
@@ -115,7 +116,7 @@ def xuathang(request):
             if form.is_valid():            
                 form.save()
                 context = form.data
-                return redirect(chitietxuathang, MaDaiLy= context['MaDaiLy'], NgayXuat= context['NgayXuat'], id = form.instance.MaPhieuXuatHang)
+                return redirect(chitietxuathang, MaDaiLy= context['MaDaiLy'], NgayXuat= context['NgayXuat'], id = form.instance.MaPhieuXuatHang, sum= 0)
             else:
                 daily = DaiLy.objects.all()
                 context = {"daily": daily}
@@ -129,13 +130,17 @@ def xuathang(request):
 
 
 @login_required(login_url='login')
-def chitietxuathang(request,MaDaiLy,NgayXuat,id):
+def chitietxuathang(request,MaDaiLy,NgayXuat,id, sum):
+    ctxuathang1 = ChiTietPhieuXuatHang.objects.filter(MaPhieuXuatHang=id).select_related('MaMatHang')
+    s=0
+    for item in ctxuathang1:
+        s = s + item.ThanhTien
     if request.method == 'GET':
         ctxuathang = ChiTietPhieuXuatHang.objects.filter(MaPhieuXuatHang=id).select_related('MaMatHang')
         tongtien = sum(ctxuathang.values_list('ThanhTien', flat=True))
         print(tongtien)
         tenmathang = MatHang.objects.all()
-        context = {"daily": MaDaiLy, "ngayxuat": NgayXuat, "id": id, "ctxuathang": ctxuathang, "tenmathang": tenmathang, "tongtien": tongtien}
+        context = {"daily": MaDaiLy, "ngayxuat": NgayXuat, "id": id, "ctxuathang": ctxuathang, "tenmathang": tenmathang, "tongtien": tongtien,  "sum": sum}
         return render(request, '3-chitietxuathang.html', context)
     if request.method == 'POST':
         if 'phieumoi' in request.POST:
@@ -151,7 +156,7 @@ def chitietxuathang(request,MaDaiLy,NgayXuat,id):
             mathang= MatHang.objects.get(MaMatHang= request.POST['MaMatHang'])    
             mathang.SoLuongTon = mathang.SoLuongTon - int(data['SoLuong'])
             mathang.save()
-            return redirect(chitietxuathang, MaDaiLy= MaDaiLy, NgayXuat= NgayXuat, id = id)
+            return redirect(chitietxuathang, MaDaiLy= MaDaiLy, NgayXuat= NgayXuat, id = id, s=s)
         if 'delete' in request.POST:
             print("CO DELETE")
             print(request.POST)
@@ -166,7 +171,7 @@ def chitietxuathang(request,MaDaiLy,NgayXuat,id):
             ctxuathang= ChiTietPhieuXuatHang.objects.filter(MaPhieuXuatHang= id)
             tenmathang = MatHang.objects.all()
             dvt = DVT.objects.all()
-            context= {"MaDaiLy": MaDaiLy, "NgayXuat": NgayXuat, "id": id, "ctxuathang": ctxuathang, "tenmathang": tenmathang}
+            context= {"MaDaiLy": MaDaiLy, "NgayXuat": NgayXuat, "id": id, "ctxuathang": ctxuathang, "tenmathang": tenmathang, "sum": sum}
         return render(request, '3-chitietxuathang.html', context)
             
 
