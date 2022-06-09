@@ -20,6 +20,10 @@
   /* width: 20%;
   text-align: center; */
 }
+.function-item a
+{
+  padding: 15px;
+}
 .report .function-list
 {
   justify-content: flex-start;
