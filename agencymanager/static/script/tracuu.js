@@ -30,26 +30,48 @@ async function handleClick() {
   document.querySelectorAll(".table-child").forEach((e) => e.remove());
   const data = await getAPI();
 
-  const newData = await data.filter(
-    (e) =>
-      e.MaDaiLy == inputDaiLy.value ||
-      e.MaLoaiDaiLy == inputLoai.value ||
-      e.MaQuan == inputQuan.value
-  );
+  let newdata1 = [];
+  let newdata2 = [];
+  let newdata3 = [];
+  let newdata4 = [];
+  // Loc ma dai ly
+  if (inputDaiLy.value != "") {
+    newdata1 = data.filter(function (item) {
+      return parseInt(item.MaDaiLy) == parseInt(inputDaiLy.value);
+    });
+  } else {
+    newdata1 = data;
+  }
+  // Loc loai dai ly
+  if (inputLoai.value != "0") {
+    newdata2 = newdata1.filter(function (item) {
+      return parseInt(item.MaLoaiDaiLy) == parseInt(inputLoai.value);
+    });
+  } else {
+    newdata2 = newdata1;
+  }
+  // Loc quan
+  if (inputQuan.value != "0") {
+    newdata3 = newdata2.filter(function (item) {
+      return parseInt(item.MaQuan) == parseInt(inputQuan.value);
+    });
+  } else {
+    newdata3 = newdata2;
+  }
+  // Loc so tien no
+  if (inputTienNoMin.value != "" && inputTienNoMax.value != "") {
+    newdata4 = newdata3.filter(function (item) {
+      return (
+        parseInt(item.SoTienNo) >= parseInt(inputTienNoMin.value) &&
+        parseInt(item.SoTienNo) <= parseInt(inputTienNoMax.value)
+      );
+    });
+  } else {
+    newdata4 = newdata3;
+  }
 
-  // const newData = await data.filter(
-  //   (e) =>
-  //     +inputTienNoMin.value <= +e.SoTienNo &&
-  //     +e.SoTienNo <= +inputTienNoMax.value
-  // );
-
-  // .filter(
-  // //   (e) =>
-  // +inputTienNoMin.value <= +e.SoTienNo &&
-  // +e.SoTienNo <= +inputTienNoMax.value
-  // );
-
-  newData.map((item) => {
+  console.log(newData);
+  newdata4.map((item) => {
     const template = `
       <tr class="table-child">
       <td class="tg-gvcd">${item.MaDaiLy}</td>

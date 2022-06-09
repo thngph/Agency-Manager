@@ -86,7 +86,7 @@
                 <div class="form-input-item-quarter">
                   <label for="type">Loại</label>
                   <select id="type" name="Loai">
-                    <option value="Tất cả">Tất cả</option>
+                    <option value="0">Tất cả</option>
                     <!-- <option value="1">1</option>
                     <option value="2">2</option> -->
                   </select>
@@ -94,7 +94,7 @@
                 <div class="form-input-item-quarter">
                   <label for="district">Quận</label>
                   <select id="district" name="Quan">
-                    <option value="Tất cả">Tất cả</option>
+                    <option value="0">Tất cả</option>
                     <!-- <option value="Quận 1">Quận 1</option>
                     <option value="Quận 2">Quận 2</option>
                     <option value="Quận 3">Quận 3</option> -->
@@ -221,9 +221,13 @@
       <label for="TenDaiLy">Tên đại lý</label>
       <input id="TenDaiLy" type="text" name="TenDaiLy" required />
       <label for="MaLoaiDaiLy">Loại đại lý</label>
-      <select type="text" id="MaLoaiDaiLy" name="MaLoaiDaiLy" required></select>
+      <select type="text" id="MaLoaiDaiLy" name="MaLoaiDaiLy" required>
+        <option value="0">Tất cả</option>
+      </select>
       <label for="MaQuan">Quận</label>
-      <select type="text" name="MaQuan" id="MaQuan" required></select>
+      <select type="text" name="MaQuan" id="MaQuan" required>
+        <option value="0">Tất cả</option>
+      </select>
       <label for="DiaChi">Địa chỉ</label>
       <input type="text" name="DiaChi" id="DiaChi" required />
       <label for="DienThoai">Điện thoại</label>
