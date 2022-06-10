@@ -118,13 +118,14 @@ def chitietnhaphang(request, MaNhaCC, NgayNhap, id, sum):
             phieunhap= PhieuNhapHang.objects.get(MaPhieuNhapHang = id)
             phieunhap.TongTien= int(request.POST['save'])
             phieunhap.save()
-            return redirect('/nhaphang/')
+            tenmathang = MatHang.objects.all()
+            context= {"MaNhaCC": MaNhaCC, "NgayNhap": NgayNhap, "id": id, "ctnhaphang": ctnhaphang, "tenmathang": tenmathang,  "sum": sum,"success": True}
+            return render(request, '2-chitietnhaphang.html', context)
 
 
     if request.method == 'GET':
         print("KHONG CO GI HET")        
         tenmathang = MatHang.objects.all()
-        dvt = DVT.objects.all()
         context= {"MaNhaCC": MaNhaCC, "NgayNhap": NgayNhap, "id": id, "ctnhaphang": ctnhaphang, "tenmathang": tenmathang,  "sum": sum}
     return render(request, '2-chitietnhaphang.html', context)
 
@@ -193,6 +194,7 @@ def chitietxuathang(request,MaDaiLy,NgayXuat,id):
             tenmathang = MatHang.objects.all()
             dvt = DVT.objects.all()
             context= {"MaDaiLy": MaDaiLy, "NgayXuat": NgayXuat, "id": id, "ctxuathang": ctxuathang, "tenmathang": tenmathang}
+
         if 'xoatatcaphieu' in request.POST:
             ctxuathang= ChiTietPhieuXuatHang.objects.filter(MaPhieuXuatHang= id)
             print("XXx")
