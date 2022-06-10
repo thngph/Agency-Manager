@@ -115,3 +115,10 @@ async function start() {
 }
 start();
 
+const formPost = document.querySelector(".form-post");
+const cancelBtn = document.querySelector(".submit-button");
+cancelBtn.addEventListener("click", () => {
+  formPost.classList.add("hidden");
+});
+saveBtn.addEventListener("click", async function (e) {
+    formPost.classList.remove("hidden");});
