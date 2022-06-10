@@ -192,8 +192,19 @@ async function deleteAPI(id) {
 table.addEventListener("click", async function (e) {
   if (e.target.matches(".remove-icon")) {
     const id = +e.target.dataset.id;
+    const tiennodaily= (await getSingleDaiLy(id)).SoTienNo
     const result = confirm("Bạn chắc chắn muốn xóa?");
-    if (result) await deleteAPI(id);
+    if (result) 
+    {
+      if(tiennodaily==0)
+      {
+        await deleteAPI(id);
+      }
+      else
+      {
+        alert("Đại lý vẫn còn nợ tiền")
+      }
+    }
     await handleClick();
     console.log(id);
   } else if (e.target.matches(".edit-icon")) {
