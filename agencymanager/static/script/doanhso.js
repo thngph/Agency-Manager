@@ -96,11 +96,6 @@ function renderData(Chitietdoanhso,BaoCaoDoanhSo)
     resultMoneyInput.innerHTML=`<span>Tổng doanh thu: ${BaoCaoDoanhSo.TongDoanhSo} VND </span>`
     resultTitle.innerText=`BÁO CÁO DOANH SỐ THÁNG ${BaoCaoDoanhSo.Thang}-${BaoCaoDoanhSo.Nam}`
 
-
-
-    
-
-
     let labels = Chitietdoanhso.map(item => item.MaDaiLy);
     let colors= []
     let mydata = Chitietdoanhso.map(item => item.TiLe);

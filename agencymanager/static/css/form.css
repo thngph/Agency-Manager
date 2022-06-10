@@ -119,7 +119,6 @@
 }
 .content-sm.content-body {
   display: flex;
-  align-items: center;
   flex-direction: column;
   width: 1111px;
   margin: auto;
