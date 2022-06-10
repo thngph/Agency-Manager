@@ -95,6 +95,43 @@ function renderData(Chitietdoanhso,BaoCaoDoanhSo)
     table.innerHTML = htmls.join('');
     resultMoneyInput.innerHTML=`<span>Tổng doanh thu: ${BaoCaoDoanhSo.TongDoanhSo} VND </span>`
     resultTitle.innerText=`BÁO CÁO DOANH SỐ THÁNG ${BaoCaoDoanhSo.Thang}-${BaoCaoDoanhSo.Nam}`
+
+
+
+    
+
+
+    let labels = Chitietdoanhso.map(item => item.MaDaiLy);
+    let colors= []
+    let mydata = Chitietdoanhso.map(item => item.TiLe);
+    console.log(labels)
+    for(let i=0;i<Chitietdoanhso.length;i++){
+          colors.push('#'+Math.floor(Math.random()*16777215).toString(16));
+    }
+    
+      let data = {
+        labels: labels,
+        datasets: [{
+            
+          data: mydata,
+          
+          label: "`BÁO CÁO DOANH SỐ THÁNG ${BaoCaoDoanhSo.Thang}-${BaoCaoDoanhSo.Nam}`",
+          backgroundColor: colors,
+        }]
+      };
+    
+      let config = {
+        type: 'doughnut',
+        data: data, 
+        options: {
+           plugins: {
+        }
+        }
+      };
+      let myChart = new Chart(
+        document.getElementById('myChart'),
+        config);
+
 }
 async function start() {
     let dailyData=await GetData(dailyUrl);
@@ -187,6 +224,8 @@ async function handleData(dailyData,xuathangData,month,year,baocaothangnay)
             item.MaBaoCaoDoanhSo=BaoCaoCanChon[0].MaBaoCaoDoanhSo
             postData(CTDSUrl,item)
         })
+
+
     }
     else
     {
@@ -240,3 +279,9 @@ btn.onclick = function()
 {
     start()
 }
+
+
+
+
+
+
