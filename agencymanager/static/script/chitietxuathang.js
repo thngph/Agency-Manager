@@ -84,14 +84,14 @@ async function start() {
     {
         tiennothem.value=parseInt(tongtien.value)-parseInt(tientra.value);
         tongtienno=tiennohienno+parseInt(tiennothem.value)
-        if((tiennomax<tongtienno)||(parseInt(tiennothem.value)<0))
+        if((tiennomax<tongtienno))
         {
             successMsg.classList.add('hidden')
             checkmoneyMsg.classList.remove('hidden')
-            checkmoneyMsg.innerText=`*Vượt mức tiền nợ tối đa ${tongtienno} > ${tiennomax}`
+            checkmoneyMsg.innerText=`*Cần trả tối thiểu ${parseInt(tiennohienno)+parseInt(tongtien.value)-parseInt(tiennomax)} để không vượt số nợ tối đa`
             saveBtn.disabled=true
         }
-        else if(tientra.value=="")
+        else if(tientra.value==""||(parseInt(tiennothem.value)<0))
         {
             successMsg.classList.add('hidden')
             checkmoneyMsg.classList.remove('hidden')
@@ -101,7 +101,7 @@ async function start() {
         else
         {
             successMsg.classList.remove('hidden')
-            successMsg.innerText=`Có thể lưu phiếu. Số tiền nợ sau cùng ${tongtienno}`
+            successMsg.innerText=`Có thể lưu phiếu. Số tiền nợ thêm là ${parseInt(tiennothem.value)}`
             checkmoneyMsg.classList.add('hidden')
             saveBtn.disabled=false
             saveBtn.onclick=function()
