@@ -202,7 +202,7 @@ table.addEventListener("click", async function (e) {
       }
       else
       {
-        alert("Đại lý vẫn còn nợ tiền")
+        alert("Đại lý vẫn còn nợ tiền. Không thể xóa")
       }
     }
     await handleClick();
