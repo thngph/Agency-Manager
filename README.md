@@ -1,6 +1,6 @@
-## Agency-Manager - Quản lý Đại Lý 🧑‍💼
-Agency-Manager is a website to manager agency <br/>
-Link demo: 
+## Agency Manager - Quản lý Đại Lý 🧑‍💼
+Agency-Manager is a web-based platform to manage commercial agents/retails *(or whatever im not major in comm)* <br/>
+Link demo: ?
 
 # Developer Team 👨‍👨‍👧‍👦
 Team size: 4 <br/>
@@ -15,23 +15,19 @@ Team size: 4 <br/>
 
 # Features ✨
 **Main features**
-- Tiếp nhận đại lý
-- Lập phiếu xuất hàng
-- Lập phiếu nhập hàng
-- Báo cáo công nợ
-- Báo cáo doanh số
+- Agent/Retail acceptance
+- Goods delivery/received note
+- Cash receipt
+- Customer statement
+- Monthly sales summary report
 
 **Other features**
-- Tra cứu đại lý
-- Tra cứu hàng tồn kho
-- Xác thực phân quyền
+- Agents, goods stocks acessing
+- Authorization
 
 # Technologies 👨🏻‍💻
 
-**Frontend**
 - HTML, CSS, JS
-
-**Backend**
 - Django
 
 **Database**
@@ -49,9 +45,9 @@ py -m venv env
 Windows users: 
 
 ```
-cd path-to-folder\Agency-Manager\env\Scripts
+cd path-to-folder/Agency-Manager/env/Scripts
 ./activate
-cd path-to-folder\Agency-Manager
+cd path-to-folder/Agency-Manager
 pip install -r requirements.txt
 ```
 
