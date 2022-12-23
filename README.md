@@ -68,7 +68,7 @@ Username: admin
 Password: 12345678
 ```
 
-# Picture 🖼️
+# Screens 🖼️
 ![image](https://user-images.githubusercontent.com/67829285/209283218-89142eea-61dd-4c52-8f6a-9067742a21a7.png)
 
 ![image](https://user-images.githubusercontent.com/67829285/209283270-e7811776-7e68-4851-afe2-613edac220c0.png)
